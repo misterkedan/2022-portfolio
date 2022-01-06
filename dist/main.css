@@ -1,0 +1,75 @@
+html {
+	font-size: 62.5%;
+}
+
+#portfolio {
+	isolation: isolate;
+	min-height: 100%;
+	min-width: 320px;
+
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 1.6rem;
+    background: #000000;
+    color: #ffffff;
+}
+
+#main {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+#title {
+	font-weight: 700;
+	text-transform: uppercase;
+	user-select: none;
+}
+
+#title-name {
+	font-size: 4.7rem;
+}
+
+#title-name-last {
+	display: block;
+	font-size: 7.2rem;
+	line-height: 5rem;
+	margin-bottom: 1rem;
+}
+
+#title-job {
+	font-size: 2rem;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin: 2rem 0;
+
+	font-size: 1.2rem;
+	text-align: center;
+
+	color: white;
+	opacity: 0.5;
+}
+
+.footer-link {
+	text-decoration: none;
+}
+
+.footer-link,
+.footer-link:visited {
+	color: #ffffff;
+}
+
+.footer-link:hover{
+	text-decoration: underline;
+	color: #ffffff;
+}
