@@ -1,1 +1,1 @@
-console.log("Hello world!");
+!function(){try{document.documentElement.classList.add("initing"),requestAnimationFrame((function(){document.documentElement.classList.remove("initing"),document.documentElement.classList.replace("no-js","js")}))}catch(e){console.error(e),document.documentElement.classList.remove("initing")}}();

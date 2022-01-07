@@ -30,13 +30,21 @@ a:visited {
 	color: #ffffff;
 }
 
-
-
-
-#overlay {
+#overlay,
+#overlay-main,
+#main-wrapper,
+#fader {
 	width: 100%;
 	height: 100%;
+}
 
+/*-----------------------------------------------------------------------------/
+
+	Overlay Layout
+
+/-----------------------------------------------------------------------------*/
+
+#overlay {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -56,7 +64,6 @@ nav {
 }
 
 #overlay-main {
-	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -67,8 +74,11 @@ footer {
 	padding: 1rem;
 }
 
+/*-----------------------------------------------------------------------------/
 
+	Overlay Elements
 
+/-----------------------------------------------------------------------------*/
 
 .nav-link {
 	font-size: 1.4rem;
@@ -112,24 +122,25 @@ header {
 	font-size: 2rem;
 }
 
+/*-----------------------------------------------------------------------------/
 
+	Main
 
+/-----------------------------------------------------------------------------*/
 
-#main-wrapper {
+.js #main-wrapper {
+	position: fixed;
+
 	display: flex;
 	flex-wrap: nowrap;
-  	overflow-x: auto;
-
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	overflow: scroll;
+	overflow-x: auto;
 
 	-ms-overflow-style: none;
 	scrollbar-width: none;	
 }
 
-#main-wrapper::-webkit-scrollbar {
+.init body::-webkit-scrollbar,
+.js #main-wrapper::-webkit-scrollbar {
 	display: none;
 }
 
@@ -139,14 +150,16 @@ header {
 
 section {
 	display: flex;
+	justify-content: flex-start;
 }
 
-.full {
+.item {
 	min-width: 320px;
 	min-height: 400px;
 
 	width: 100vw;
-	height: 100%;
+	height: 100vh;
+
 	flex: 0 0 auto;
 
 	display: flex;
@@ -168,8 +181,63 @@ section {
 	background: darkgreen;
 }
 
+/*-----------------------------------------------------------------------------/
+
+	Init
+
+/-----------------------------------------------------------------------------*/
+
+#fader {
+	background: #000000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	display: none;
+	transition: opacity 2000ms ease-in-out;
+}
+	.initing #fader {
+		display: block;
+	}
+	.js #fader {
+		display: block;
+		opacity: 0;
+	}
 
 
+/*-----------------------------------------------------------------------------/
+
+	No JS version
+
+/-----------------------------------------------------------------------------*/
+
+.no-js .item {
+	width: 100%;
+}
+
+.no-js #background {
+	display: none;
+}
+
+.no-js #overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.no-js #overlay-main {
+	display: none;
+}
+
+.no-js #main,
+.no-js section {
+	flex-direction: column;
+}
+
+/*-----------------------------------------------------------------------------/
+
+	Media queries
+
+/-----------------------------------------------------------------------------*/
 
 @media (hover: hover) {
 	
