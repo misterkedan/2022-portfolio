@@ -50,7 +50,9 @@ a:visited {
 	justify-content: space-between;
 	align-items: center;
 
-	padding: 1rem;
+	min-height: 100%;
+
+	padding: 2rem;
 	isolation: isolate;
 	pointer-events: none;
 }
@@ -158,8 +160,8 @@ section {
 	min-height: 400px;
 
 	width: 100vw;
-	height: 100vh;
-
+	height: 100%;
+	
 	flex: 0 0 auto;
 
 	display: flex;
@@ -212,6 +214,7 @@ section {
 /-----------------------------------------------------------------------------*/
 
 .no-js .item {
+	height: 100vh;
 	width: 100%;
 }
 
@@ -238,6 +241,10 @@ section {
 	Media queries
 
 /-----------------------------------------------------------------------------*/
+
+.debug #fader {
+	transition: none;
+}
 
 @media (hover: hover) {
 	
