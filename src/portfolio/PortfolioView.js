@@ -20,15 +20,12 @@ class PortfolioView {
 
 	}
 
-	hide( element ) {
+	setArrows( hideBack, hideForward ) {
 
-		element.style.visibility = 'hidden';
-
-	}
-
-	show( element ) {
-
-		element.style.visibility = 'visible';
+		const HIDDEN = 'hidden';
+		const VISIBLE = 'visible';
+		this.back.style.visibility = ( hideBack ) ? HIDDEN : VISIBLE;
+		this.forward.style.visibility  = ( hideForward ) ? HIDDEN : VISIBLE;
 
 	}
 

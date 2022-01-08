@@ -38,7 +38,7 @@ class Portfolio extends SlidesManager {
 
 		window.location.hash = this.currentSlide;
 
-		this.updateArrows();
+		this.view.setArrows( this.isAtStart, this.isAtEnd );
 
 	}
 
@@ -52,17 +52,6 @@ class Portfolio extends SlidesManager {
 			this.set( index );
 
 		}
-
-	}
-
-	updateArrows() {
-
-		const { view, nav } = this;
-
-		view.back.style.visibility = ( nav.index === nav.start )
-			? 'hidden' : 'visible';
-		view.forward.style.visibility  = ( nav.index === nav.end )
-			? 'hidden' : 'visible';
 
 	}
 

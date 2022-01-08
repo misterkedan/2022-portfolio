@@ -47,7 +47,23 @@ class SlidesManager {
 
 	}
 
+	/*-------------------------------------------------------------------------/
 
+		Read-only
+
+	/-------------------------------------------------------------------------*/
+
+	get isAtStart() {
+
+		return this.nav.index === this.nav.start;
+
+	}
+
+	get isAtEnd() {
+
+		return this.nav.index === this.nav.end;
+
+	}
 
 }
 
