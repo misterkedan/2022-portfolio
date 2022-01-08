@@ -90,6 +90,8 @@ class PortfolioControls {
 
 	onKeyUp( event ) {
 
+		//console.log( event );
+
 		if (
 			this.backCodes.includes( event.keyCode ) ||
 			this.backKeys.includes( event.keyCode )
@@ -109,8 +111,6 @@ class PortfolioControls {
 			return this.portfolio.forward();
 
 		}
-
-		//console.log( event );
 
 	}
 

@@ -26,53 +26,90 @@
 	<div id="background"></div>
 
 	<div id="main-wrapper">
-
 		<main id="main">
-			
 			<section id="intro" class="item"></section>
 
-			<section id="demo">
-				<div class="item">
-					<h2>Demo</h2>
-				</div>
-			</section>
-
 			<section id="showcase">
-				<div class="item">
-					<h2>Showcase 1</h2>
+				<h2>SHOWCASE</h2>
+
+				<div id="navscan" class="item">
+					<h3>NAVSCAN</h3>
 				</div>
-				<div class="item">
-					<h2>Showcase 2</h2>
+				<div id="rain" class="item">
+					<h3>RAIN</h3>
+				</div>
+				<div id="blockflow" class="item">
+					<h3>BLOCKFLOW</h3>
+				</div>
+				<div id="ablaze" class="item">
+					<h3>ABLAZE</h3>
+				</div>
+
+
+			</section>
+
+			<section id="works">
+				<h2>WORKS</h2>
+
+				<div id="orion" class="item">
+					<h3>ORION</h3>
+					<p class="description">Generative experiment made in collaboration with fellow creative coder Thibaut Foussard.</p>
+				</div>
+				<div id="disintegrator" class="item">
+					<h3>DISINTEGRATOR</h3>
+					<p class="description">Mesh disintegration lab, using tesselation and simplex noise.</p>
+				</div>
+				<div id="textformer" class="item">
+					<h3>TEXTFORMER</h3>
+					<p class="description">Javascript utility for easy text animations and transitions, based on random character changes.</p>
+				</div>
+				<div id="vesuna" class="item">
+					<h3>VESUNA</h3>
+					<div class="description">
+						<p>I really like building generative applications. However, when there is a wide range of possible outputs it can become tedious to save/restore and share specific settings.</p>
+						<p>To solve this issue, I wrote this tiny text-based random seed PRNG utility, that allow to generate pseudorandom number sequences based on simple words or word combinations.</p>
+					</div>
 				</div>
 			</section>
 
-			<section id="about">
-				<div class="item">
-					<h2>About</h2>
+			<section id="info">
+				<div id="about" class="item">
+					<div class="description">
+						<p>Hi there,</p>
+						<p>My name is Pierre "Keda" Audéoud. I'm a 38-year-old french creative coder from Paris, France.</p>
+						<p>My work is mostly made using <strong>three.js</strong> and "vanilla" <strong>javascript</strong>, with a strong focus on motion, randomness and interactivity. I also really like <span id="tech">GLSL</span> and <span id="inspiration">sci-fi aesthetics</span>.</p>
+						<p>I am currently looking for a creative studio of like-minded people, to craft beautiful things with.</p>
+					</div>
+				</div>
+				<div id="links" class="item">
+					<a href="mailto:pierrekeda83@gmail.com">pierrekeda83@gmail.com</a>
+					<ul id="links-social">
+						<li><a href="https://twitter.com/pierrekeda83">twitter.com/pierrekeda83</a></li>
+						<li><a href="https://github.com/pierrekeda">github.com/pierrekeda</a></li>
+						<li><a href="https://www.instagram.com/pierrekeda/">instagram.com/pierrekeda</a></li>
+					</ul>
+					<p class="description">This portfolio was made with three.js, anime.js and my own textformer. Rest is vanilla JS. If you're interested in my coding style, you can take a look at <a href="https://github.com/pierrekeda/2022-portfolio">the full repository</a>.</p>
 				</div>
 			</section>
-
 		</main>
-
 	</div>
 
 	<div id="overlay">
-
 		<nav>
-			<a class="nav-link" href="#demo">DEMO</a>
-			<a class="nav-link" href="#showcase">SHOWCASE</a>
-			<a class="nav-link" href="#about">ABOUT</a>	
+			<a class="nav-link" href="#navscan">SHOWCASE</a>
+			<a class="nav-link" href="#orion">WORKS</a>
+			<a class="nav-link" href="#about">ABOUT</a>
 		</nav>
 
 		<div id="overlay-main">
 			<a id="arrow-back" class="nav-arrow" href="javascript:void(0)">&#10094;</a>
-			<header id="title">
-				<h1 id="name">
-					<span id="name-first">Pierre</span>
-					<span id="name-alias">Keda</span>
-				</h1>
-				<h2 id="job">Creative Coder</h2>
-			</header>
+			<h1 id="title">
+				<div id="name">
+					<span id="name-first">PIERRE</span>
+					<span id="name-alias">KEDA</span>
+				</div>
+				<span id="vocation">CREATIVE CODER</span>
+			</h1>
 			<a id="arrow-forward" class="nav-arrow" href="javascript:void(0)">&#10095;</a>
 		</div>
 
@@ -81,9 +118,7 @@
 		</footer>
 
 		<div id="fader"></div>
-
 	</div>
-
 </body>
 
 </html>

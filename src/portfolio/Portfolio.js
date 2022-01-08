@@ -6,11 +6,28 @@ class Portfolio extends SlidesManager {
 
 	constructor() {
 
-		super( [ 'intro', 'demo', 'showcase', 'about' ] );
+		super( [
+			'intro',
+
+			'navscan',
+			'rain',
+			'blockflow',
+			'ablaze',
+
+			'orion',
+			'disintegrator',
+			'textformer',
+			'vesuna',
+
+			'about',
+			'links'
+		] );
 
 		this.view = new PortfolioView();
+
 		this.view.title.style.display = 'none';
 
+		this.load();
 		this.update();
 
 		this.controls = new PortfolioControls( this );
@@ -19,13 +36,9 @@ class Portfolio extends SlidesManager {
 
 	update() {
 
-
-
 		window.location.hash = this.currentSlide;
 
 		this.updateArrows();
-
-		//console.log( this );
 
 	}
 
