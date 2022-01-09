@@ -3,19 +3,21 @@ html {
 }
 
 body {
-	min-width: 320px;
-	min-height: 400px;
-
-	font-family: 'JetBrains Mono', monospace;
-	font-size: 1.6rem;
-	text-align: center;
-
 	background: #000000;
     color: #ffffff;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 1.4rem;
+	text-align: center;
+
+	overflow: hidden auto;
 }
 
 h3, p {
 	margin-bottom: 1.4em;
+}
+
+p:last-child{
+	margin-bottom: 0;
 }
 
 h2 {
@@ -24,7 +26,46 @@ h2 {
 	font-weight: bold;
 }
 
-a {
+a,
+a:visited {
+	color: #ffffff;
+}
+
+em {
+	font-style: italic;
+}
+
+/*-----------------------------------------------------------------------------/
+
+	UI
+
+/-----------------------------------------------------------------------------*/
+
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	display: flex;
+	/*align-items: flex-end;*/
+	justify-content: center;
+
+	padding-top: 1rem;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+
+	padding: 1rem 1rem 2rem;
+	width: 100%;
+
+	font-size: 1.2rem;
+}
+
+.nav-link, .nav-arrow {
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
@@ -33,74 +74,30 @@ a {
             user-select: none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-tap-highlight-color: transparent;
-}
-
-a,
-a:visited {
-	color: #ffffff;
-}
-
-#overlay,
-#overlay-main,
-#main-wrapper,
-#fader {
-	width: 100%;
-	height: 100%;
-}
-
-/*-----------------------------------------------------------------------------/
-
-	Overlay Layout
-
-/-----------------------------------------------------------------------------*/
-
-#overlay {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-
-	min-height: 100%;
-
-	padding: 2rem;
-	isolation: isolate;
-	pointer-events: none;
-}
-
-.nav-link, .nav-arrow {
 	pointer-events: initial;
-}
-
-nav {
-	display: flex;
-}
-
-#overlay-main {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-footer {
-	font-size: 1.2rem;
-	padding: 1rem;
-}
-
-/*-----------------------------------------------------------------------------/
-
-	Overlay Elements
-
-/-----------------------------------------------------------------------------*/
-
-.nav-link {
-	font-size: 1.4rem;
-	padding: 1rem 1.6rem 1rem;
 }
 
 .nav-arrow {
 	font-weight: bold;
 	font-size: 2.4rem;
-	padding: 1rem 1rem;
+	padding: 1rem 2rem;
+
+	position: fixed;
+	top: 50%;
+	top: calc( 50% - 2.8rem );
+}
+
+	#arrow-back {
+		left: 0;
+	}
+
+	#arrow-forward {
+		right: 0;
+	}
+
+.nav-link {
+	font-size: 1.4rem;
+	padding: 1rem 1.6rem 1rem;
 }
 
 #signature,
@@ -110,6 +107,40 @@ footer {
 	opacity: 0.5;
 	text-decoration: none;
 	letter-spacing: 0.1rem;
+}
+
+/*-----------------------------------------------------------------------------/
+
+	Main
+
+/-----------------------------------------------------------------------------*/
+
+.item {
+	min-width: 100%;
+	min-height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.js .item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	
+	padding: 6rem 6rem;
+}
+
+.js .section-title {
+	display: none;
+}
+
+.description {
+	text-align: left;
+	max-width: 40em;
 }
 
 #title {
@@ -131,79 +162,9 @@ footer {
 		font-size: 2rem;
 	}
 
-/*-----------------------------------------------------------------------------/
-
-	Main
-
-/-----------------------------------------------------------------------------*/
-
-.js #main-wrapper {
-	position: fixed;
-
-	display: flex;
-	flex-wrap: nowrap;
-	overflow-x: auto;
-
-	-ms-overflow-style: none;
-	scrollbar-width: none;	
-}
-
-.init body::-webkit-scrollbar,
-.js #main-wrapper::-webkit-scrollbar {
-	display: none;
-}
-
-#main {
-	display: flex;
-}
-
-section {
-	display: flex;
-	justify-content: flex-start;
-}
-
-.item {
-	width: 100vw;
-	height: 100%;
-	min-width: 320px;
-	min-height: 400px;
-	
-	display: flex;
-	flex: 0 0 auto;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-
-	padding: 4rem 7.6rem;
-}
-
-.description {
-	text-align: left;
-	max-width: 40em;
-}
-
-
-
-#showcase {
-	background: darkblue;
-}
-
-#works {
-	background: darkred;
-}
-
-#about {
-	flex-direction: column;
-	
-	background: darkgreen;
-	
-	/*align-items: flex-start;*/
-}
-
 #links-social {
 	margin: 1.4em 0;
 }
-
 
 /*-----------------------------------------------------------------------------/
 
@@ -212,10 +173,12 @@ section {
 /-----------------------------------------------------------------------------*/
 
 #fader {
-	background: #000000;
 	position: absolute;
 	top: 0;
 	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000000;
 	pointer-events: none;
 	display: none;
 	transition: opacity 2000ms ease-in-out;
@@ -227,6 +190,9 @@ section {
 		display: block;
 		opacity: 0;
 	}
+	.debug #fader {
+		transition: none;
+	}
 
 
 /*-----------------------------------------------------------------------------/
@@ -235,37 +201,66 @@ section {
 
 /-----------------------------------------------------------------------------*/
 
+.no-js .section-title {
+	display: flex;
+	justify-content: center;
+}
+
 .no-js .item {
+	padding: 4rem;
+}
+
+.no-js #intro {
+	height: 100rem;
 	height: 100vh;
-	width: 100%;
 }
 
-.no-js #background {
+.no-js #about {
+	padding-bottom: 2rem;
+}
+.no-js #links {
+	padding: 0rem 4rem 15rem;
+}
+
+@keyframes fadein {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+.no-js #title {
+	animation-name: fadein;
+  	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+}
+
+.no-js .nav-arrow {
 	display: none;
 }
 
-.no-js #overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-}
-.no-js #overlay-main {
-	display: none;
-}
-
-.no-js #main,
-.no-js section {
-	flex-direction: column;
-}
 
 /*-----------------------------------------------------------------------------/
 
-	Media queries
+	Media
 
 /-----------------------------------------------------------------------------*/
 
-.debug #fader {
-	transition: none;
+@media (max-aspect-ratio: 1/1) {
+
+	.nav-arrow {
+		top: 0.2rem;
+	}
+
+	.js .item{
+		padding: 6rem 4rem;
+	}
+
+}
+
+@media (max-width: 320px) {
+
+	nav {
+		display: none;
+	}
+
 }
 
 @media (hover: hover) {

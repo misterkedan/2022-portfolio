@@ -3,10 +3,12 @@ class PortfolioView {
 	constructor() {
 
 		const ids = [
-			'background',
-			'intro', 'demo', 'showcase', 'about',
-			'nav', 'title', 'footer',
-			'job', 'fader',
+			'background', 'title', 'fader',
+			'intro', 'showcase', 'works', 'about', 'links',
+
+			'navscan', 'rain', 'blockflow', 'ablaze',
+
+			'orion', 'disintegrator', 'textformer', 'vesuna',
 		];
 
 		ids.forEach(
@@ -17,6 +19,17 @@ class PortfolioView {
 		this.alias = document.getElementById( 'name-alias' );
 		this.back = document.getElementById( 'arrow-back' );
 		this.forward = document.getElementById( 'arrow-forward' );
+
+		this.nav = [ 'showcase', 'works', 'about' ].reduce( ( result, value ) => {
+
+			const link = document.getElementById( `nav-${value}` );
+			link.setAttribute( 'href', 'javascript:void(0)' );
+			result[ value ] = link;
+			return result;
+
+		}, {} );
+
+		//console.log( this );
 
 	}
 

@@ -2,115 +2,80 @@ class PortfolioControls {
 
 	constructor( portfolio ) {
 
-		this.portfolio = portfolio;
-
-		this.initArrows();
-		this.initHash();
-		this.initKeyboad();
+		this.init( portfolio );
+		this.initButtons( portfolio );
+		this.initKeyboad( portfolio );
 
 	}
 
-	/*-------------------------------------------------------------------------/
+	init( portfolio ) {
 
-		Buttons
-
-	/-------------------------------------------------------------------------*/
-
-	initArrows() {
-
-		const { portfolio } = this;
-		const { view } = portfolio;
-		view.forward.addEventListener( 'click', portfolio.forward.bind( portfolio ) );
-		view.back.addEventListener( 'click', portfolio.back.bind( portfolio ) );
+		window.addEventListener( 'hashchange', () => portfolio.load() );
 
 	}
 
-	/*-------------------------------------------------------------------------/
+	initButtons( portfolio ) {
 
-		Hash
+		const { back, forward, nav } = portfolio.view;
 
-	/-------------------------------------------------------------------------*/
+		back.addEventListener( 'click', () => portfolio.back() );
+		forward.addEventListener( 'click', () => portfolio.forward() );
 
-	initHash() {
-
-		this.onHashChange = this.onHashChange.bind( this );
-		window.addEventListener( 'hashchange', this.onHashChange );
-
-	}
-
-	onHashChange( event ) {
-
-		this.portfolio.load( event.hash );
+		nav.showcase.addEventListener( 'click', () => portfolio.jumpTo( 'navscan' ) );
+		nav.works.addEventListener( 'click', () => portfolio.jumpTo( 'orion' ) );
+		nav.about.addEventListener( 'click', () => portfolio.jumpTo( 'about' ) );
 
 	}
 
-	/*-------------------------------------------------------------------------/
+	initKeyboad( portfolio ) {
 
-		Keyboard
+		const keysBack = [
+			33, 'PageUp',
+			37, 'ArrowLeft'
+		];
 
-	/-------------------------------------------------------------------------*/
+		const keysForward = [
+			34, 'PageDown',
+			39, 'ArrowRight'
+		];
 
-	initKeyboad() {
+		const keys = [ ...keysBack, ...keysForward ];
 
-		const PAGE_UP_CODE = 33;
-		const PAGE_UP_KEY = 'PageUp';
+		function onKeyDown( event ) {
 
-		const PAGE_DOWN_CODE = 34;
-		const PAGE_DOWN_KEY = 'PageDown';
-
-		const ARROW_LEFT_CODE = 37;
-		const ARROW_LEFT_KEY = 'ArrowLeft';
-
-		const ARROW_RIGHT_CODE = 39;
-		const ARROW_RIGHT_KEY = 'ArrowRight';
-
-		this.backCodes = [ PAGE_UP_CODE, ARROW_LEFT_CODE ];
-		this.backKeys = [ PAGE_UP_KEY, ARROW_LEFT_KEY ];
-		this.forwardCodes = [ PAGE_DOWN_CODE, ARROW_RIGHT_CODE ];
-		this.forwardKeys = [ PAGE_DOWN_KEY, ARROW_RIGHT_KEY ];
-
-		this.onKeyUp = this.onKeyUp.bind( this );
-		this.onKeyDown = this.onKeyDown.bind( this );
-
-		window.addEventListener( 'keydown', this.onKeyDown );
-		window.addEventListener( 'keyup', this.onKeyUp );
-
-	}
-
-	onKeyDown( event ) {
-
-		if (
-			this.backCodes.includes( event.keyCode ) ||
-			this.forwardCodes.includes( event.keyCode ) ||
-			this.backKeys.includes( event.key ) ||
-			this.forwardKeys.includes( event.key )
-		) event.preventDefault();
-
-	}
-
-	onKeyUp( event ) {
-
-		//console.log( event );
-
-		if (
-			this.backCodes.includes( event.keyCode ) ||
-			this.backKeys.includes( event.keyCode )
-		) {
-
-			event.preventDefault();
-			return this.portfolio.back();
+			if (
+				keys.includes( event.keyCode ) ||
+				keys.includes( event.key )
+			) event.preventDefault();
 
 		}
 
-		if (
-			this.forwardCodes.includes( event.keyCode ) ||
-			this.forwardKeys.includes( event.key )
-		) {
+		function onKeyUp( event ) {
 
-			event.preventDefault();
-			return this.portfolio.forward();
+			if (
+				keysBack.includes( event.keyCode ) ||
+				keysBack.includes( event.keyCode )
+			) {
+
+				event.preventDefault();
+				return portfolio.back();
+
+			}
+
+			if (
+				keysForward.includes( event.keyCode ) ||
+				keysForward.includes( event.key )
+			) {
+
+				event.preventDefault();
+				return portfolio.forward();
+
+			}
 
 		}
+
+		window.addEventListener( 'keydown', onKeyDown );
+		window.addEventListener( 'keyup', onKeyUp );
 
 	}
 

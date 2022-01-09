@@ -24,13 +24,22 @@
 
 <body>
 	<div id="background"></div>
-
-	<div id="main-wrapper">
-		<main id="main">
-			<section id="intro" class="item"></section>
+	<div id="portfolio">
+		<main>
+			<section id="intro" class="item">
+				<h1 id="title">
+					<div id="name">
+						<span id="name-first">PIERRE</span>
+						<span id="name-alias">KEDA</span>
+					</div>
+					<span id="vocation">CREATIVE CODER</span>
+				</h1>
+			</section>
 
 			<section id="showcase">
-				<h2>SHOWCASE</h2>
+				<div class="item section-title">
+					<h2>SHOWCASE</h2>
+				</div>
 
 				<div id="navscan" class="item">
 					<h3>NAVSCAN</h3>
@@ -44,12 +53,12 @@
 				<div id="ablaze" class="item">
 					<h3>ABLAZE</h3>
 				</div>
-
-
 			</section>
 
 			<section id="works">
-				<h2>WORKS</h2>
+				<div class="item section-title">
+					<h2>WORKS</h2>
+				</div>
 
 				<div id="orion" class="item">
 					<h3>ORION</h3>
@@ -73,52 +82,44 @@
 			</section>
 
 			<section id="info">
+				<div class="item section-title">
+					<h2>ABOUT</h2>
+				</div>
+
 				<div id="about" class="item">
 					<div class="description">
-						<p>Hi there,</p>
+						<p>Hello!</p>
 						<p>My name is Pierre "Keda" Audéoud. I'm a 38-year-old french creative coder from Paris, France.</p>
-						<p>My work is mostly made using <strong>three.js</strong> and "vanilla" <strong>javascript</strong>, with a strong focus on motion, randomness and interactivity. I also really like <span id="tech">GLSL</span> and <span id="inspiration">sci-fi aesthetics</span>.</p>
+						<p>My work is mostly made using <strong>three.js</strong> and vanilla <strong>javascript</strong>, with a strong focus on motion, randomness and interactivity. I also <em>really</em> like <span id="tools">GLSL</span> and <span id="affinities">sci-fi aesthetics</span>.</p>
 						<p>I am currently looking for a creative studio of like-minded people, to craft beautiful things with.</p>
 					</div>
 				</div>
 				<div id="links" class="item">
 					<a href="mailto:pierrekeda83@gmail.com">pierrekeda83@gmail.com</a>
 					<ul id="links-social">
-						<li><a href="https://twitter.com/pierrekeda83">twitter.com/pierrekeda83</a></li>
 						<li><a href="https://github.com/pierrekeda">github.com/pierrekeda</a></li>
 						<li><a href="https://www.instagram.com/pierrekeda/">instagram.com/pierrekeda</a></li>
+						<li><a href="https://twitter.com/pierrekeda83">twitter.com/pierrekeda83</a></li>
 					</ul>
-					<p class="description">This portfolio was made with three.js, anime.js and my own textformer. If you're interested in my coding style, you can take a look at <a href="https://github.com/pierrekeda/2022-portfolio">the full repository</a>.</p>
+					<p class="description">This portfolio was made with three.js, anime.js and my own textformer. If you're curious about my coding style, you can take a look at <a href="https://github.com/pierrekeda/2022-portfolio">the full repository</a>.</p>
 				</div>
 			</section>
 		</main>
-	</div>
 
-	<div id="overlay">
 		<nav>
-			<a class="nav-link" href="#navscan">SHOWCASE</a>
-			<a class="nav-link" href="#orion">WORKS</a>
-			<a class="nav-link" href="#about">ABOUT</a>
+			<a id="nav-showcase" class="nav-link" href="#showcase">SHOWCASE</a>
+			<a id="nav-works" class="nav-link" href="#works">WORKS</a>
+			<a id="nav-about" class="nav-link" href="#about">ABOUT</a>
 		</nav>
 
-		<div id="overlay-main">
-			<a id="arrow-back" class="nav-arrow" href="javascript:void(0)">&#10094;</a>
-			<h1 id="title">
-				<div id="name">
-					<span id="name-first">PIERRE</span>
-					<span id="name-alias">KEDA</span>
-				</div>
-				<span id="vocation">CREATIVE CODER</span>
-			</h1>
-			<a id="arrow-forward" class="nav-arrow" href="javascript:void(0)">&#10095;</a>
-		</div>
-
+		<a id="arrow-back" class="nav-arrow" href="javascript:void(0)">&#10094;</a>
+		<a id="arrow-forward" class="nav-arrow" href="javascript:void(0)">&#10095;</a>
+			
 		<footer>
-			<span id="signature">Pierre Keda - 2022</span>
+			<span id="signature">Pierre Keda 2022</span>
 		</footer>
-
-		<div id="fader"></div>
 	</div>
+	<div id="fader"></div>
 </body>
 
 </html>
