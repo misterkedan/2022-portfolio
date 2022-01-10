@@ -1,6 +1,9 @@
 import { Navigation } from './Navigation';
 import { PortfolioControls } from './PortfolioControls';
 import { PortfolioView } from './PortfolioView';
+import { Backgrid } from './sketches/backgrid/Backgrid';
+import { Sketchpad } from 'keda/three/Sketchpad.js';
+import anime from 'animejs';
 
 class Portfolio {
 
@@ -29,10 +32,50 @@ class Portfolio {
 		this.view = view;
 		this.navigation = new Navigation( this.slides );
 
+		this.initSketchpad();
+		this.initAnime();
+
 		this.load();
 
 		this.controls = new PortfolioControls( this );
 
+	}
+
+	initSketchpad() {
+
+		this.sketchpad = new Sketchpad( { container: this.view.background } );
+
+		this.grid = new Backgrid( {
+			sketchpad: this.sketchpad,
+			//gui: true,
+		} );
+
+		this.sketchpad.init( this.grid );
+
+		this.canvas = this.sketchpad.canvas;
+
+	}
+
+	initAnime() {
+
+		this.animeGridOffset = this.grid.tileSize * 21;
+		this.animeSettings = {
+			targets: this.grid,
+			duration: 550,
+			easing: 'easeOutCirc',
+		};
+
+		this.clearForwarding = function () {
+
+			this.forwarding = null;
+
+		}.bind( this );
+
+		this.clearBacking = function () {
+
+			this.backing = null;
+
+		}.bind( this );
 
 	}
 
@@ -45,16 +88,40 @@ class Portfolio {
 
 	}
 
-	forward() {
+	back() {
 
-		this.navigation.forward();
+		if ( this.navigation.atStart ) return;
+
+		if ( this.backing ) return;
+
+		if ( this.forwarding ) return this.forwarding.reverse();
+
+		this.backing = anime( {
+			...this.animeSettings,
+			offset: [ 0, this.animeGridOffset ],
+			complete: this.clearBacking,
+		} );
+
+		this.navigation.back();
 		this.refresh();
 
 	}
 
-	back() {
+	forward() {
 
-		this.navigation.back();
+		if ( this.navigation.atEnd ) return;
+
+		if ( this.forwarding ) return;
+
+		if ( this.backing ) return this.backing.reverse();
+
+		this.forwarding = anime( {
+			...this.animeSettings,
+			offset: [ 0, - this.animeGridOffset ],
+			complete: this.clearForwarding,
+		} );
+
+		this.navigation.forward();
 		this.refresh();
 
 	}

@@ -4,10 +4,11 @@ class PortfolioView {
 
 		const ids = [
 			'background', 'title', 'fader',
+			// Sections
 			'intro', 'showcase', 'works', 'about', 'links',
-
+			// Showcase
 			'navscan', 'rain', 'blockflow', 'ablaze',
-
+			// Works
 			'orion', 'disintegrator', 'textformer', 'vesuna',
 		];
 

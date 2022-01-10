@@ -12,6 +12,11 @@ body {
 	overflow: hidden auto;
 }
 
+::selection {
+	background-color: #ffffff;
+    color: #000000;
+}
+
 h3, p {
 	margin-bottom: 1.4em;
 }
@@ -28,11 +33,26 @@ h2 {
 
 a,
 a:visited {
-	color: #ffffff;
+	color: #00aaee;
 }
 
 em {
 	font-style: italic;
+}
+
+#background {
+	position: fixed;
+}
+
+#portfolio {
+	pointer-events: none;
+}
+
+#portfolio a,
+#portfolio p,
+#portfolio span,
+#portfolio nav {
+	pointer-events: initial;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -67,17 +87,13 @@ footer {
 
 .nav-link, .nav-arrow {
 	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-tap-highlight-color: transparent;
-	pointer-events: initial;
 }
 
 .nav-arrow {
+    user-select: none;
+	
 	font-weight: bold;
 	font-size: 2.4rem;
 	padding: 1rem 2rem;
@@ -101,10 +117,10 @@ footer {
 }
 
 #signature,
-.nav-link, 
-.nav-arrow {
-	color: white;
-	opacity: 0.5;
+a.nav-link, 
+a.nav-arrow {
+	color: #ffffff;
+	color: rgba(255,255,255,0.5);
 	text-decoration: none;
 	letter-spacing: 0.1rem;
 }
@@ -134,7 +150,7 @@ footer {
 	padding: 6rem 6rem;
 }
 
-.js .section-title {
+.js .placeholder {
 	display: none;
 }
 
@@ -146,7 +162,7 @@ footer {
 #title {
 	width: 100%;
 	font-weight: bold;
-	user-select: none;
+	/*user-select: none;*/
 	pointer-events: none;
 }
 	#name {
@@ -180,11 +196,11 @@ footer {
 	height: 100%;
 	background: #000000;
 	pointer-events: none;
-	display: none;
+	display: block;
 	transition: opacity 2000ms ease-in-out;
 }
 	.initing #fader {
-		display: block;
+		opacity: 1;
 	}
 	.js #fader {
 		display: block;
@@ -211,8 +227,8 @@ footer {
 }
 
 .no-js #intro {
-	height: 100rem;
-	height: 100vh;
+	margin-top: 100rem;
+	margin-top: 110vh;
 }
 
 .no-js #about {
@@ -220,16 +236,6 @@ footer {
 }
 .no-js #links {
 	padding: 0rem 4rem 15rem;
-}
-
-@keyframes fadein {
-	from {opacity: 0;}
-	to {opacity: 1;}
-}
-.no-js #title {
-	animation-name: fadein;
-  	animation-duration: 2s;
-	animation-timing-function: ease-in-out;
 }
 
 .no-js .nav-arrow {
@@ -263,7 +269,7 @@ footer {
 
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
 	
 	a:hover {
 		color: #55ccff;
@@ -272,7 +278,6 @@ footer {
 	.nav-link:hover, 
 	.nav-arrow:hover {
 		color: #ffffff;
-		opacity: 1;
 	}
 
 }

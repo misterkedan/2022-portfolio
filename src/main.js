@@ -2,17 +2,22 @@ import { Portfolio } from './portfolio/Portfolio';
 
 function init() {
 
+	const html = document.documentElement;
+
 	try {
 
-		document.documentElement.classList.add( 'debug' );
-		document.documentElement.classList.add( 'initing' );
+		html.classList.add( 'debug' );
+		html.classList.add( 'initing' );
 
 		const portfolio = new Portfolio();
 
 		requestAnimationFrame( () => {
 
-			document.documentElement.classList.remove( 'initing' );
-			document.documentElement.classList.replace( 'no-js', 'js' );
+			html.classList.remove( 'initing' );
+
+			// classList.replace fails on some older browsers
+			html.classList.remove( 'no-js' );
+			html.classList.add( 'js' );
 
 			portfolio.load();
 
@@ -24,7 +29,7 @@ function init() {
 	} catch ( error ) {
 
 		console.error( error );
-		document.documentElement.classList.remove( 'initing' );
+		html.classList.remove( 'initing' );
 
 	}
 
