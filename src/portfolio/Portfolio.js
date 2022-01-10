@@ -1,43 +1,31 @@
+import anime from 'animejs';
 import { Navigation } from './Navigation';
 import { PortfolioControls } from './PortfolioControls';
 import { PortfolioView } from './PortfolioView';
-import { Backgrid } from './sketches/backgrid/Backgrid';
 import { Sketchpad } from 'keda/three/Sketchpad.js';
-import anime from 'animejs';
+import { SketchMixer } from './sketches/SketchMixer';
+
+import { Ablaze } from './sketches/ablaze/Ablaze';
+import { Blockflow } from './sketches/blockflow/Blockflow';
+import { Backgrid } from './sketches/backgrid/Backgrid';
+import { Navscan } from './sketches/navscan/Navscan';
+import { Rain } from './sketches/rain/Rain';
+
+import { GPGPU } from 'keda/three/gpgpu/GPGPU';
 
 class Portfolio {
 
 	constructor() {
 
-		const view = new PortfolioView();
-		view.title.style.display = 'none';
-
-		this.slides = [
-			view.intro,
-
-			view.navscan,
-			view.rain,
-			view.blockflow,
-			view.ablaze,
-
-			view.orion,
-			view.disintegrator,
-			view.textformer,
-			view.vesuna,
-
-			view.about,
-			view.links
-		];
-
-		this.view = view;
-		this.navigation = new Navigation( this.slides );
+		this.view = new PortfolioView();
+		this.screens = this.view.screens;
+		this.navigation = new Navigation( this.screens );
 
 		this.initSketchpad();
-		this.initAnime();
 
-		this.load();
-
-		this.controls = new PortfolioControls( this );
+		this.intros = 5;
+		this.works = 4;
+		this.infos = 2;
 
 	}
 
@@ -45,14 +33,40 @@ class Portfolio {
 
 		this.sketchpad = new Sketchpad( { container: this.view.background } );
 
-		this.grid = new Backgrid( {
-			sketchpad: this.sketchpad,
-			//gui: true,
-		} );
+		GPGPU.init( this.sketchpad.renderer );
 
-		this.sketchpad.init( this.grid );
+		const options = {
+			sketchpad: this.sketchpad,
+			renderToScreen: false,
+		};
+
+		this.grid = new Backgrid( { ...options } );
+		this.navscan = new Navscan( { ...options } );
+		this.rain = new Rain( { ...options } );
+		this.blockflow = new Blockflow( { ...options } );
+		this.ablaze = new Ablaze( { ...options } );
+
+		const sketches = [
+			this.grid,
+			this.navscan,
+			this.rain,
+			this.blockflow,
+			this.ablaze,
+		];
+
+		this.mixer = new SketchMixer( this.sketchpad.renderer, sketches );
+
+		this.sketchpad.init( this.mixer );
+
 
 		this.canvas = this.sketchpad.canvas;
+
+		this.initAnime();
+
+		this.load();
+		this.refresh();
+		this.controls = new PortfolioControls( this );
+
 
 	}
 
@@ -61,7 +75,7 @@ class Portfolio {
 		this.animeGridOffset = this.grid.tileSize * 21;
 		this.animeSettings = {
 			targets: this.grid,
-			duration: 550,
+			duration: 700,
 			easing: 'easeOutCirc',
 		};
 
@@ -92,18 +106,7 @@ class Portfolio {
 
 		if ( this.navigation.atStart ) return;
 
-		if ( this.backing ) return;
-
-		if ( this.forwarding ) return this.forwarding.reverse();
-
-		this.backing = anime( {
-			...this.animeSettings,
-			offset: [ 0, this.animeGridOffset ],
-			complete: this.clearBacking,
-		} );
-
-		this.navigation.back();
-		this.refresh();
+		this.transitionTo( this.index - 1 );
 
 	}
 
@@ -111,32 +114,21 @@ class Portfolio {
 
 		if ( this.navigation.atEnd ) return;
 
-		if ( this.forwarding ) return;
-
-		if ( this.backing ) return this.backing.reverse();
-
-		this.forwarding = anime( {
-			...this.animeSettings,
-			offset: [ 0, - this.animeGridOffset ],
-			complete: this.clearForwarding,
-		} );
-
-		this.navigation.forward();
-		this.refresh();
+		this.transitionTo( this.index + 1 );
 
 	}
 
 	jumpTo( index ) {
 
 		if ( typeof index !== 'number' ) index = this.indexOf( index );
-		this.navigation.set( index );
-		this.refresh();
+
+		this.transitionTo( index );
 
 	}
 
 	refresh() {
 
-		this.slides.forEach( slide => slide.style.display = 'none' );
+		this.screens.forEach( slide => slide.style.display = 'none' );
 		this.navigation.item.style.display = 'flex';
 
 		this.view.setArrows( this.navigation.atStart, this.navigation.atEnd );
@@ -149,15 +141,123 @@ class Portfolio {
 
 		let index = 0;
 
-		for ( index = this.slides.length - 1; index >= 0; index -- ) {
+		for ( index = this.screens.length - 1; index >= 0; index -- ) {
 
-			if ( this.slides[ index ].id === hash ) break;
+			if ( this.screens[ index ].id === hash ) break;
 
 		}
 
 		if ( index < 0 ) index = 0;
 
 		return index;
+
+	}
+
+	transitionTo( newIndex ) {
+
+		const currentIndex = this.index;
+
+		if ( newIndex === currentIndex ) return;
+
+		const backwards = ( newIndex < currentIndex );
+
+		//console.log( { currentIndex, newIndex } );
+		//this.intros = 5;
+		//this.works = 4;
+		//this.infos = 2;
+
+		if ( backwards ) {
+
+			if ( this.backing ) return;
+			if ( this.forwarding ) return this.forwarding.reverse();
+
+			this.navigation.set( newIndex );
+			this.refresh();
+
+			this.backTo( newIndex );
+
+		} else {
+
+			if ( this.forwarding ) return;
+			if ( this.backing ) return this.backing.reverse();
+
+			this.navigation.set( newIndex );
+			this.refresh();
+
+			this.forwardTo( newIndex );
+
+		}
+
+	}
+
+	set( index ) {
+
+		this.navigation.set( index );
+		this.refresh();
+
+	}
+
+	backTo( index ) {
+
+		if ( index < this.intros ) {
+
+			this.mixer.set( index % this.intros, this.index % this.intros );
+
+			this.backing = anime( {
+				...this.animeSettings,
+				targets: this.mixer,
+				mix: [ 1, 0 ],
+				complete: this.clearBacking,
+			} );
+
+		} else {
+
+			this.backing = anime( {
+				...this.animeSettings,
+				targets: this.grid,
+				offset: [ 0, this.animeGridOffset ],
+				complete: this.clearBacking,
+			} );
+
+		}
+
+	}
+
+	forwardTo( index ) {
+
+		if ( index <= this.intros ) {
+
+			this.mixer.set( this.index % this.intros, index % this.intros );
+
+			this.forwarding = anime( {
+				...this.animeSettings,
+				targets: this.mixer,
+				mix: [ 0, 1 ],
+				complete: this.clearForwarding,
+			} );
+
+		} else {
+
+			this.forwarding = anime( {
+				...this.animeSettings,
+				targets: this.grid,
+				offset: [ 0, - this.animeGridOffset ],
+				complete: this.clearForwarding,
+			} );
+
+		}
+
+	}
+
+	set index( index ) {
+
+		this.navigation.set( index );
+
+	}
+
+	get index() {
+
+		return this.navigation.index;
 
 	}
 

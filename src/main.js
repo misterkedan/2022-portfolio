@@ -21,7 +21,7 @@ function init() {
 
 			portfolio.load();
 
-			console.log( portfolio );
+			//console.log( portfolio );
 
 		} );
 

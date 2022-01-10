@@ -5,8 +5,8 @@ class PortfolioView {
 		const ids = [
 			'background', 'title', 'fader',
 			// Sections
-			'intro', 'showcase', 'works', 'about', 'links',
-			// Showcase
+			'intro', 'works', 'about', 'links',
+			// Intro
 			'navscan', 'rain', 'blockflow', 'ablaze',
 			// Works
 			'orion', 'disintegrator', 'textformer', 'vesuna',
@@ -21,7 +21,7 @@ class PortfolioView {
 		this.back = document.getElementById( 'arrow-back' );
 		this.forward = document.getElementById( 'arrow-forward' );
 
-		this.nav = [ 'showcase', 'works', 'about' ].reduce( ( result, value ) => {
+		this.nav = [ 'intro', 'works', 'about' ].reduce( ( result, value ) => {
 
 			const link = document.getElementById( `nav-${value}` );
 			link.setAttribute( 'href', 'javascript:void(0)' );
@@ -29,6 +29,23 @@ class PortfolioView {
 			return result;
 
 		}, {} );
+
+		this.screens = [
+			this.intro,
+
+			this.navscan,
+			this.rain,
+			this.blockflow,
+			this.ablaze,
+
+			this.orion,
+			this.disintegrator,
+			this.textformer,
+			this.vesuna,
+
+			this.about,
+			this.links
+		];
 
 		//console.log( this );
 

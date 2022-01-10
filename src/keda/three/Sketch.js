@@ -24,12 +24,16 @@ class Sketch {
 
 		const sketchpad = settings.sketchpad || new Sketchpad();
 		this.sketchpad = sketchpad;
-		this.effects = new Effects( { renderer: sketchpad.renderer, stage } );
+
+		this.effects = new Effects( {
+			renderer: sketchpad.renderer,
+			stage,
+			renderToScreen: settings.renderToScreen,
+		} );
 
 		this.random = random || ( settings.random ) ? new Random() : null;
 
 		if ( ! background && settings.background ) this.initBackground();
-
 
 	}
 
@@ -132,6 +136,12 @@ class Sketch {
 	get name() {
 
 		return this.settings.name || 'Sketch';
+
+	}
+
+	get output() {
+
+		return this.effects.composer.readBuffer.texture;
 
 	}
 

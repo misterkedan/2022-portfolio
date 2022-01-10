@@ -1,13 +1,11 @@
-import { Vector2 } from 'three';
-
 class PortfolioControls {
 
 	constructor( portfolio ) {
 
 		this.init( portfolio );
+		this.initButtons( portfolio );
 		this.initMouse( portfolio );
 		this.initTouch( portfolio );
-		this.initButtons( portfolio );
 		this.initKeyboad( portfolio );
 
 	}
@@ -15,6 +13,19 @@ class PortfolioControls {
 	init( portfolio ) {
 
 		window.addEventListener( 'hashchange', () => portfolio.load() );
+
+	}
+
+	initButtons( portfolio ) {
+
+		const { back, forward, nav } = portfolio.view;
+
+		back.addEventListener( 'click', () => portfolio.back() );
+		forward.addEventListener( 'click', () => portfolio.forward() );
+
+		nav.intro.addEventListener( 'click', () => portfolio.jumpTo( 'intro' ) );
+		nav.works.addEventListener( 'click', () => portfolio.jumpTo( 'orion' ) );
+		nav.about.addEventListener( 'click', () => portfolio.jumpTo( 'about' ) );
 
 	}
 
@@ -72,18 +83,7 @@ class PortfolioControls {
 
 	}
 
-	initButtons( portfolio ) {
 
-		const { back, forward, nav } = portfolio.view;
-
-		back.addEventListener( 'click', () => portfolio.back() );
-		forward.addEventListener( 'click', () => portfolio.forward() );
-
-		nav.showcase.addEventListener( 'click', () => portfolio.jumpTo( 'navscan' ) );
-		nav.works.addEventListener( 'click', () => portfolio.jumpTo( 'orion' ) );
-		nav.about.addEventListener( 'click', () => portfolio.jumpTo( 'about' ) );
-
-	}
 
 	initKeyboad( portfolio ) {
 

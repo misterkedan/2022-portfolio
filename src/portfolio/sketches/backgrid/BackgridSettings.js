@@ -5,11 +5,11 @@ const BackgridSettings = {
 	// Sketch
 
 	background: {
-		color1: '#080809',
-		color2: '#201f23',
+		color1: 0x080809,
+		color2: 0x201f23,
 	},
-	inactiveColor: '#222226',
-	activeColor: '#3a4045',
+	colorInactive: 	0x222226,
+	colorActive: 	0x3a4045,
 
 	dot: {
 		size: 0.038,

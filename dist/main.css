@@ -159,10 +159,14 @@ a.nav-arrow {
 	max-width: 40em;
 }
 
+.js #title-wrapper {
+	display: flex;
+}
+
 #title {
 	width: 100%;
 	font-weight: bold;
-	/*user-select: none;*/
+	user-select: none;
 	pointer-events: none;
 }
 	#name {
