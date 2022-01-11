@@ -1,9 +1,9 @@
 {
   "name": "2022-portfolio",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Personal works portfolio of french creative coder Pierre Keda.",
   "author": "Pierre Keda",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "dependencies": {
     "animejs": "^3.2.1",
     "lil-gui": "^0.16.0",
