@@ -3,6 +3,7 @@ import anime from 'animejs';
 import { Background } from './Background';
 import { Controls } from './Controls';
 import { Screen } from './Screen';
+import { Title } from './Title';
 import { UI } from './UI';
 
 class Portfolio {
@@ -38,6 +39,7 @@ class Portfolio {
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
+		this.title = new Title();
 		this.ui = new UI( this );
 		this.controls = new Controls( this );
 
@@ -130,10 +132,38 @@ class Portfolio {
 				: [ 0, - gridOffset ];
 
 			anime( {
-				duration: duration * 1.5,
+				duration: 1500,
 				easing,
 				targets: this.background.grid,
 				offset,
+			} );
+
+		}
+
+		const titleOptions = {
+			duration,
+			easing: 'easeOutQuad',
+			targets: this.title,
+		};
+
+		if (
+			currentScreen.type !== Screen.types.INTRO &&
+			targetScreen.type === Screen.types.INTRO
+		) {
+
+			anime( {
+				...titleOptions,
+				progress: 1
+			} );
+
+		} else if (
+			currentScreen.type === Screen.types.INTRO &&
+			targetScreen.type !== Screen.types.INTRO
+		) {
+
+			anime( {
+				...titleOptions,
+				progress: 0
 			} );
 
 		}
@@ -152,6 +182,7 @@ class Portfolio {
 	refresh() {
 
 		this.screens.forEach( screen => screen.hide() );
+		this.screens[ 0 ].show();
 		this.currentScreen.show();
 
 		this.atStart = ( this.index === 0 );

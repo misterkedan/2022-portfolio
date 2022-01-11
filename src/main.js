@@ -2,11 +2,16 @@ import { Portfolio } from './portfolio/Portfolio';
 
 function init( debug ) {
 
+	debug = true;
+
+	const NO_JS = '?nojs';
+
+	if ( window.location.search === NO_JS ) return;
+
 	const html = document.documentElement;
 
 	try {
 
-		html.classList.add( 'debug' );
 		html.classList.add( 'initing' );
 
 		const portfolio = new Portfolio();
@@ -14,9 +19,8 @@ function init( debug ) {
 		requestAnimationFrame( () => {
 
 			portfolio.load();
-			if ( debug ) console.log( portfolio );
 
-			html.classList.remove( 'initing' );
+			if ( debug ) console.log( portfolio );
 
 			// classList.replace fails on some older browsers
 			html.classList.remove( 'no-js' );
@@ -27,12 +31,15 @@ function init( debug ) {
 
 	} catch ( error ) {
 
-		console.error( error );
+		if ( debug ) return console.error( error );
 
-		requestAnimationFrame( () => html.classList.remove( 'initing' ) );
+		window.location.search = NO_JS;
 
 	}
 
 }
 
-init( true );
+//document.documentElement.classList.add( 'initing' );
+//setTimeout( init, 3000 );
+
+init();

@@ -17,6 +17,10 @@ body {
     color: #000000;
 }
 
+h1, h2, h3, nav {
+	text-transform: uppercase;
+}
+
 h3, p {
 	margin-bottom: 1.4em;
 }
@@ -53,6 +57,10 @@ em {
 #portfolio span,
 #portfolio nav {
 	pointer-events: initial;
+}
+
+.js h3 {
+	display: none;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -163,11 +171,14 @@ a.nav-arrow {
 	display: flex;
 }
 
+.js #home span {
+	pointer-events: none;
+}
+
 #title {
 	width: 100%;
 	font-weight: bold;
 	user-select: none;
-	pointer-events: none;
 }
 	#name {
 		font-size: 4.7rem;
@@ -200,18 +211,16 @@ a.nav-arrow {
 	height: 100%;
 	background: #000000;
 	pointer-events: none;
-	display: block;
-	transition: opacity 2000ms ease-in-out;
+	display: none;
+	transition: opacity 500ms ease-in-out;
 }
 	.initing #fader {
+		display: block;
 		opacity: 1;
 	}
 	.js #fader {
 		display: block;
 		opacity: 0;
-	}
-	.debug #fader {
-		transition: none;
 	}
 
 
@@ -221,6 +230,8 @@ a.nav-arrow {
 
 /-----------------------------------------------------------------------------*/
 
+
+
 .no-js .section-title {
 	display: flex;
 	justify-content: center;
@@ -228,11 +239,26 @@ a.nav-arrow {
 
 .no-js .item {
 	padding: 4rem;
+	/*min-height: 50vh;*/
 }
 
-.no-js #intro {
-	margin-top: 100rem;
-	margin-top: 110vh;
+.no-js #home {
+	height: 100vh;
+}
+
+.no-js #title {
+	opacity: 0;
+}
+@keyframes fadein {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+.no-js #title {
+	animation-name: fadein;
+  	animation-duration: 1000ms;
+	animation-delay: 500ms;
+	animation-timing-function: ease-in;
+	animation-fill-mode: forwards;
 }
 
 .no-js #about {

@@ -51,6 +51,8 @@ class Controls {
 
 		}.bind( this );
 
+		//window.addEventListener( 'mousedown', event => console.log( event.target ) );
+
 		portfolio.canvas.addEventListener( 'mousedown', this.onMouseDown );
 		portfolio.canvas.addEventListener( 'mouseup', this.onMouseUp );
 
