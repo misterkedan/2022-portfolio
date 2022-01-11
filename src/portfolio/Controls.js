@@ -1,4 +1,4 @@
-class PortfolioControls {
+class Controls {
 
 	constructor( portfolio ) {
 
@@ -18,14 +18,14 @@ class PortfolioControls {
 
 	initButtons( portfolio ) {
 
-		const { back, forward, nav } = portfolio.view;
+		const { back, forward, nav } = portfolio.ui;
 
 		back.addEventListener( 'click', () => portfolio.back() );
 		forward.addEventListener( 'click', () => portfolio.forward() );
 
-		nav.intro.addEventListener( 'click', () => portfolio.jumpTo( 'intro' ) );
-		nav.works.addEventListener( 'click', () => portfolio.jumpTo( 'orion' ) );
-		nav.about.addEventListener( 'click', () => portfolio.jumpTo( 'about' ) );
+		nav.intro.addEventListener( 'click', () => portfolio.to( 'home' ) );
+		nav.works.addEventListener( 'click', () => portfolio.to( 'orion' ) );
+		nav.about.addEventListener( 'click', () => portfolio.to( 'about' ) );
 
 	}
 
@@ -83,8 +83,6 @@ class PortfolioControls {
 
 	}
 
-
-
 	initKeyboad( portfolio ) {
 
 		const keysBack = [
@@ -139,4 +137,4 @@ class PortfolioControls {
 
 }
 
-export { PortfolioControls };
+export { Controls };

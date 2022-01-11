@@ -1,110 +1,61 @@
 import anime from 'animejs';
-import { Navigation } from './Navigation';
-import { PortfolioControls } from './PortfolioControls';
-import { PortfolioView } from './PortfolioView';
-import { Sketchpad } from 'keda/three/Sketchpad.js';
-import { SketchMixer } from './sketches/SketchMixer';
 
-import { Ablaze } from './sketches/ablaze/Ablaze';
-import { Blockflow } from './sketches/blockflow/Blockflow';
-import { Backgrid } from './sketches/backgrid/Backgrid';
-import { Navscan } from './sketches/navscan/Navscan';
-import { Rain } from './sketches/rain/Rain';
-
-import { GPGPU } from 'keda/three/gpgpu/GPGPU';
+import { Background } from './Background';
+import { Controls } from './Controls';
+import { Screen } from './Screen';
+import { UI } from './UI';
 
 class Portfolio {
 
 	constructor() {
 
-		this.view = new PortfolioView();
-		this.screens = this.view.screens;
-		this.navigation = new Navigation( this.screens );
+		this.background = new Background();
+		this.canvas = this.background.sketchpad.canvas;
 
-		this.initSketchpad();
+		const { grid, navscan, rain, blockflow, ablaze } = this.background;
+		const { HOME, INTRO, WORKS, INFO } = Screen.types;
 
-		this.intros = 5;
-		this.works = 4;
-		this.infos = 2;
+		this.screens = [
 
-	}
+			new Screen( { type: HOME,  sketch: grid, 	id: 'home' } ),
 
-	initSketchpad() {
+			new Screen( { type: INTRO, sketch: navscan, id: 'navscan' } ),
+			new Screen( { type: INTRO, sketch: rain, 	id: 'rain' } ),
+			new Screen( { type: INTRO, sketch: blockflow, id: 'blockflow' } ),
+			new Screen( { type: INTRO, sketch: ablaze, 	id: 'ablaze' } ),
 
-		this.sketchpad = new Sketchpad( { container: this.view.background } );
+			new Screen( { type: WORKS, sketch: grid, id: 'orion' } ),
+			new Screen( { type: WORKS, sketch: grid, id: 'disintegrator' } ),
+			new Screen( { type: WORKS, sketch: grid, id: 'textformer' } ),
+			new Screen( { type: WORKS, sketch: grid, id: 'vesuna' } ),
 
-		GPGPU.init( this.sketchpad.renderer );
+			new Screen( { type: INFO,  sketch: grid, id: 'about' } ),
+			new Screen( { type: INFO,  sketch: grid, id: 'links' }  )
 
-		const options = {
-			sketchpad: this.sketchpad,
-			renderToScreen: false,
-		};
-
-		this.grid = new Backgrid( { ...options } );
-		this.navscan = new Navscan( { ...options } );
-		this.rain = new Rain( { ...options } );
-		this.blockflow = new Blockflow( { ...options } );
-		this.ablaze = new Ablaze( { ...options } );
-
-		const sketches = [
-			this.grid,
-			this.navscan,
-			this.rain,
-			this.blockflow,
-			this.ablaze,
 		];
 
-		this.mixer = new SketchMixer( this.sketchpad.renderer, sketches );
+		this.length = this.screens.length;
+		this.index = 0;
+		this.currentScreen = this.screens[ this.index ];
 
-		this.sketchpad.init( this.mixer );
+		this.ui = new UI( this );
+		this.controls = new Controls( this );
 
-
-		this.canvas = this.sketchpad.canvas;
-
-		this.initAnime();
-
-		this.load();
 		this.refresh();
-		this.controls = new PortfolioControls( this );
-
-
-	}
-
-	initAnime() {
-
-		this.animeGridOffset = this.grid.tileSize * 21;
-		this.animeSettings = {
-			targets: this.grid,
-			duration: 700,
-			easing: 'easeOutCirc',
-		};
-
-		this.clearForwarding = function () {
-
-			this.forwarding = null;
-
-		}.bind( this );
-
-		this.clearBacking = function () {
-
-			this.backing = null;
-
-		}.bind( this );
 
 	}
 
 	load() {
 
-		if ( this.cancelLoad ) return;
-
 		const hash = window.location.hash.replace( '#', '' );
-		this.jumpTo( hash );
+
+		this.to( hash );
 
 	}
 
 	back() {
 
-		if ( this.navigation.atStart ) return;
+		if ( this.atStart ) return;
 
 		this.transitionTo( this.index - 1 );
 
@@ -112,79 +63,78 @@ class Portfolio {
 
 	forward() {
 
-		if ( this.navigation.atEnd ) return;
+		if ( this.atEnd ) return;
 
 		this.transitionTo( this.index + 1 );
 
 	}
 
-	jumpTo( index ) {
+	to( index ) {
 
 		if ( typeof index !== 'number' ) index = this.indexOf( index );
+
+		if ( index === this.index ) return;
 
 		this.transitionTo( index );
 
 	}
 
-	refresh() {
+	transitionTo( index ) {
 
-		this.screens.forEach( slide => slide.style.display = 'none' );
-		this.navigation.item.style.display = 'flex';
+		const { background, screens, currentScreen } = this;
 
-		this.view.setArrows( this.navigation.atStart, this.navigation.atEnd );
+		const targetScreen = screens[ index ];
+		const backwards = ( index < this.index );
 
-		window.location.hash = this.navigation.item.id;
+		this.set( index );
 
-	}
+		const currentSketch = currentScreen.sketch;
+		const targetSketch = targetScreen.sketch;
+		const duration = 1000;
+		const easing = 'easeOutCirc';
 
-	indexOf( hash ) {
+		if ( currentSketch !== targetScreen.sketch ) {
 
-		let index = 0;
+			let sketchA = currentSketch;
+			let sketchB = targetSketch;
+			let mix = [ 0, 1 ];
 
-		for ( index = this.screens.length - 1; index >= 0; index -- ) {
+			if ( backwards ) {
 
-			if ( this.screens[ index ].id === hash ) break;
+				sketchA = targetSketch;
+				sketchB = currentSketch;
+				mix = [ 1, 0 ];
+
+			}
+
+			background.mixer.set( sketchA, sketchB );
+
+			anime( {
+				duration,
+				easing,
+				targets: this.background.mixer,
+				mix,
+			} );
 
 		}
 
-		if ( index < 0 ) index = 0;
+		if (
+			currentSketch === background.grid ||
+			targetSketch === background.grid
+		) {
 
-		return index;
+			const gridOffset = this.background.grid.tileSize * 21;
 
-	}
+			const offset = ( backwards )
+				? [ 0, gridOffset ]
+				: [ 0, - gridOffset ];
 
-	transitionTo( newIndex ) {
-
-		const currentIndex = this.index;
-
-		if ( newIndex === currentIndex ) return;
-
-		const backwards = ( newIndex < currentIndex );
-
-		//console.log( { currentIndex, newIndex } );
-		//this.intros = 5;
-		//this.works = 4;
-		//this.infos = 2;
-
-		if ( backwards ) {
-
-			if ( this.backing ) return;
-			if ( this.forwarding ) return this.forwarding.reverse();
-
-			this.navigation.set( newIndex );
-			this.refresh();
-
-			this.backTo( newIndex );
-
-		} else {
-
-			if ( this.forwarding ) return;
-			if ( this.backing ) return this.backing.reverse();
-
-			this.navigation.set( newIndex );
-			this.refresh();
-
-			this.forwardTo( newIndex );
+			anime( {
+				duration: duration * 1.5,
+				easing,
+				targets: this.background.grid,
+				offset,
+			} );
 
 		}
 
@@ -192,72 +142,33 @@ class Portfolio {
 
 	set( index ) {
 
-		this.navigation.set( index );
+		this.index = index;
+		this.currentScreen = this.screens[ index ];
 		this.refresh();
+		window.location.hash = this.currentScreen.id;
 
 	}
 
-	backTo( index ) {
+	refresh() {
 
-		if ( index < this.intros ) {
+		this.screens.forEach( screen => screen.hide() );
+		this.currentScreen.show();
 
-			this.mixer.set( index % this.intros, this.index % this.intros );
+		this.atStart = ( this.index === 0 );
+		this.atEnd = ( this.index === this.length - 1 );
+		this.ui.setArrows( this.atStart, this.atEnd );
 
-			this.backing = anime( {
-				...this.animeSettings,
-				targets: this.mixer,
-				mix: [ 1, 0 ],
-				complete: this.clearBacking,
-			} );
+	}
 
-		} else {
+	indexOf( hash ) {
 
-			this.backing = anime( {
-				...this.animeSettings,
-				targets: this.grid,
-				offset: [ 0, this.animeGridOffset ],
-				complete: this.clearBacking,
-			} );
+		for ( let index = 0; index < this.length; index ++ ) {
+
+			if ( this.screens[ index ].id === hash ) return index;
 
 		}
 
-	}
-
-	forwardTo( index ) {
-
-		if ( index <= this.intros ) {
-
-			this.mixer.set( this.index % this.intros, index % this.intros );
-
-			this.forwarding = anime( {
-				...this.animeSettings,
-				targets: this.mixer,
-				mix: [ 0, 1 ],
-				complete: this.clearForwarding,
-			} );
-
-		} else {
-
-			this.forwarding = anime( {
-				...this.animeSettings,
-				targets: this.grid,
-				offset: [ 0, - this.animeGridOffset ],
-				complete: this.clearForwarding,
-			} );
-
-		}
-
-	}
-
-	set index( index ) {
-
-		this.navigation.set( index );
-
-	}
-
-	get index() {
-
-		return this.navigation.index;
+		return 0;
 
 	}
 

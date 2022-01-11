@@ -1,6 +1,6 @@
 import { Portfolio } from './portfolio/Portfolio';
 
-function init() {
+function init( debug ) {
 
 	const html = document.documentElement;
 
@@ -13,15 +13,14 @@ function init() {
 
 		requestAnimationFrame( () => {
 
+			portfolio.load();
+			if ( debug ) console.log( portfolio );
+
 			html.classList.remove( 'initing' );
 
 			// classList.replace fails on some older browsers
 			html.classList.remove( 'no-js' );
 			html.classList.add( 'js' );
-
-			portfolio.load();
-
-			//console.log( portfolio );
 
 		} );
 
@@ -29,10 +28,11 @@ function init() {
 	} catch ( error ) {
 
 		console.error( error );
-		html.classList.remove( 'initing' );
+
+		requestAnimationFrame( () => html.classList.remove( 'initing' ) );
 
 	}
 
 }
 
-init();
+init( true );

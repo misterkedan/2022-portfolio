@@ -30,22 +30,22 @@ class SketchMixer {
 		this.quad = new Mesh( this.geometry, this.material );
 		this.scene.add( this.quad );
 
-		this.renderer = renderer;
 		this.sketches = sketches;
+		this.renderer = renderer;
 
 	}
 
 	init() {
 
 		this.sketches.forEach( sketch => sketch.init() );
-		this.set( 0, 1 );
+		this.set( this.sketches[ 0 ], this.sketches[ 1 ] );
 
 	}
 
-	set( a, b ) {
+	set( sketchA, sketchB ) {
 
-		this.mixA = this.sketches[ a ];
-		this.mixB = this.sketches[ b ];
+		this.mixA = sketchA;
+		this.mixB = sketchB;
 		this.material.uniforms.tMixA.value = this.mixA.output;
 		this.material.uniforms.tMixB.value = this.mixB.output;
 
@@ -97,8 +97,8 @@ class SketchMixer {
 	set mix( mix ) {
 
 		this.material.uniforms.uMix.value = mix;
-		this.mixA.fadeOut?.( mix );
-		this.mixB.fadeIn?.( mix );
+		this.mixA.out?.( mix );
+		this.mixB.in?.( mix );
 
 	}
 
