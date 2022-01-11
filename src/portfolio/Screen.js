@@ -8,8 +8,6 @@ class Screen {
 		this.id = id;
 		this.domElement = document.getElementById( id );
 
-		this.hide();
-
 	}
 
 	show() {
