@@ -1,8 +1,6 @@
 import { Portfolio } from './portfolio/Portfolio';
 
-function init( debug ) {
-
-	debug = true;
+function init() {
 
 	const NO_JS = '?nojs';
 
@@ -20,8 +18,6 @@ function init( debug ) {
 
 			portfolio.load();
 
-			if ( debug ) console.log( portfolio );
-
 			// classList.replace fails on some older browsers
 			html.classList.remove( 'no-js' );
 			html.classList.add( 'js' );
@@ -31,15 +27,12 @@ function init( debug ) {
 
 	} catch ( error ) {
 
-		if ( debug ) return console.error( error );
+		console.error( error );
 
-		window.location.search = NO_JS;
+		//window.location.search = NO_JS;
 
 	}
 
 }
-
-//document.documentElement.classList.add( 'initing' );
-//setTimeout( init, 3000 );
 
 init();

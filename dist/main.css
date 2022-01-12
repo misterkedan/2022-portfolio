@@ -17,31 +17,42 @@ body {
     color: #000000;
 }
 
-h1, h2, h3, nav {
+h1, h2, nav {
 	text-transform: uppercase;
+	font-weight: bold;
 }
 
-h3, p {
-	margin-bottom: 1.4em;
-}
 
-p:last-child{
-	margin-bottom: 0;
-}
+
 
 h2 {
 	margin: 4rem 0;
 	font-size: 4rem;
-	font-weight: bold;
+}
+
+h3 {
+	font-size: 2.4rem;
+	margin-bottom: 2rem;
+}
+	.js h3 {
+		display: none;
+	}
+
+p {
+	margin-bottom: 1.4em;
+}
+	p:last-child{
+		margin-bottom: 0;
+	}
+
+
+em {
+	font-style: italic;
 }
 
 a,
 a:visited {
 	color: #00aaee;
-}
-
-em {
-	font-style: italic;
 }
 
 #background {
@@ -52,15 +63,8 @@ em {
 	pointer-events: none;
 }
 
-#portfolio a,
-#portfolio p,
-#portfolio span,
-#portfolio nav {
+#portfolio a {
 	pointer-events: initial;
-}
-
-.js h3 {
-	display: none;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -164,15 +168,11 @@ a.nav-arrow {
 
 .description {
 	text-align: left;
-	max-width: 40em;
+	max-width: 45em;
 }
 
 .js #home {
 	display: flex;
-}
-
-.js #home span {
-	pointer-events: none;
 }
 
 #title {
@@ -193,8 +193,37 @@ a.nav-arrow {
 		font-size: 2rem;
 	}
 
+#dynamic-title {
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	margin: 8rem 0 0;
+	font-size: 3rem;
+	/*letter-spacing: 0.1rem;*/
+	text-transform: none;
+}
+
+#works .item {
+	padding-top: 15rem;
+	justify-content: flex-start;
+}
+
+.js #works .item {
+	opacity: 0;
+}
+
+video {
+	margin: 0 1rem 3rem;
+	border: 0.5rem solid rgba(255,255,255,0.9);
+}
+
+#links-card {
+	text-align: left;
+	padding: 2rem;
+}
+
 #links-social {
-	margin: 1.4em 0;
+	margin-top: 2.6rem;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -230,8 +259,6 @@ a.nav-arrow {
 
 /-----------------------------------------------------------------------------*/
 
-
-
 .no-js .section-title {
 	display: flex;
 	justify-content: center;
@@ -239,7 +266,6 @@ a.nav-arrow {
 
 .no-js .item {
 	padding: 4rem;
-	/*min-height: 50vh;*/
 }
 
 .no-js #home {
@@ -265,7 +291,7 @@ a.nav-arrow {
 	padding-bottom: 2rem;
 }
 .no-js #links {
-	padding: 0rem 4rem 15rem;
+	padding: 9rem 4rem 15rem;
 }
 
 .no-js .nav-arrow {
@@ -291,10 +317,82 @@ a.nav-arrow {
 
 }
 
+@media (max-height: 800px) {
+
+	.description{
+		font-size: 1.3rem;
+	}
+
+	#dynamic-title {
+		max-width: 100vw;
+		margin-top: 5rem;
+		font-size: 2rem;
+	}
+
+	.js #works .item {
+		padding: 10rem 3rem;
+	}
+
+}
+
 @media (max-width: 320px) {
+
+	.no-js #links {
+		padding: 2rem 1rem 6rem;
+	}
+
+	h2, h3,
+	#links-card,
+	.description {
+		max-width: 100%;
+		overflow-wrap: break-word;
+		padding: 0;
+	}
+
+	.no-js h2 {
+		font-size: 2.8rem;
+	}
+
+	.no-js h3 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+	}
+
+	#name {
+		font-size: 2rem;
+	}
+
+	#name-first {
+		font-size: 2rem;
+	}
+
+	#name-alias {
+		font-size: 4rem;
+		line-height: 3rem;
+		margin-bottom: 0;
+	}
+
+	#vocation {
+		font-size: 1.2rem;
+	}
+
+	.js .item,
+	.no-js .item {
+		padding-left: 1rem;
+		padding-right: 1rem;
+		max-width: 80%;
+	}
 
 	nav {
 		display: none;
+	}
+
+	#dynamic-title {
+		font-size: 1.6rem;
+	}
+
+	footer {
+		padding-bottom: 1rem;
 	}
 
 }
@@ -310,4 +408,12 @@ a.nav-arrow {
 		color: #ffffff;
 	}
 
+	@media ( min-height: 500px ) {
+		#portfolio #about .description,
+		#portfolio #links-card {
+			pointer-events: initial;
+		}
+	}
+
 }
+
