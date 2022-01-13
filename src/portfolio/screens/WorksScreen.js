@@ -2,9 +2,9 @@ import { Screen } from './Screen';
 
 class WorksScreen extends Screen {
 
-	constructor( { sketch, id } ) {
+	constructor( { id, sketch } ) {
 
-		super( { sketch, id, type: Screen.types.WORKS } );
+		super( { id, sketch, type: Screen.types.WORKS } );
 
 		this.video = this.domElement.getElementsByTagName( 'video' )[ 0 ];
 		this.video.pause();

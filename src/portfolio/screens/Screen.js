@@ -25,10 +25,9 @@ class Screen {
 }
 
 Screen.types  = {
-	HOME: 'home',
 	INTRO: 'intro',
 	WORKS: 'works',
-	INFO: 'info',
+	ABOUT: 'about',
 };
 
 export { Screen };

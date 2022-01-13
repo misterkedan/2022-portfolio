@@ -25,6 +25,16 @@ class UI {
 
 	}
 
+	setNav( selected ) {
+
+		Object.values( this.nav ).forEach(
+			element => element.classList.remove( 'selected' )
+		);
+
+		this.nav[ selected ].classList.add( 'selected' );
+
+	}
+
 }
 
 export { UI };

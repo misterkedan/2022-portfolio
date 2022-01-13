@@ -1,12 +1,12 @@
 import anime from 'animejs';
 import { Textformer } from 'textformer';
-import { Screen } from './Screen';
+import { Screen } from '../screens/Screen';
 
 class AboutScreen extends Screen {
 
 	constructor( sketch ) {
 
-		const ABOUT = 'about';
+		const { ABOUT } = Screen.types;
 
 		super( { type: ABOUT, sketch, id: ABOUT } );
 

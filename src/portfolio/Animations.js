@@ -1,6 +1,6 @@
 import anime from 'animejs';
 import { Textformer } from 'textformer';
-import { Screen } from './elements/Screen';
+import { Screen } from './screens/Screen';
 
 class Animations {
 

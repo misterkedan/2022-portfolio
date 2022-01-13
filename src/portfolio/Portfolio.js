@@ -1,11 +1,12 @@
-import { Screen } from './elements/Screen';
-import { Title } from './elements/Title';
-import { UI } from './elements/UI';
-import { WorksScreen } from './elements/WorksScreen';
+import { Title } from './misc/Title';
+import { UI } from './misc/UI';
+import { Screen } from './screens/Screen';
+import { AboutScreen } from './screens/AboutScreen';
+import { WorksScreen } from './screens/WorksScreen';
 import { Animations } from './Animations';
 import { Background } from './Background';
 import { Controls } from './Controls';
-import { AboutScreen } from './elements/AboutScreen';
+import { LinksScreen } from './screens/LinksScreen';
 
 class Portfolio {
 
@@ -15,11 +16,11 @@ class Portfolio {
 		this.canvas = this.background.sketchpad.canvas;
 
 		const { grid, navscan, rain, blockflow, ablaze } = this.background;
-		const { HOME, INTRO, INFO } = Screen.types;
+		const { INTRO } = Screen.types;
 
 		this.screens = [
 
-			new Screen( { type: HOME,  sketch: grid, 	id: 'home' } ),
+			new Screen( { type: INTRO,  sketch: grid, 	id: 'home' } ),
 
 			new Screen( { type: INTRO, sketch: navscan, 	id: 'navscan' } ),
 			new Screen( { type: INTRO, sketch: rain, 		id: 'rain' } ),
@@ -31,9 +32,8 @@ class Portfolio {
 			new WorksScreen( { sketch: grid, id: 'disintegrator' } ),
 			new WorksScreen( { sketch: grid, id: 'textformer' } ),
 
-			//new Screen( { type: INFO,  sketch: grid, id: 'about' } ),
 			new AboutScreen( grid ),
-			new Screen( { type: INFO,  sketch: grid, id: 'links' }  )
+			new LinksScreen( grid ),
 
 		];
 
@@ -104,12 +104,8 @@ class Portfolio {
 
 	refresh() {
 
-		this.screens.forEach( screen => {
+		this.ui.setNav( this.currentScreen.type );
 
-			if ( screen.type === Screen.types.INFO ) screen.hide();
-
-		} );
-		this.screens[ 0 ].show();
 		this.currentScreen.show();
 
 		this.atStart = ( this.index === 0 );
