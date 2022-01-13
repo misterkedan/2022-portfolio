@@ -18,6 +18,7 @@ class Animations {
 		this.tweenGrid( from, to, backwards );
 		this.tweenTitle( from, to, backwards );
 		this.tweenPreviews( from, to, backwards );
+		this.tweenScreens( from, to, backwards );
 
 	}
 
@@ -162,6 +163,13 @@ class Animations {
 			} );
 
 		}
+
+	}
+
+	tweenScreens( from, to, backwards ) {
+
+		if ( to.tweenIn ) to.tweenIn( backwards );
+		if ( from.tweenOut ) from.tweenOut( backwards );
 
 	}
 

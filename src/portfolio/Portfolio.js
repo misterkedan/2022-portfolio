@@ -5,6 +5,7 @@ import { WorksScreen } from './elements/WorksScreen';
 import { Animations } from './Animations';
 import { Background } from './Background';
 import { Controls } from './Controls';
+import { AboutScreen } from './elements/AboutScreen';
 
 class Portfolio {
 
@@ -30,7 +31,8 @@ class Portfolio {
 			new WorksScreen( { sketch: grid, id: 'disintegrator' } ),
 			new WorksScreen( { sketch: grid, id: 'textformer' } ),
 
-			new Screen( { type: INFO,  sketch: grid, id: 'about' } ),
+			//new Screen( { type: INFO,  sketch: grid, id: 'about' } ),
+			new AboutScreen( grid ),
 			new Screen( { type: INFO,  sketch: grid, id: 'links' }  )
 
 		];
@@ -73,6 +75,9 @@ class Portfolio {
 	}
 
 	goto( index ) {
+
+		//if ( this.debounce ) return;
+		//this.debounce = setTimeout( () => this.debounce = false, 125 );
 
 		if ( typeof index !== 'number' ) index = this.indexOf( index );
 

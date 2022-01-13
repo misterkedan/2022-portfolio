@@ -16,8 +16,7 @@
 	<link rel="stylesheet" href="lib/reset.css">
 	<link rel="stylesheet" href="main.css">
 
-	<script defer src="lib/polyfills-v1.js"></script>
-	<script defer src="lib/utils-v1.js"></script>
+	<script defer src="lib/utils-v2.js"></script>
 	<script defer src="lib/three-r136.js"></script>
 	<script defer src="main.js"></script>
 </head>
@@ -62,7 +61,7 @@
 				</div>
 				<div id="orion" class="item">
 					<h3>Orion</h3>
-					<video autoplay loop muted src="/previews/orion.mp4"></video>
+					<video autoplay loop muted src="previews/orion.mp4"></video>
 					<div class="description">
 						<p>For this collaborative three.js experiment, my good friend Thibaut started things off by writing this rad shader, that I then took, polished, and turned into a generative application.</p>
 						<p>It is built upon my text-seeded PRNG utility (see next project), allowing to save and share random outcomes simply by bookmarking the URL.</p>
@@ -72,7 +71,7 @@
 				</div>
 				<div id="vesuna" class="item">
 					<h3>Vesuna</h3>
-					<video autoplay loop muted src="/previews/vesuna.mp4"></video>
+					<video autoplay loop muted src="previews/vesuna.mp4"></video>
 					<div class="description">
 						<p>Generative applications are a lot of fun. However, when there is a wide range of possible outcomes, it can become tedious to save, restore and share them.</p>
 						<p>To solve this issue, I wrote this tiny text-based random seed utility, built around Johannes Baagøe's Alea PRNG. It generates pseudorandom number sequences based on words, making it very easy to save/load precise results via hashtags.</p>
@@ -80,7 +79,7 @@
 				</div>
 				<div id="disintegrator" class="item">
 					<h3>Disintegrator</h3>
-					<video autoplay loop muted src="/previews/disintegrator.mp4"></video>
+					<video autoplay loop muted src="previews/disintegrator.mp4"></video>
 					<div class="description">
 						<p>Brainstorming for an upcoming project, I envisioned elements exploding. So I made this lab to try my hand at that.</p>
 						<p>After several attempts, I ended up using tesselation, custom buffer attributes, and a mix of basic random + simplex noise. It also uses a few duplicated/layered geometries, in order to counteract their inherent hollowness.</p>
@@ -89,7 +88,7 @@
 				</div>
 				<div id="textformer" class="item">
 					<h3>Textformer</h3>
-					<video autoplay loop muted src="/previews/textformer.mp4"></video>
+					<video autoplay loop muted src="previews/textformer.mp4"></video>
 					<div class="description">
 						<p>I love randomness, and I love experimenting with type. This resulted in this small javascript utility, that allows to make easy text animations based on random character changes.</p>
 						<p>I wanted it to be usable on its own, so I ended up writing and including a barebones tweening system. However, it also works great with engines such as gsap or anime.js.</p>
@@ -103,11 +102,12 @@
 				</div>
 
 				<div id="about" class="item">
+					<img id="selfie" src="selfie.png">
 					<div class="description">
-						<p>Hello!</p>
-						<p>My name is Pierre "Keda" Audéoud. I'm a 38-years-old creative coder, living and working freelance in Paris, France.</p>
-						<p>My work is mostly made in vanilla javascript &amp; three.js, with a strong focus on motion, randomness and interactivity. I also really like <span id="tools">GLSL</span> and <span id="affinities">sci-fi aesthetics</span>.</p>
-						<p><em>I am currently looking to join a creative studio.</em></p>
+						<p id="about-1">Hello!</p>
+						<p id="about-2">My name is Pierre "Keda" Audéoud. I'm a 38-years-old creative coder, working freelance and living in Paris, France.</p>
+						<p id="about-3"><span id="about-3a">My work is mostly made in vanilla javascript &amp; three.js, with a strong focus on motion, randomness and interactivity. I also really like </span><span id="tools">GLSL</span> <span id="about-3b">and</span> <span id="affinities">sci-fi aesthetics</span><span id="about-3c">.</span></p>
+						<p id="about-4">I am currently looking to join a creative studio.</p>
 					</div>
 				</div>
 				<div id="links" class="item">

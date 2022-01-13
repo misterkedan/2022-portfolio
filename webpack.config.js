@@ -12,12 +12,12 @@ let config = {
 		rules: [
 			{
 				test: /\.m?js$/,
-				exclude: /node_modules/,
+				exclude: /node_modules\/(?!(textformer|vesuna))/,
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: [ '@babel/preset-env' ]
-					}
+						presets: [ '@babel/preset-env' ],
+					},
 				},
 			}, {
 				test: /\.(glsl)$/,
