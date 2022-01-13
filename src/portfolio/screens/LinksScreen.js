@@ -124,7 +124,7 @@ class LinksScreen extends Screen {
 			complete,
 		} );
 
-		Object.entries( this.spans ).reverse().forEach( ( [ i, span ] ) => {
+		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
 
 			const textformer = new Textformer( {
 				output: span,
@@ -144,7 +144,7 @@ class LinksScreen extends Screen {
 
 		} );
 
-		Object.entries( this.links ).reverse().forEach( ( [ i, link ] ) => {
+		Object.entries( this.links ).forEach( ( [ i, link ] ) => {
 
 			const textformer = new Textformer( {
 				output: link,

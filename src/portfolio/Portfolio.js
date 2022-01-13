@@ -1,6 +1,4 @@
-import { Title } from './misc/Title';
 import { UI } from './misc/UI';
-import { Screen } from './screens/Screen';
 import { AboutScreen } from './screens/AboutScreen';
 import { WorksScreen } from './screens/WorksScreen';
 import { Animations } from './Animations';
@@ -39,11 +37,11 @@ class Portfolio {
 			new AboutScreen( grid ),
 			new LinksScreen( grid ),
 		];
+
 		this.length = this.screens.length;
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
-		this.title = new Title();
 		this.animations = new Animations( this );
 		this.controls = new Controls( this );
 
@@ -107,8 +105,8 @@ class Portfolio {
 
 		this.ui.setNav( this.currentScreen.type );
 
-		if ( this.currentScreen.type === Screen.types.WORKS )
-			this.currentScreen.show();
+		//if ( this.currentScreen.type === Screen.types.WORKS )
+		//	this.currentScreen.show();
 
 		this.atStart = ( this.index === 0 );
 		this.atEnd = ( this.index === this.length - 1 );

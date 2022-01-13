@@ -31,7 +31,7 @@ h3 {
 	}
 
 p {
-	margin-bottom: 1.4em;
+	margin-bottom: 1.6rem;
 }
 	p:last-child{
 		margin-bottom: 0;
@@ -225,13 +225,13 @@ footer {
 	padding-top: 15rem;
 	justify-content: flex-start;
 }
-
+/*
 .js #works .item {
 	opacity: 0;
-}
+}*/
 
 video {
-	margin: 0 1rem 3rem;
+	margin: 0 1rem 2.4rem;
 	border: 0.5rem solid rgba(255,255,255,0.9);
 }
 
@@ -252,7 +252,7 @@ video {
 li {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 2rem;
+	margin-top: 1rem;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -335,6 +335,7 @@ li {
 
 /-----------------------------------------------------------------------------*/
 
+/*
 @media (max-height: 800px) {
 
 	.description{
@@ -348,10 +349,11 @@ li {
 	}
 
 	.js #works .item {
-		padding: 16rem 3rem;
+		padding: 16rem 3rem 6rem;
 	}
 
 }
+*/
 
 @media (max-width: 320px) {
 

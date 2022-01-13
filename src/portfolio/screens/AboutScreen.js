@@ -72,12 +72,8 @@ class AboutScreen extends Screen {
 
 		}
 
-		const begin = function () {
-
-			if ( ! this.tweeningIn && ! this.tweeningOut ) this.setup( backwards );
-			this.show();
-
-		}.bind( this );
+		if ( ! this.tweeningIn && ! this.tweeningOut ) this.setup( backwards );
+		this.show();
 
 		const complete = function () {
 
@@ -90,7 +86,6 @@ class AboutScreen extends Screen {
 			easing: 'easeOutCirc',
 			delay: 300,
 			duration: 700,
-			begin,
 			complete,
 		} )
 			.add( {

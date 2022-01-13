@@ -1,7 +1,8 @@
 import anime from 'animejs';
-import { Textformer } from 'textformer';
+import { DynamicTitle } from './misc/DynamicTitle';
+import { Title } from './misc/Title';
 import { DemoScreen } from './screens/DemoScreen';
-import { Screen } from './screens/Screen';
+import { WorksScreen } from './screens/WorksScreen';
 
 class Animations {
 
@@ -9,16 +10,17 @@ class Animations {
 
 		this.portfolio = portfolio;
 
-		this.dynamicTitle = document.getElementById( 'dynamic-title' );
+		this.title = new Title();
+		this.dynamicTitle = new DynamicTitle();
 
 	}
 
 	tween( from, to, backwards ) {
 
+
 		this.tweenBackground( from, to, backwards );
 		this.tweenGrid( from, to, backwards );
-		this.tweenTitle( from, to, backwards );
-		this.tweenPreviews( from, to, backwards );
+		this.tweenTitles( from, to, backwards );
 		this.tweenScreens( from, to, backwards );
 
 	}
@@ -68,84 +70,18 @@ class Animations {
 
 	}
 
-	tweenTitle( from, to ) {
-
-		const { title } = this.portfolio;
+	tweenTitles( from, to, backwards ) {
 
 		const fromIsDemo = ( from instanceof DemoScreen );
 		const toIsDemo = ( to instanceof DemoScreen );
+		if ( ! fromIsDemo && toIsDemo ) this.title.tweenIn();
+		else if ( fromIsDemo && ! toIsDemo ) this.title.tweenOut();
 
-		if ( ! fromIsDemo && toIsDemo ) title.tweenIn();
-		else if ( fromIsDemo && ! toIsDemo ) title.tweenOut();
-
-	}
-
-	tweenPreviews( from, to, backwards ) {
-
-		const { WORKS } = Screen.types;
-
-		const options = {
-			duration: 500,
-			easing: 'easeInOutQuad',
-		};
-
-		const textformOptions = {
-			autoplay: false,
-			steps: 8,
-			stagger: 4,
-			output: this.dynamicTitle,
-			mode: ( backwards )
-				? Textformer.modes.NORMAL
-				: Textformer.modes.REVERSE
-		};
-
-		if ( from.type === WORKS ) {
-
-			anime( {
-				...options,
-				targets: from.domElement,
-				opacity: [ 1, 0 ],
-				complete: () => from.video.pause(),
-			} );
-
-		}
-
-		if ( to.type === WORKS ) {
-
-			anime( {
-				...options,
-				targets: to.domElement,
-				opacity: [ 0, 1 ],
-				begin: () => to.video.play()
-			} );
-
-			const textformIn = new Textformer( {
-				...textformOptions,
-				to: to.id,
-			} );
-
-			anime( {
-				...options,
-				duration: 700,
-				targets: textformIn,
-				progress: 1,
-			} );
-
-		} else {
-
-			const textformOut = new Textformer( {
-				...textformOptions,
-				to: '',
-			} );
-
-			anime( {
-				...options,
-				duration: 750,
-				targets: textformOut,
-				progress: 1,
-			} );
-
-		}
+		const fromIsWork = ( from instanceof WorksScreen );
+		const toIsWork = ( to instanceof WorksScreen );
+		if ( ! fromIsWork && ! toIsWork ) return;
+		const dynamicTitle = ( toIsWork ) ? to.id : '';
+		this.dynamicTitle.tween( dynamicTitle, backwards );
 
 	}
 
