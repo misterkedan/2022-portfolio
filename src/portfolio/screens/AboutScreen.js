@@ -24,7 +24,7 @@ class AboutScreen extends Screen {
 		this.lengths = this.texts.map( text => text.length );
 		this.staggers = this.lengths.reduce( ( result, length ) => {
 
-			result.total += length;
+			result.total += length * 0.5;
 			result.array.push( result.total );
 			return result;
 
@@ -97,12 +97,12 @@ class AboutScreen extends Screen {
 				targets: this.selfie,
 				opacity: 1,
 				translateX: 0,
-			}, 100 );
+			}, 300 );
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
 			const duration = Math.max( this.lengths[ i ] * 8, 700 );
-			const delay = this.staggers[ i ];
+			const stagger = this.staggers[ i ];
 
 			const textformer = new Textformer( {
 				output: element,
@@ -117,16 +117,14 @@ class AboutScreen extends Screen {
 				.add( {
 					targets: textformer,
 					duration,
-					delay,
 					progress: 1,
-				}, 0 )
+				}, stagger )
 				.add( {
 					targets: element,
 					duration,
-					delay,
 					translateX: 0,
 					opacity: 1
-				}, 100 );
+				}, stagger + 100 );
 
 		} );
 
@@ -165,7 +163,7 @@ class AboutScreen extends Screen {
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
 			const duration = Math.max( this.lengths[ i ] * 4, 400 );
-			const delay = this.staggers[ i ] * 0.6;
+			const stagger = this.staggers[ i ];
 
 			const textformer = new Textformer( {
 				output: element,
@@ -179,16 +177,14 @@ class AboutScreen extends Screen {
 				.add( {
 					targets: textformer,
 					duration,
-					delay,
 					progress: 1,
-				}, 0 )
+				}, stagger )
 				.add( {
 					targets: element,
 					duration,
-					delay,
 					translateX: translation,
 					opacity: 0
-				}, 100 );
+				}, stagger + 100 );
 
 		} );
 
