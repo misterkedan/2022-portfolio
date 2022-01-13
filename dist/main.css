@@ -12,11 +12,6 @@ body {
 	overflow: hidden auto;
 }
 
-::selection {
-	background-color: #ffffff;
-    color: #000000;
-}
-
 h1, h2, nav {
 	text-transform: uppercase;
 	font-weight: bold;
@@ -42,9 +37,13 @@ p {
 		margin-bottom: 0;
 	}
 
-
 em {
 	font-style: italic;
+}
+
+::selection {
+	background-color: #ffffff;
+    color: #000000;
 }
 
 .item a,
@@ -107,7 +106,7 @@ footer {
 }
 
 #invitation {
-	color: #ffffff;
+	color: rgba(255,255,255,0.5);
 	font-size: 1.5rem;
 	font-weight: bold;
 	letter-spacing: 0.4rem;
@@ -116,7 +115,7 @@ footer {
 	transition: all 200ms ease-out;
 }
 	#invitation:hover {
-		color: #00aaee;
+		color: #ffffff;
 	}
 
 .nav-arrow {

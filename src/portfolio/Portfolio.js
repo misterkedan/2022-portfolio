@@ -20,8 +20,11 @@ class Portfolio {
 		this.ui = new UI( this );
 
 		const { grid, navscan, rain, blockflow, ablaze } = this.background;
+
+		this.home = new HomeScreen( grid, this.ui );
+
 		this.screens = [
-			new HomeScreen( grid, this.ui ),
+			this.home,
 
 			new DemoScreen( { sketch: navscan, 		id: 'navscan' } ),
 			new DemoScreen( { sketch: rain, 		id: 'rain' } ),
