@@ -2,9 +2,9 @@ import { Screen } from './Screen';
 
 class DemoScreen extends Screen {
 
-	constructor( { id, sketch } ) {
+	constructor( id, sketch ) {
 
-		super( { id, sketch, type: Screen.types.INTRO } );
+		super( id, sketch );
 
 	}
 

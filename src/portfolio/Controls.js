@@ -20,7 +20,7 @@ class Controls {
 
 		const { back, forward, nav } = portfolio.ui;
 
-		portfolio.home.invitation.addEventListener( 'click', ()=> portfolio.goto( 1 ) );
+		portfolio.invitation.addEventListener( 'click', ()=> portfolio.goto( 1 ) );
 
 		back.addEventListener( 'click', () => portfolio.back() );
 		forward.addEventListener( 'click', () => portfolio.forward() );

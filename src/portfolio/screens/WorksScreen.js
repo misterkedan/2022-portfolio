@@ -6,9 +6,9 @@ const DATA_MODE = 'data-mode';
 
 class WorksScreen extends Screen {
 
-	constructor( { id, sketch } ) {
+	constructor( id, sketch ) {
 
-		super( { id, sketch, type: Screen.types.WORKS } );
+		super( id, sketch );
 
 		this.video = this.domElement.getElementsByTagName( 'video' )[ 0 ];
 		this.paragraphs = Array.from( this.domElement.getElementsByTagName( 'p' ) );

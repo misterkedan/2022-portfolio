@@ -4,11 +4,12 @@ import { Screen } from '../screens/Screen';
 
 class HomeScreen extends Screen {
 
-	constructor( sketch, ui ) {
+	constructor( sketch, portfolio ) {
 
-		super( { id: 'home', sketch, type: Screen.types.INTRO } );
+		super( 'home', sketch );
 
-		this.ui = ui;
+		this.portfolio = portfolio;
+		this.ui = portfolio.ui;
 
 		this.invitation = document.getElementById( 'invitation' );
 		this.invitationText = this.invitation.innerText;
@@ -60,7 +61,7 @@ class HomeScreen extends Screen {
 			autoplay: false,
 		} );
 
-		this.ui.setNav( false );
+		//this.ui.setNav( false );
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
@@ -154,7 +155,7 @@ class HomeScreen extends Screen {
 			}, 600 )
 			.add( {
 				targets: this.ui.forward,
-				opacity: 1,
+				opacity: ( this.portfolio.isEnding ) ? 0 : 1,
 				translateX: 0,
 			}, 600 )
 

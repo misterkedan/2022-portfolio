@@ -6,9 +6,9 @@ class AboutScreen extends Screen {
 
 	constructor( sketch ) {
 
-		const { ABOUT } = Screen.types;
+		const ABOUT = 'about';
 
-		super( { type: ABOUT, sketch, id: ABOUT } );
+		super( ABOUT, sketch );
 
 		this.elements = [
 			`${ABOUT}-1`,

@@ -1,8 +1,7 @@
 class Screen {
 
-	constructor( { type, id, sketch } = {} ) {
+	constructor( id, sketch ) {
 
-		this.type = type;
 		this.sketch = sketch;
 
 		this.id = id;
@@ -23,11 +22,5 @@ class Screen {
 	}
 
 }
-
-Screen.types  = {
-	INTRO: 'intro',
-	WORKS: 'works',
-	ABOUT: 'about',
-};
 
 export { Screen };

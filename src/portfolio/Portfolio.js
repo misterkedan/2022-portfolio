@@ -17,35 +17,33 @@ class Portfolio {
 
 		this.ui = new UI( this );
 
-		const { grid, navscan, rain, blockflow, ablaze } = this.background;
-
-		this.home = new HomeScreen( grid, this.ui );
-
-		this.screens = [
-			this.home,
-
-			new DemoScreen( { sketch: navscan, 		id: 'navscan' } ),
-			new DemoScreen( { sketch: rain, 		id: 'rain' } ),
-			new DemoScreen( { sketch: blockflow, 	id: 'blockflow' } ),
-			new DemoScreen( { sketch: ablaze, 		id: 'ablaze' } ),
-
-			new WorksScreen( { sketch: grid, id: 'orion' } ),
-			new WorksScreen( { sketch: grid, id: 'vesuna' } ),
-			new WorksScreen( { sketch: grid, id: 'disintegrator' } ),
-			new WorksScreen( { sketch: grid, id: 'textformer' } ),
-
+		const { grid } = this.background;
+		const home = new HomeScreen( grid, this );
+		const demos = [
+			'navscan',
+			'rain',
+			'blockflow',
+			'ablaze'
+		].map( id => new DemoScreen( id, this.background[ id ] ) );
+		const works = [
+			'orion',
+			'vesuna',
+			'disintegrator',
+			'textformer'
+		].map( id => new WorksScreen( id, grid ) );
+		const about = [
 			new AboutScreen( grid ),
-			new LinksScreen( grid ),
+			new LinksScreen( grid, this.ui )
 		];
+		this.screens = [ home, ...demos, ...works, ...about ];
 
 		this.length = this.screens.length;
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
+		this.invitation = home.invitation;
 		this.animations = new Animations( this );
 		this.controls = new Controls( this );
-
-		this.refresh();
 
 	}
 
@@ -59,7 +57,7 @@ class Portfolio {
 
 	back() {
 
-		if ( this.atStart ) return;
+		if ( this.isStarting ) return;
 
 		this.goto( this.index - 1 );
 
@@ -67,16 +65,13 @@ class Portfolio {
 
 	forward() {
 
-		if ( this.atEnd ) return;
+		if ( this.isEnding ) return;
 
 		this.goto( this.index + 1 );
 
 	}
 
 	goto( index ) {
-
-		//if ( this.debounce ) return;
-		//this.debounce = setTimeout( () => this.debounce = false, 125 );
 
 		if ( typeof index !== 'number' ) index = this.indexOf( index );
 
@@ -96,21 +91,7 @@ class Portfolio {
 
 		this.index = index;
 		this.currentScreen = this.screens[ index ];
-		this.refresh();
 		window.location.hash = this.currentScreen.id;
-
-	}
-
-	refresh() {
-
-		this.ui.setNav( this.currentScreen.type );
-
-		//if ( this.currentScreen.type === Screen.types.WORKS )
-		//	this.currentScreen.show();
-
-		this.atStart = ( this.index === 0 );
-		this.atEnd = ( this.index === this.length - 1 );
-		this.ui.setArrows( false, this.atEnd );
 
 	}
 
@@ -123,6 +104,18 @@ class Portfolio {
 		}
 
 		return 0;
+
+	}
+
+	get isStarting() {
+
+		return ( this.index === 0 );
+
+	}
+
+	get isEnding() {
+
+		return ( this.index === this.screens.lastIndex );
 
 	}
 

@@ -4,9 +4,11 @@ import { Screen } from './Screen';
 
 class LinksScreen extends Screen {
 
-	constructor( sketch ) {
+	constructor( sketch, ui ) {
 
-		super( { id:'links', sketch, type: Screen.types.ABOUT } );
+		super( 'links', sketch );
+
+		this.ui = ui;
 
 		this.spans = Array.from( this.domElement.getElementsByTagName( 'span' ) );
 		this.spansTexts = this.spans.map( span => span.innerText );
@@ -48,7 +50,11 @@ class LinksScreen extends Screen {
 			delay: 400,
 			duration: 500,
 			complete,
-		} );
+		} )
+			.add( {
+				targets: this.ui.forward,
+				opacity: 0,
+			} );
 
 		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
 
@@ -117,12 +123,15 @@ class LinksScreen extends Screen {
 
 		}.bind( this );
 
-
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
 			duration: 500,
 			complete,
-		} );
+		} )
+			.add( {
+				targets: this.ui.forward,
+				opacity: 1,
+			} );
 
 		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
 

@@ -16,15 +16,6 @@ class UI {
 
 	}
 
-	setArrows( hideBack, hideForward ) {
-
-		const HIDDEN = 'hidden';
-		const VISIBLE = 'visible';
-		this.back.style.visibility = ( hideBack ) ? HIDDEN : VISIBLE;
-		this.forward.style.visibility  = ( hideForward ) ? HIDDEN : VISIBLE;
-
-	}
-
 	setNav( selected ) {
 
 		Object.values( this.nav ).forEach(
