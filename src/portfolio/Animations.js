@@ -1,5 +1,6 @@
 import anime from 'animejs';
 import { Textformer } from 'textformer';
+import { DemoScreen } from './screens/DemoScreen';
 import { Screen } from './screens/Screen';
 
 class Animations {
@@ -70,30 +71,12 @@ class Animations {
 	tweenTitle( from, to ) {
 
 		const { title } = this.portfolio;
-		const { INTRO } = Screen.types;
 
-		const options = {
-			duration: 1000,
-			easing: 'easeOutQuad',
-			targets: title,
-		};
+		const fromIsDemo = ( from instanceof DemoScreen );
+		const toIsDemo = ( to instanceof DemoScreen );
 
-		if ( from.type !== INTRO && to.type === INTRO ) {
-
-			anime( {
-				...options,
-				delay: 400,
-				progress: 1
-			} );
-
-		} else if ( from.type === INTRO && to.type !== INTRO ) {
-
-			anime( {
-				...options,
-				progress: 0
-			} );
-
-		}
+		if ( ! fromIsDemo && toIsDemo ) title.tweenIn();
+		else if ( fromIsDemo && ! toIsDemo ) title.tweenOut();
 
 	}
 

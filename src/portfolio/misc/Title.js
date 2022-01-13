@@ -1,3 +1,4 @@
+import anime from 'animejs';
 import { Textformer } from 'textformer';
 
 class Title {
@@ -7,8 +8,8 @@ class Title {
 		const options = {
 			autoplay: false,
 			from: '',
-			steps: 8,
-			stagger: 6,
+			steps: 20,
+			stagger: 10,
 			align: Textformer.align.LEFT,
 		};
 
@@ -31,6 +32,47 @@ class Title {
 
 		this.textformers = [ firstName, alias, vocation ];
 
+		this.progress = 0;
+
+	}
+
+	tweenIn() {
+
+		if ( this.tweeningIn ) this.tweeningIn.pause();
+		if ( this.tweeningOut ) {
+
+			this.tweeningOut.pause();
+			this.tweeningOut = null;
+
+		}
+
+		this.tweeningIn = anime( {
+			duration: 1200,
+			delay: 400,
+			easing: 'easeOutCirc',
+			targets: this,
+			progress: 1
+		} );
+
+	}
+
+	tweenOut() {
+
+		if ( this.tweeningOut ) this.tweeningOut.pause();
+		if ( this.tweeningIn ) {
+
+			this.tweeningIn.pause();
+			this.tweeningIn = null;
+
+		}
+
+		this.tweeningOut = anime( {
+			duration: 600,
+			easing: 'easeOutCirc',
+			targets: this,
+			progress: 0
+		} );
+
 	}
 
 	get progress() {
@@ -41,7 +83,9 @@ class Title {
 
 	set progress( progress ) {
 
-		this.textformers.forEach( textformer => textformer.progress = progress );
+		this.textformers.forEach(
+			textformer => textformer.progress = progress
+		);
 
 	}
 

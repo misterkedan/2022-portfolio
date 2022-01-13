@@ -23,21 +23,33 @@
 
 <body>
 	<div id="background"></div>
-	
 	<div id="portfolio">
-
-		<h2 id="dynamic-title"></h2>
+		<header>
+			<div id="main-title"  class="item">
+				<h1>
+					<div id="name">
+						<span id="name-first">Pierre</span>
+						<span id="name-alias">Keda</span>
+					</div>
+					<span id="vocation">Creative Coder</span>
+				</h1>
+			</div>
+			<h2 id="dynamic-title"></h2>
+			<nav>
+				<a id="nav-intro" class="nav-link selected" href="#intro">Intro</a>
+				<a id="nav-works" class="nav-link" href="#works">Works</a>
+				<a id="nav-about" class="nav-link" href="#about">About</a>
+			</nav>
+		</header>
+		
 		<main>
 			<section id="intro">
 				<div id="home" class="item">
-					<h1 id="title">
-						<div id="name">
-							<span id="name-first">Pierre</span>
-							<span id="name-alias">Keda</span>
-						</div>
-						<span id="vocation">Creative Coder</span>
-					</h1>
+					
+					<a id="invitation" href="javascript:void(0)">Swipe &#10095;</a>
 				</div>
+
+				<!--<a id="arrow-forward" class="nav-arrow" href="javascript:void(0)">&#10095;</a>-->
 
 				<div class="item placeholder">
 					<h2>Intro</h2>
@@ -116,7 +128,7 @@
 					<div id="links-card">
 						<div id="email">
 							<span>Say hi:</span>
-							<a id="email" href="mailto:pierrekeda83@gmail.com">pierrekeda83@gmail.com</a>
+							<a id="email" href="mailto:pierrekeda83@gmail.com">contact@pierrekeda.com</a>
 						</div>
 						
 						<ul id="links-social">
@@ -129,14 +141,6 @@
 			</section>
 		</main>
 
-		<nav>
-			<a id="nav-intro" class="nav-link selected" href="#intro">Intro</a>
-			<a id="nav-works" class="nav-link" href="#works">Works</a>
-			<a id="nav-about" class="nav-link" href="#about">About</a>
-		</nav>
-
-		
-
 		<a id="arrow-back" class="nav-arrow" href="javascript:void(0)">&#10094;</a>
 		<a id="arrow-forward" class="nav-arrow" href="javascript:void(0)">&#10095;</a>
 			
@@ -144,7 +148,6 @@
 			<span id="signature">Pierre Keda 2022</span>
 		</footer>
 	</div>
-
 	<div id="fader"></div>
 </body>
 

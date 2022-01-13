@@ -7,6 +7,8 @@ import { Animations } from './Animations';
 import { Background } from './Background';
 import { Controls } from './Controls';
 import { LinksScreen } from './screens/LinksScreen';
+import { DemoScreen } from './screens/DemoScreen';
+import { HomeScreen } from './screens/HomeScreen';
 
 class Portfolio {
 
@@ -15,17 +17,16 @@ class Portfolio {
 		this.background = new Background();
 		this.canvas = this.background.sketchpad.canvas;
 
+		this.ui = new UI( this );
+
 		const { grid, navscan, rain, blockflow, ablaze } = this.background;
-		const { INTRO } = Screen.types;
-
 		this.screens = [
+			new HomeScreen( grid, this.ui ),
 
-			new Screen( { type: INTRO,  sketch: grid, 	id: 'home' } ),
-
-			new Screen( { type: INTRO, sketch: navscan, 	id: 'navscan' } ),
-			new Screen( { type: INTRO, sketch: rain, 		id: 'rain' } ),
-			new Screen( { type: INTRO, sketch: blockflow, 	id: 'blockflow' } ),
-			new Screen( { type: INTRO, sketch: ablaze, 		id: 'ablaze' } ),
+			new DemoScreen( { sketch: navscan, 		id: 'navscan' } ),
+			new DemoScreen( { sketch: rain, 		id: 'rain' } ),
+			new DemoScreen( { sketch: blockflow, 	id: 'blockflow' } ),
+			new DemoScreen( { sketch: ablaze, 		id: 'ablaze' } ),
 
 			new WorksScreen( { sketch: grid, id: 'orion' } ),
 			new WorksScreen( { sketch: grid, id: 'vesuna' } ),
@@ -34,15 +35,12 @@ class Portfolio {
 
 			new AboutScreen( grid ),
 			new LinksScreen( grid ),
-
 		];
-
 		this.length = this.screens.length;
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
 		this.title = new Title();
-		this.ui = new UI( this );
 		this.animations = new Animations( this );
 		this.controls = new Controls( this );
 
@@ -106,11 +104,12 @@ class Portfolio {
 
 		this.ui.setNav( this.currentScreen.type );
 
-		this.currentScreen.show();
+		if ( this.currentScreen.type === Screen.types.WORKS )
+			this.currentScreen.show();
 
 		this.atStart = ( this.index === 0 );
 		this.atEnd = ( this.index === this.length - 1 );
-		this.ui.setArrows( this.atStart, this.atEnd );
+		this.ui.setArrows( false, this.atEnd );
 
 	}
 

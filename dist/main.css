@@ -77,7 +77,6 @@ nav {
 
 	width: 100%;
 	display: flex;
-	/*align-items: flex-end;*/
 	justify-content: center;
 
 	padding-top: 0.4rem;
@@ -107,6 +106,19 @@ footer {
 	-webkit-tap-highlight-color: transparent;
 }
 
+#invitation {
+	color: #ffffff;
+	font-size: 1.5rem;
+	font-weight: bold;
+	letter-spacing: 0.4rem;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: all 200ms ease-out;
+}
+	#invitation:hover {
+		color: #00aaee;
+	}
+
 .nav-arrow {
     user-select: none;
 	
@@ -118,28 +130,30 @@ footer {
 	top: 50%;
 	top: calc( 50% - 2.8rem );
 }
-
 	#arrow-back {
 		left: 0;
 	}
-
 	#arrow-forward {
 		right: 0;
 	}
 
 .nav-link {
-	font-size: 1.4rem;
-	margin: 0 1.2rem;
+	font-size: 1.5rem;
+	margin: 0 1rem;
 	padding: 1rem 0.4rem 0.4rem;
 	transition: all 400ms ease-in;
 	border-bottom: 0 solid rgba(255,255,255,0.5);
 }
 	.nav-link.selected {
 		color: #ffffff;
-		border-bottom: 0.7rem solid #ffffff;
+		border-bottom: 0.6rem solid #ffffff;
 	}
 
-
+.js .nav-arrow,
+.js nav,
+.js footer {
+	opacity: 0;
+}
 
 
 /*-----------------------------------------------------------------------------/
@@ -176,23 +190,23 @@ footer {
 	max-width: 45em;
 }
 
-.js #home {
+.js #main-title  {
 	display: flex;
 }
 
-#title {
+#main-title {
 	width: 100%;
 	font-weight: bold;
 	user-select: none;
 }
-	#name {
+	#name-first {
 		font-size: 4.7rem;
 	}
 	#name-alias {
 		display: block;
 		font-size: 7.2rem;
-		line-height: 5rem;
-		margin-bottom: 0.8rem;
+		line-height: 4.6rem;
+		margin-bottom: 1rem;
 	}
 	#vocation {
 		font-size: 2rem;
@@ -233,12 +247,13 @@ video {
 
 #email {
 	display: block;
-	margin-bottom: 3rem;
+	margin: 2rem 0 2.5rem;
 }
 
 li {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 2rem;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -284,17 +299,18 @@ li {
 }
 
 .no-js #home {
-	height: 100vh;
+	display: none;
 }
 
-.no-js #title {
+.no-js #main-title {
+	height: 100vh;
 	opacity: 0;
 }
 @keyframes fadein {
 	from {opacity: 0;}
 	to {opacity: 1;}
 }
-.no-js #title {
+.no-js #main-title {
 	animation-name: fadein;
   	animation-duration: 1000ms;
 	animation-delay: 500ms;
@@ -320,18 +336,6 @@ li {
 
 /-----------------------------------------------------------------------------*/
 
-@media (max-aspect-ratio: 1/1) {
-
-	.nav-arrow {
-		top: 0.2rem;
-	}
-
-	.js .item{
-		padding: 6rem 4rem;
-	}
-
-}
-
 @media (max-height: 800px) {
 
 	.description{
@@ -340,12 +344,12 @@ li {
 
 	#dynamic-title {
 		max-width: 100vw;
-		margin-top: 7rem;
+		margin-top: 6rem;
 		font-size: 2rem;
 	}
 
 	.js #works .item {
-		padding: 12rem 3rem;
+		padding: 16rem 3rem;
 	}
 
 }
@@ -404,10 +408,23 @@ li {
 
 	#dynamic-title {
 		font-size: 1.6rem;
+		margin-top: 2rem;
 	}
 
 	footer {
 		padding-bottom: 1rem;
+	}
+
+}
+
+@media ( max-width: 800px ) {
+
+	.nav-arrow {
+		top: 0.2rem;
+	}
+
+	.js .item{
+		padding: 6rem 4rem;
 	}
 
 }
@@ -423,8 +440,11 @@ li {
 		color: #ffffff;
 	}
 
+	li {
+		margin-top: 0.4rem;
+	}
+
 	@media ( min-height: 500px ) {
-		#portfolio #about .description,
 		#portfolio #links-card {
 			pointer-events: initial;
 		}

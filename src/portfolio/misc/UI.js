@@ -31,7 +31,7 @@ class UI {
 			element => element.classList.remove( 'selected' )
 		);
 
-		this.nav[ selected ].classList.add( 'selected' );
+		this.nav[ selected ]?.classList.add( 'selected' );
 
 	}
 

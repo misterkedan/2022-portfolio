@@ -92,26 +92,17 @@ class AboutScreen extends Screen {
 			duration: 700,
 			begin,
 			complete,
-		} );
-
-		this.tweeningIn.add( {
-			targets: this.selfie,
-			opacity: 1,
-			translateX: 0,
-		}, 100 );
+		} )
+			.add( {
+				targets: this.selfie,
+				opacity: 1,
+				translateX: 0,
+			}, 100 );
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
 			const duration = Math.max( this.lengths[ i ] * 8, 700 );
 			const delay = this.staggers[ i ];
-
-			this.tweeningIn.add( {
-				targets: element,
-				duration,
-				delay,
-				translateX: 0,
-				opacity: 1
-			}, 100 );
 
 			const textformer = new Textformer( {
 				output: element,
@@ -122,12 +113,20 @@ class AboutScreen extends Screen {
 				align: Textformer.align.LEFT,
 			} );
 
-			this.tweeningIn.add( {
-				targets: textformer,
-				duration,
-				delay,
-				progress: 1,
-			}, 0 );
+			this.tweeningIn
+				.add( {
+					targets: textformer,
+					duration,
+					delay,
+					progress: 1,
+				}, 0 )
+				.add( {
+					targets: element,
+					duration,
+					delay,
+					translateX: 0,
+					opacity: 1
+				}, 100 );
 
 		} );
 
@@ -156,26 +155,17 @@ class AboutScreen extends Screen {
 			easing: 'easeInOutQuad',
 			duration: 500,
 			complete,
-		} );
-
-		this.tweeningOut.add( {
-			targets: this.selfie,
-			opacity: 0,
-			translateX: translation,
-		}, 0 );
+		} )
+			.add( {
+				targets: this.selfie,
+				opacity: 0,
+				translateX: translation,
+			}, 0 );
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
 			const duration = Math.max( this.lengths[ i ] * 4, 400 );
 			const delay = this.staggers[ i ] * 0.6;
-
-			this.tweeningOut.add( {
-				targets: element,
-				duration,
-				delay,
-				translateX: translation,
-				opacity: 0
-			}, 100 );
 
 			const textformer = new Textformer( {
 				output: element,
@@ -185,12 +175,20 @@ class AboutScreen extends Screen {
 				align: Textformer.align.LEFT,
 			} );
 
-			this.tweeningOut.add( {
-				targets: textformer,
-				duration,
-				delay,
-				progress: 1,
-			}, 0 );
+			this.tweeningOut
+				.add( {
+					targets: textformer,
+					duration,
+					delay,
+					progress: 1,
+				}, 0 )
+				.add( {
+					targets: element,
+					duration,
+					delay,
+					translateX: translation,
+					opacity: 0
+				}, 100 );
 
 		} );
 
