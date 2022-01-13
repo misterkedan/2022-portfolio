@@ -45,7 +45,7 @@ class LinksScreen extends Screen {
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
-			delay: 300,
+			delay: 400,
 			duration: 500,
 			complete,
 		} );

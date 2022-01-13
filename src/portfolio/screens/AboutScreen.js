@@ -151,7 +151,7 @@ class AboutScreen extends Screen {
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
-			duration: 500,
+			duration: 400,
 			complete,
 		} )
 			.add( {
