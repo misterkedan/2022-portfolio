@@ -1,5 +1,6 @@
 import anime from 'animejs';
 import { Textformer } from 'textformer';
+import { AboutShuffler } from '../misc/AboutShuffler';
 import { Screen } from '../screens/Screen';
 
 class AboutScreen extends Screen {
@@ -13,12 +14,12 @@ class AboutScreen extends Screen {
 		this.elements = [
 			`${ABOUT}-1`,
 			`${ABOUT}-2`,
-			`${ABOUT}-3a`,
+			`${ABOUT}-3`,
+			`${ABOUT}-4a`,
 			'tools',
-			`${ABOUT}-3b`,
+			`${ABOUT}-4b`,
 			'affinities',
-			`${ABOUT}-3c`,
-			`${ABOUT}-4`,
+			`${ABOUT}-4c`,
 		].map( id => document.getElementById( id ) );
 		this.texts = this.elements.map( element => element.innerText );
 		this.lengths = this.texts.map( text => text.length );
@@ -31,10 +32,24 @@ class AboutScreen extends Screen {
 		}, { array: [], total: 0 } ).array;
 
 		this.selfie = document.getElementById( 'selfie' );
-		this.tools = document.getElementById( 'tools' );
-		this.affinities = document.getElementById( 'affinities' );
+
+		this.shuffler = new AboutShuffler();
 
 		this.tweenX = 100;
+
+	}
+
+	show() {
+
+		super.show();
+		this.shuffler.enable();
+
+	}
+
+	hide() {
+
+		super.hide();
+		this.shuffler.disable();
 
 	}
 
@@ -79,7 +94,9 @@ class AboutScreen extends Screen {
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
 			const duration = Math.max( this.lengths[ i ] * 8, 500 );
-			const stagger = this.staggers[ i ];
+			const stagger = ( i > 0 )
+				? this.staggers[ i ]
+				: 400;
 
 			const textformer = new Textformer( {
 				output: element,

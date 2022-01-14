@@ -161,6 +161,15 @@ footer {
 	opacity: 0;
 }
 
+#pagination {
+	position: fixed;
+	bottom: 0;
+    right: 0;
+    margin: 0 2rem 1.4rem;
+    text-align: right;
+	color: rgba(255,255,255,0.5);
+}
+
 #invitation {
 	color: rgba(255,255,255,0.5);
 	font-size: 1.5rem;
@@ -252,6 +261,23 @@ video {
 
 #selfie {
 	margin-bottom: 2rem;
+}
+
+/*
+#tools {
+	font-weight: bold;
+	color: #ff2ced;
+}
+
+#affinities {
+	font-weight: bold;
+	color: #00ccff;
+}
+*/
+#affinities,
+#tools {
+	font-weight: bold;
+	color: #00ff88;
 }
 
 #links-card {

@@ -14,6 +14,14 @@ class UI {
 
 		}, {} );
 
+		this.pagination = document.getElementById( 'pagination' );
+
+	}
+
+	setPagination( number ) {
+
+		this.pagination.innerText = `${number}/${this.paginationMax}`;
+
 	}
 
 	setNav( selected ) {

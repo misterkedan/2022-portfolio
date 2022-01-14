@@ -46,6 +46,8 @@ class Portfolio {
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
+		this.ui.paginationMax = this.length;
+
 		this.invitation = home.invitation;
 		this.animations = new Animations( this );
 		this.controls = new Controls( this );
@@ -98,6 +100,7 @@ class Portfolio {
 		this.currentScreen = this.screens[ index ];
 
 		this.ui.setNav( this.currentSection );
+		this.ui.setPagination( index + 1 );
 
 		window.location.hash = this.currentScreen.id;
 

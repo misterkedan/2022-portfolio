@@ -22,6 +22,7 @@ class HomeScreen extends Screen {
 		this.ui.back.style.transform = `translateX(${translate}px)`;
 		this.ui.forward.style.transform = `translateX(-${translate}px)`;
 		this.footer.style.bottom = `${translate}px`;
+		this.ui.pagination.style.bottom = `${translate}px`;
 		this.translate = translate;
 
 		const initialHash = window.location.hash;
@@ -63,7 +64,7 @@ class HomeScreen extends Screen {
 				opacity: 0,
 			}, 300 )
 			.add( {
-				targets: this.footer,
+				targets: [ this.footer, this.ui.pagination ],
 				opacity: 0,
 				bottom: this.translate,
 			}, 300 )
@@ -110,7 +111,7 @@ class HomeScreen extends Screen {
 				opacity: 1,
 			}, 400 )
 			.add( {
-				targets: this.footer,
+				targets: [ this.footer, this.ui.pagination ],
 				opacity: 1,
 				bottom: 0,
 			}, 400 )
