@@ -28,28 +28,13 @@ class LinksScreen extends Screen {
 
 	tweenIn() {
 
-		if ( this.tweeningIn ) this.tweeningIn.pause();
-		if ( this.tweeningOut ) {
-
-			this.tweeningOut.pause();
-			this.tweeningOut = null;
-
-		}
-
-		this.show();
-
-		const complete = function () {
-
-			if ( this.tweeningIn?.reversed ) this.hide();
-			this.tweeningIn = null;
-
-		}.bind( this );
+		super.tweenIn();
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			delay: 400,
 			duration: 500,
-			complete,
+			complete: this.completeTweenIn,
 		} )
 			.add( {
 				targets: this.ui.forward,
@@ -108,25 +93,12 @@ class LinksScreen extends Screen {
 
 	tweenOut() {
 
-		if ( this.tweeningOut ) this.tweeningOut.pause();
-		if ( this.tweeningIn ) {
-
-			this.tweeningIn.pause();
-			this.tweeningIn = null;
-
-		}
-
-		const complete = function () {
-
-			if ( ! this.tweeningOut?.reversed  ) this.hide();
-			this.tweeningOut = null;
-
-		}.bind( this );
+		super.tweenOut();
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
 			duration: 500,
-			complete,
+			complete: this.completeTweenOut,
 		} )
 			.add( {
 				targets: this.ui.forward,

@@ -73,7 +73,7 @@ class Portfolio {
 
 	goto( index ) {
 
-		if ( typeof index !== 'number' ) index = this.indexOf( index );
+		if ( typeof index === 'string' ) index = this.indexOf( index );
 
 		if ( index === this.index ) return;
 

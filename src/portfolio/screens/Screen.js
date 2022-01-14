@@ -1,23 +1,13 @@
-class Screen {
+import { Tweenable } from '../misc/Tweenable';
+
+class Screen extends Tweenable {
 
 	constructor( id, sketch ) {
 
-		this.sketch = sketch;
+		super( document.getElementById( id ), 'flex' );
 
 		this.id = id;
-		this.domElement = document.getElementById( id );
-
-	}
-
-	show() {
-
-		this.domElement.style.display = 'flex';
-
-	}
-
-	hide() {
-
-		this.domElement.style.display = 'none';
+		this.sketch = sketch;
 
 	}
 

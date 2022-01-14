@@ -35,8 +35,6 @@ class AboutScreen extends Screen {
 		this.affinities = document.getElementById( 'affinities' );
 
 		this.offset = 120;
-		this.setup();
-		this.hide();
 
 	}
 
@@ -64,29 +62,13 @@ class AboutScreen extends Screen {
 
 	tweenIn( backwards ) {
 
-		if ( this.tweeningIn ) this.tweeningIn.pause();
-		if ( this.tweeningOut ) {
-
-			this.tweeningOut.pause();
-			this.tweeningOut = null;
-
-		}
-
-		if ( ! this.tweeningIn && ! this.tweeningOut ) this.setup( backwards );
-		this.show();
-
-		const complete = function () {
-
-			if ( this.tweeningIn?.reversed ) this.hide();
-			this.tweeningIn = null;
-
-		}.bind( this );
+		super.tweenIn( backwards );
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			delay: 300,
 			duration: 700,
-			complete,
+			complete: this.completeTweenIn,
 		} )
 			.add( {
 				targets: this.selfie,
@@ -127,27 +109,14 @@ class AboutScreen extends Screen {
 
 	tweenOut( backwards ) {
 
-		if ( this.tweeningOut ) this.tweeningOut.pause();
-		if ( this.tweeningIn ) {
-
-			this.tweeningIn.pause();
-			this.tweeningIn = null;
-
-		}
-
-		const complete = function () {
-
-			if ( ! this.tweeningOut?.reversed  ) this.hide();
-			this.tweeningOut = null;
-
-		}.bind( this );
+		super.tweenOut();
 
 		const translation = ( backwards ) ? this.offset : - this.offset;
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
 			duration: 400,
-			complete,
+			complete: this.completeTweenOut,
 		} )
 			.add( {
 				targets: this.selfie,

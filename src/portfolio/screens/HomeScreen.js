@@ -17,42 +17,21 @@ class HomeScreen extends Screen {
 		this.nav = document.getElementsByTagName( 'nav' )[ 0 ];
 		this.footer = document.getElementsByTagName( 'footer' )[ 0 ];
 
-		this.translate = 30;
-
-		this.setup();
-
-	}
-
-	setup() {
-
-		this.show();
-
-		const { translate } = this;
+		const translate = 30;
 		this.nav.style.transform = `translateY(${translate}px)`;
 		this.ui.back.style.transform = `translateX(${translate}px)`;
 		this.ui.forward.style.transform = `translateX(-${translate}px)`;
 		this.footer.style.bottom = `${translate}px`;
+		this.translate = translate;
+
+		const initialHash = window.location.hash;
+		if ( ! initialHash.length || initialHash === '#home' ) this.show();
 
 	}
 
 	tweenIn() {
 
-		if ( this.tweeningIn ) this.tweeningIn.pause();
-		if ( this.tweeningOut ) {
-
-			this.tweeningOut.pause();
-			this.tweeningOut = null;
-
-		}
-
-		this.show();
-
-		const complete = function () {
-
-			if ( this.tweeningIn?.reversed ) this.hide();
-			this.tweeningIn = null;
-
-		}.bind( this );
+		super.tweenIn();
 
 		const invitation = new Textformer( {
 			output: this.invitation,
@@ -66,7 +45,7 @@ class HomeScreen extends Screen {
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			duration: 700,
-			complete,
+			complete: this.completeTweenIn,
 		} )
 			.add( {
 				targets: this.ui.back,
@@ -102,20 +81,7 @@ class HomeScreen extends Screen {
 
 	tweenOut() {
 
-		if ( this.tweeningOut ) this.tweeningOut.pause();
-		if ( this.tweeningIn ) {
-
-			this.tweeningIn.pause();
-			this.tweeningIn = null;
-
-		}
-
-		const complete = function () {
-
-			if ( ! this.tweeningOut?.reversed  ) this.hide();
-			this.tweeningOut = null;
-
-		}.bind( this );
+		super.tweenOut();
 
 		const invitation = new Textformer( {
 			output: this.invitation,
@@ -127,7 +93,7 @@ class HomeScreen extends Screen {
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeOutCirc',
 			duration: 700,
-			complete,
+			complete: this.completeTweenOut,
 		} )
 			.add( {
 				targets: invitation,
