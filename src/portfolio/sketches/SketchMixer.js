@@ -55,13 +55,15 @@ class SketchMixer {
 
 		this.sketches.forEach( sketch => sketch.resize( width, height, pixelRatio ) );
 
-		const ratio = width / height;
+		const aspect = width / height;
 
-		const cellsX = Math.ceil( 18 * ratio );
+		const cellsX = Math.ceil( 18 * aspect );
 		this.material.uniforms.uCellsX.value = cellsX;
 
-		const displacement = 0.2 / ratio;
+		const displacement = 0.2 / aspect;
 		this.material.uniforms.uDisplace.value = displacement;
+
+		this.material.uniforms.uAspect.value = aspect;
 
 	}
 
@@ -97,8 +99,6 @@ class SketchMixer {
 	set mix( mix ) {
 
 		this.material.uniforms.uMix.value = mix;
-		this.mixA.out?.( mix );
-		this.mixB.in?.( mix );
 
 	}
 

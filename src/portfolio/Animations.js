@@ -42,6 +42,7 @@ class Animations {
 		}
 
 		mixer.set( sketchA, sketchB );
+		mixer.material.uniforms.uBackwards.value = backwards;
 
 		anime( {
 			duration: 1000,

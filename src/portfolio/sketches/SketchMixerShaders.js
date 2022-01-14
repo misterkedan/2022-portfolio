@@ -1,13 +1,15 @@
 const SketchMixerShaders = {};
 
 SketchMixerShaders.uniforms = {
-	tMixA: { value: null },
-	tMixB: { value: null },
-	uCellsX: { value: 30.0 },
-	uCellsY: { value: 100.0 },
-	uDisplace: { value: 0.2 },
-	uMix:	{ value: 0.0 },
-	uSeed:	{ value: 0.0 },
+	tMixA: 		{ value: null },
+	tMixB: 		{ value: null },
+	uCellsX: 	{ value: 30.0 },
+	uCellsY: 	{ value: 100.0 },
+	uDisplace: 	{ value: 0.2 },
+	uMix:		{ value: 0.0 },
+	uSeed:		{ value: 0.0 },
+	uBackwards:	{ value: true },
+	uAspect: 	{ value: 0.5 },
 };
 
 SketchMixerShaders.vertexShader = /*glsl*/`
@@ -22,13 +24,15 @@ SketchMixerShaders.vertexShader = /*glsl*/`
 `;
 
 SketchMixerShaders.fragmentShader = /*glsl*/`
-uniform sampler2D tMixA;
-uniform sampler2D tMixB;
+uniform bool uBackwards;
+uniform float uAspect;
 uniform float uCellsX;
 uniform float uCellsY;
 uniform float uDisplace;
 uniform float uMix;
 uniform float uSeed;
+uniform sampler2D tMixA;
+uniform sampler2D tMixB;
 varying vec2 vUv;
 
 float random( float x, float y ) {
@@ -92,12 +96,24 @@ void main() {
 	float displacement = parabola( vUv.x, 1.0 ) * glitch * uDisplace; 
 	vec2 displacedUv = vec2( vUv.x + displacement, vUv.y );
 
-	// Mix
+	// Slanted mask
+	
+	float slant = 0.3 / uAspect;
+	const float slantEase = 0.5;
+	float offset = ( uBackwards ) 
+		? slant * mix( 1.0, uMix, slantEase )
+		: -slant * mix( 1.0, 1.0 - uMix, slantEase );
+	offset *= ( 1.0 - vUv.y );
+	float mask = step( 1.0 - vUv.x + offset, uMix );
 
-	vec4 texelA = texture2D( tMixA, displacedUv );
+	vec4 texelA = texture2D( tMixA, vec2( displacedUv.x + uMix * 0.2 * uAspect, displacedUv.y ) );
 	vec4 texelB = texture2D( tMixB, displacedUv );
 
-	gl_FragColor = mix( texelA, texelB, uMix + displacement );
+	float mixValue = clamp( mask + offset * displacement, 0.0, 1.0 );
+
+	// Final mix
+
+	gl_FragColor = mix( texelA, texelB, mixValue );
 
 }
 `;
