@@ -25,7 +25,8 @@ class WorksScreen extends Screen {
 
 		} );
 
-		this.translation = 100;
+		this.tweenX = 100;
+		this.tweenY = 20;
 
 	}
 
@@ -45,16 +46,19 @@ class WorksScreen extends Screen {
 
 	setup( backwards ) {
 
-		const translation = ( backwards )
-			? - this.translation
-			:  this.translation;
+		const tweenX = ( backwards ) ? - this.tweenX :  this.tweenX;
 
-		const transform = `translateX(${translation}px)`;
+		const transform = `translateX(${tweenX}px)`;
 
 		this.video.style.opacity = 0;
 		this.video.style.transform = transform;
 
-		this.paragraphs.forEach( paragraph => paragraph.style.opacity = 0 );
+		this.paragraphs.forEach( paragraph => {
+
+			paragraph.style.opacity = 0;
+			paragraph.style.transform = `translateY(${this.tweenY}px)`;
+
+		} );
 
 	}
 
@@ -93,7 +97,7 @@ class WorksScreen extends Screen {
 				.add( {
 					targets: paragraph,
 					opacity: 1,
-					translateX: 0,
+					translateY: 0,
 				},  stagger )
 				.add( {
 					targets: textformer,
@@ -110,9 +114,7 @@ class WorksScreen extends Screen {
 
 		super.tweenOut( backwards );
 
-		const translation = ( backwards )
-			? this.translation
-			: - this.translation;
+		const tweenX = ( backwards ) ? this.tweenX : - this.tweenX;
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
@@ -122,7 +124,7 @@ class WorksScreen extends Screen {
 			.add( {
 				targets: this.video,
 				opacity: 0,
-				translateX: translation,
+				translateX: tweenX,
 			}, 0 );
 
 		Object.entries( this.paragraphs ).forEach( ( [ i, paragraph ] ) => {
@@ -143,7 +145,7 @@ class WorksScreen extends Screen {
 				.add( {
 					targets: paragraph,
 					opacity: 0,
-					translateX: translation,
+					translateY: this.tweenY,
 				},  stagger )
 				.add( {
 					targets: textformer,

@@ -16,13 +16,13 @@ class LinksScreen extends Screen {
 		this.links = Array.from( this.domElement.getElementsByTagName( 'a' ) );
 		this.linksTexts = this.links.map( link => link.innerText );
 
-		this.translation = 100;
+		this.tweenX = 100;
 
 		this.items = Array.from( this.domElement.getElementsByTagName( 'li' ) );
 		this.items.forEach( item => {
 
 			item.style.opacity = 0;
-			item.style.transform = `translateX(${this.translation}px)`;
+			item.style.transform = `translateX(${this.tweenX}px)`;
 
 		} );
 
@@ -99,7 +99,7 @@ class LinksScreen extends Screen {
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
-			duration: 500,
+			duration: 400,
 			complete: this.completeTweenOut,
 		} )
 			.add( {
@@ -117,7 +117,7 @@ class LinksScreen extends Screen {
 				autoplay: false,
 			} );
 
-			const duration = i * 300;
+			const duration = i * 200;
 
 			this.tweeningOut.add( {
 				duration,
@@ -136,7 +136,7 @@ class LinksScreen extends Screen {
 				autoplay: false,
 			} );
 
-			const duration = i * 300;
+			const duration = i * 200;
 
 			this.tweeningOut.add( {
 				duration,
@@ -151,7 +151,7 @@ class LinksScreen extends Screen {
 			this.tweeningOut.add( {
 				targets: item,
 				opacity: 0,
-				translateX: this.translation,
+				translateX: this.tweenX,
 			}, i * 150 );
 
 		} );

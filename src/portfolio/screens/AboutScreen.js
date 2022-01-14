@@ -34,20 +34,18 @@ class AboutScreen extends Screen {
 		this.tools = document.getElementById( 'tools' );
 		this.affinities = document.getElementById( 'affinities' );
 
-		this.translation = 100;
+		this.tweenX = 100;
 
 	}
 
 	setup( backwards ) {
 
-		const translation = ( backwards )
-			? - this.translation
-			: this.translation;
+		const tweenX = ( backwards ) ? - this.tweenX : this.tweenX;
 
 		const setStyle = ( element ) => {
 
 			element.style.opacity = 0;
-			element.style.transform = `translateX(${translation}px)`;
+			element.style.transform = `translateX(${tweenX}px)`;
 
 		};
 
@@ -113,7 +111,7 @@ class AboutScreen extends Screen {
 
 		super.tweenOut();
 
-		const translation = ( backwards ) ? this.translation : - this.translation;
+		const tweenX = ( backwards ) ? this.tweenX : - this.tweenX;
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
@@ -123,7 +121,7 @@ class AboutScreen extends Screen {
 			.add( {
 				targets: this.selfie,
 				opacity: 0,
-				translateX: translation,
+				translateX: tweenX,
 			}, 0 );
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
@@ -143,7 +141,7 @@ class AboutScreen extends Screen {
 				}, 0 )
 				.add( {
 					targets: element,
-					translateX: translation,
+					translateX: tweenX,
 					opacity: 0
 				}, 100 );
 

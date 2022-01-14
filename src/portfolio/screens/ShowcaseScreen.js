@@ -14,18 +14,16 @@ class ShowcaseScreen extends Screen {
 		this.titleText = this.title.innerText;
 		this.subtitleText = this.subtitle.innerText;
 
-		this.translation = 200;
+		this.tweenX = 200;
 
 	}
 
 	setup( backwards ) {
 
 		console.log( '?' );
-		const translation = ( backwards )
-			? - this.translation
-			:  this.translation;
+		const tweenX = ( backwards ) ? - this.tweenX : this.tweenX;
 
-		const transform = `translateX(${translation}px)`;
+		const transform = `translateX(${tweenX}px)`;
 
 		[ this.title, this.subtitle ].forEach( element => {
 
@@ -81,9 +79,7 @@ class ShowcaseScreen extends Screen {
 
 		super.tweenOut( backwards );
 
-		const translation = ( backwards )
-			? this.translation
-			: - this.translation;
+		const tweenX = ( backwards ) ? this.tweenX : - this.tweenX;
 
 		const title = new Textformer( {
 			autoplay: false,
@@ -111,12 +107,12 @@ class ShowcaseScreen extends Screen {
 			.add( {
 				targets: this.title,
 				opacity: 0,
-				translateX: translation,
+				translateX: tweenX,
 			}, 0 )
 			.add( {
 				targets: this.subtitle,
 				opacity: 0,
-				translateX: translation,
+				translateX: tweenX,
 			}, 0 );
 
 	}
