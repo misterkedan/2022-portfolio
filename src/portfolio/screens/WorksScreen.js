@@ -11,9 +11,9 @@ class WorksScreen extends Screen {
 		super( id, sketch );
 
 		this.video = this.domElement.getElementsByTagName( 'video' )[ 0 ];
+
 		this.paragraphs = Array.from( this.domElement.getElementsByTagName( 'p' ) );
 		this.texts = this.paragraphs.map( paragraph => paragraph.innerText );
-
 		Object.entries( this.paragraphs ).forEach( ( [ i, paragraph ] ) => {
 
 			if ( i < 1 )
@@ -24,6 +24,8 @@ class WorksScreen extends Screen {
 				paragraph.setAttribute( DATA_MODE, Textformer.modes.BASIC );
 
 		} );
+
+		this.links = this.domElement.getElementsByClassName( 'project-links' )[ 0 ];
 
 		this.tweenX = 100;
 		this.tweenY = 20;
@@ -48,17 +50,18 @@ class WorksScreen extends Screen {
 
 		const tweenX = ( backwards ) ? - this.tweenX :  this.tweenX;
 
-		const transform = `translateX(${tweenX}px)`;
-
 		this.video.style.opacity = 0;
-		this.video.style.transform = transform;
+		this.video.style.transform = `translateX(${tweenX}px)`;
 
-		this.paragraphs.forEach( paragraph => {
+		const setStyle = ( element ) => {
 
-			paragraph.style.opacity = 0;
-			paragraph.style.transform = `translateY(${this.tweenY}px)`;
+			element.style.opacity = 0;
+			element.style.transform = `translateY(${this.tweenY}px)`;
 
-		} );
+		};
+
+		this.paragraphs.forEach( paragraph => setStyle( paragraph ) );
+		setStyle( this.links );
 
 	}
 
@@ -76,7 +79,12 @@ class WorksScreen extends Screen {
 				targets: this.video,
 				opacity: 1,
 				translateX: 0,
-			}, 0 );
+			}, 0 )
+			.add( {
+				targets: this.links,
+				opacity: 1,
+				translateY: 0,
+			},  300 );
 
 		Object.entries( this.paragraphs ).forEach( ( [ i, paragraph ] )=>{
 
@@ -107,7 +115,6 @@ class WorksScreen extends Screen {
 
 		} );
 
-
 	}
 
 	tweenOut( backwards ) {
@@ -125,6 +132,11 @@ class WorksScreen extends Screen {
 				targets: this.video,
 				opacity: 0,
 				translateX: tweenX,
+			}, 0 )
+			.add( {
+				targets: this.links,
+				opacity: 0,
+				translateY: this.tweenY
 			}, 0 );
 
 		Object.entries( this.paragraphs ).forEach( ( [ i, paragraph ] ) => {

@@ -17,7 +17,6 @@ class Animations {
 
 	tween( from, to, backwards ) {
 
-
 		this.tweenBackground( from, to, backwards );
 		this.tweenGrid( from, to, backwards );
 		this.tweenTitles( from, to, backwards );
@@ -42,6 +41,7 @@ class Animations {
 		}
 
 		mixer.set( sketchA, sketchB );
+		mixer.resize( window.innerWidth, window.innerHeight );
 		mixer.material.uniforms.uBackwards.value = backwards;
 
 		anime( {
