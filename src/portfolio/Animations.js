@@ -46,7 +46,7 @@ class Animations {
 
 		anime( {
 			duration: 1000,
-			easing: 'easeOutCirc',
+			easing: 'easeInOutCirc',
 			targets: mixer,
 			mix,
 		} );

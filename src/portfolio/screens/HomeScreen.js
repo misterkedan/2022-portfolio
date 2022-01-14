@@ -17,7 +17,7 @@ class HomeScreen extends Screen {
 		this.nav = document.getElementsByTagName( 'nav' )[ 0 ];
 		this.footer = document.getElementsByTagName( 'footer' )[ 0 ];
 
-		const translate = 30;
+		const translate = 20;
 		this.nav.style.transform = `translateY(${translate}px)`;
 		this.ui.back.style.transform = `translateX(${translate}px)`;
 		this.ui.forward.style.transform = `translateX(-${translate}px)`;

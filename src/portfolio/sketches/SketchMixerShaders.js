@@ -98,12 +98,12 @@ void main() {
 
 	// Slanted mask
 	
-	float slant = 0.3 / uAspect;
+	float slant = 0.2 / uAspect;
 	const float slantEase = 0.5;
 	float offset = ( uBackwards ) 
 		? slant * mix( 1.0, uMix, slantEase )
 		: -slant * mix( 1.0, 1.0 - uMix, slantEase );
-	offset *= ( 1.0 - vUv.y );
+	offset *= ( 1.0 - vUv.y ) * parabola( uMix, 2.0 );
 	float mask = step( 1.0 - vUv.x + offset, uMix );
 
 	vec4 texelA = texture2D( tMixA, vec2( displacedUv.x + uMix * 0.2 * uAspect, displacedUv.y ) );

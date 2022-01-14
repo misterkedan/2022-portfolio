@@ -12,13 +12,15 @@ body {
 	overflow: hidden auto;
 }
 
-h1, h2, nav {
+h1, h2, h3, h4, nav {
 	text-transform: uppercase;
+}
+
+h1{
 	font-weight: bold;
 }
 
 h2 {
-	margin: 4rem 0;
 	font-size: 4rem;
 }
 
@@ -46,8 +48,8 @@ em {
     color: #000000;
 }
 
-.item a,
-.item a:visited {
+a,
+a:visited {
 	color: #00aaee;
 }
 
@@ -55,11 +57,11 @@ em {
 	position: fixed;
 }
 
-#portfolio {
+.js #portfolio {
 	pointer-events: none;
 }
 
-#portfolio a {
+.js #portfolio a {
 	pointer-events: initial;
 }
 
@@ -73,12 +75,11 @@ nav {
 	position: fixed;
 	top: 0;
 	left: 0;
-
 	width: 100%;
+	padding-top: 0.4rem;
+
 	display: flex;
 	justify-content: center;
-
-	padding-top: 0.4rem;
 }
 
 footer {
@@ -88,13 +89,14 @@ footer {
 
 	padding: 1rem 1rem 1.4rem;
 	width: 100%;
-
 	font-size: 1.2rem;
 }
 
 #signature,
 .nav-link, 
-.nav-arrow {
+.nav-arrow,
+.nav-link:visited, 
+.nav-arrow:visited {
 	color: #ffffff;
 	color: rgba(255,255,255,0.5);
 	text-decoration: none;
@@ -108,20 +110,16 @@ footer {
 #invitation {
 	color: rgba(255,255,255,0.5);
 	font-size: 1.5rem;
-	font-weight: bold;
-	letter-spacing: 0.4rem;
+	letter-spacing: 0.1rem;
 	text-transform: uppercase;
 	text-decoration: none;
 	transition: all 200ms ease-out;
 }
-	#invitation:hover {
-		color: #ffffff;
-	}
+	
 
 .nav-arrow {
     user-select: none;
-	
-	font-weight: bold;
+
 	font-size: 2.4rem;
 	padding: 1rem 2rem;
 
@@ -145,6 +143,7 @@ footer {
 }
 	.nav-link.selected {
 		color: #ffffff;
+		font-weight: bold;
 		border-bottom: 0.6rem solid #ffffff;
 	}
 
@@ -195,7 +194,6 @@ footer {
 
 #main-title {
 	width: 100%;
-	font-weight: bold;
 	user-select: none;
 }
 	#name-first {
@@ -215,20 +213,33 @@ footer {
 	position: fixed;
 	width: 100%;
 	text-align: center;
-	margin: 8rem 0 0;
-	font-size: 3rem;
-	/*letter-spacing: 0.1rem;*/
-	text-transform: none;
+	margin-top: 6rem;
+	font-size: 2rem;
+	letter-spacing: 0.1rem;
+	/*text-transform: capitalize;*/
 }
 
-#works .item {
+.js .item.project {
 	padding-top: 15rem;
 	justify-content: flex-start;
 }
-/*
-.js #works .item {
-	opacity: 0;
-}*/
+
+#showcase-main {
+	margin: 0;
+}
+
+.js #showcase-main {
+	font-size: 2.6rem;
+	line-height: 3.2rem;
+	letter-spacing: 0.1rem;
+	/*text-transform: uppercase;*/
+}
+
+.js #showcase-sub {
+	font-size: 1.4rem;
+	letter-spacing: 0.1rem;
+	/*text-transform: uppercase;*/
+}
 
 video {
 	margin: 0 1rem 2.4rem;
@@ -335,26 +346,6 @@ li {
 
 /-----------------------------------------------------------------------------*/
 
-/*
-@media (max-height: 800px) {
-
-	.description{
-		font-size: 1.3rem;
-	}
-
-	#dynamic-title {
-		max-width: 100vw;
-		margin-top: 6rem;
-		font-size: 2rem;
-	}
-
-	.js #works .item {
-		padding: 16rem 3rem 6rem;
-	}
-
-}
-*/
-
 @media (max-width: 320px) {
 
 	.no-js #links {
@@ -421,7 +412,8 @@ li {
 @media ( max-width: 800px ) {
 
 	.nav-arrow {
-		top: 0.2rem;
+		top: 0;
+		padding: 0.5rem 1.5rem;
 	}
 
 	.js .item{
@@ -436,13 +428,14 @@ li {
 		color: #55ccff;
 	}
 
+	#invitation:hover,
 	.nav-link:hover, 
 	.nav-arrow:hover {
 		color: #ffffff;
 	}
 
 	li {
-		margin-top: 0.4rem;
+		margin-top: 0;
 	}
 
 	@media ( min-height: 500px ) {

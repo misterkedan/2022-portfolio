@@ -26,7 +26,7 @@ class Controls {
 		forward.addEventListener( 'click', () => portfolio.forward() );
 
 		nav.intro.addEventListener( 'click', () => portfolio.goto( 'navscan' ) );
-		nav.works.addEventListener( 'click', () => portfolio.goto( 'orion' ) );
+		nav.works.addEventListener( 'click', () => portfolio.goto( 'showcase' ) );
 		nav.about.addEventListener( 'click', () => portfolio.goto( 'about' ) );
 
 	}

@@ -8,8 +8,8 @@ class Title {
 		const options = {
 			autoplay: false,
 			from: '',
-			steps: 20,
-			stagger: 10,
+			steps: 16,
+			stagger: 8,
 			align: Textformer.align.LEFT,
 		};
 
@@ -47,7 +47,7 @@ class Title {
 		}
 
 		this.tweeningIn = anime( {
-			duration: 1200,
+			duration: 1000,
 			delay: 400,
 			easing: 'easeOutCirc',
 			targets: this,

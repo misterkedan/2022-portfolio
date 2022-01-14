@@ -7,6 +7,7 @@ import { Controls } from './Controls';
 import { LinksScreen } from './screens/LinksScreen';
 import { DemoScreen } from './screens/DemoScreen';
 import { HomeScreen } from './screens/HomeScreen';
+import { ShowcaseScreen } from './screens/ShowcaseScreen';
 
 class Portfolio {
 
@@ -25,17 +26,21 @@ class Portfolio {
 			'blockflow',
 			'ablaze'
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
+		const showcase = new ShowcaseScreen( grid );
 		const works = [
 			'orion',
 			'vesuna',
 			'disintegrator',
 			'textformer'
 		].map( id => new WorksScreen( id, grid ) );
-		const about = [
-			new AboutScreen( grid ),
-			new LinksScreen( grid, this.ui )
+		const about = new AboutScreen( grid );
+		const links = new LinksScreen( grid, this.ui );
+
+		this.screens = [
+			home, ...demos,
+			showcase, ...works,
+			about, links
 		];
-		this.screens = [ home, ...demos, ...works, ...about ];
 
 		this.length = this.screens.length;
 		this.index = 0;
