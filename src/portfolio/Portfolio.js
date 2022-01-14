@@ -1,13 +1,13 @@
 import { UI } from './misc/UI';
-import { AboutScreen } from './screens/AboutScreen';
-import { WorksScreen } from './screens/WorksScreen';
 import { Animations } from './Animations';
 import { Background } from './Background';
 import { Controls } from './Controls';
-import { LinksScreen } from './screens/LinksScreen';
+import { AboutScreen } from './screens/AboutScreen';
 import { DemoScreen } from './screens/DemoScreen';
 import { HomeScreen } from './screens/HomeScreen';
+import { LinksScreen } from './screens/LinksScreen';
 import { ShowcaseScreen } from './screens/ShowcaseScreen';
+import { WorksScreen } from './screens/WorksScreen';
 
 class Portfolio {
 
@@ -96,6 +96,9 @@ class Portfolio {
 
 		this.index = index;
 		this.currentScreen = this.screens[ index ];
+
+		this.ui.setNav( this.currentSection );
+
 		window.location.hash = this.currentScreen.id;
 
 	}
@@ -121,6 +124,22 @@ class Portfolio {
 	get isEnding() {
 
 		return ( this.index === this.screens.lastIndex );
+
+	}
+
+	get currentSection() {
+
+		if (
+			this.currentScreen instanceof HomeScreen ||
+			this.currentScreen instanceof DemoScreen
+		) return 'intro';
+
+		if (
+			this.currentScreen instanceof AboutScreen ||
+			this.currentScreen instanceof LinksScreen
+		) return 'about';
+
+		return 'works';
 
 	}
 

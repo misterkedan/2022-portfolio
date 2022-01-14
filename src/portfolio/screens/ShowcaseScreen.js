@@ -20,7 +20,6 @@ class ShowcaseScreen extends Screen {
 
 	setup( backwards ) {
 
-		console.log( '?' );
 		const tweenX = ( backwards ) ? - this.tweenX : this.tweenX;
 
 		const transform = `translateX(${tweenX}px)`;
