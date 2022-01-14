@@ -32,6 +32,7 @@ class Animations {
 		let sketchA = from.sketch;
 		let sketchB = to.sketch;
 		let mix = [ 0, 1 ];
+
 		if ( backwards ) {
 
 			sketchA = to.sketch;
@@ -46,7 +47,7 @@ class Animations {
 
 		anime( {
 			duration: 1000,
-			easing: 'easeInOutCirc',
+			easing: 'easeInOutQuart',
 			targets: mixer,
 			mix,
 		} );

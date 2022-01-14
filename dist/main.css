@@ -343,11 +343,24 @@ li {
 
 /-----------------------------------------------------------------------------*/
 
+@media ( min-height: 800px ) {
+
+	#dynamic-title {
+		margin-top: 10rem;
+	}
+
+	.js .item.project {
+		padding-top: 15.4rem;
+	}
+
+}
+
 @media ( max-width: 800px ) {
 
 	p,
 	.project-links {
 		font-size: 1.3rem;
+		line-height: 1.9rem;
 	}
 
 	.nav-arrow {
@@ -355,8 +368,16 @@ li {
 		padding: 0.5rem 1.5rem;
 	}
 
-	.js .item{
+	.js .item {
 		padding: 6rem 4rem;
+	}
+
+	#dynamic-title {
+		margin-top: 7rem;
+	}
+
+	.js .item.project {
+		padding-top: 12.4rem;
 	}
 
 }
@@ -419,18 +440,6 @@ li {
 
 	footer {
 		padding-bottom: 1rem;
-	}
-
-}
-
-@media ( min-height: 800px ) {
-
-	#dynamic-title {
-		margin-top: 10rem;
-	}
-
-	.js .item.project {
-		padding-top: 15.4rem;
 	}
 
 }

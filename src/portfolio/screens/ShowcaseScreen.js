@@ -57,7 +57,7 @@ class ShowcaseScreen extends Screen {
 			complete: this.completeTweenIn,
 			easing: 'easeOutCirc',
 			duration: 800,
-			delay: 600,
+			delay: 400,
 		} )
 			.add( { targets: title, 		progress: 1 }, 0 )
 			.add( { targets: subtitle, 		progress: 1 }, 0 )

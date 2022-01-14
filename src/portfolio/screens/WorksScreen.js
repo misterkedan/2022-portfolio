@@ -27,7 +27,7 @@ class WorksScreen extends Screen {
 
 		this.links = this.domElement.getElementsByClassName( 'project-links' )[ 0 ];
 
-		this.tweenX = 100;
+		this.tweenX = 200;
 		this.tweenY = 20;
 
 	}

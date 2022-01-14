@@ -52,7 +52,7 @@ class RainControls extends Controls {
 		const targetCount = lerp(
 			settings.minCount,
 			sketch.maxCount,
-			tracker.y
+			tracker.centerY
 		);
 		sketch.mesh.count = lerp( sketch.mesh.count, targetCount, lerpSpeed );
 
