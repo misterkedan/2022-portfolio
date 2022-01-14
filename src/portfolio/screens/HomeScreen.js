@@ -102,7 +102,7 @@ class HomeScreen extends Screen {
 			.add( {
 				targets: this.invitation,
 				opacity: 0,
-				translateX: - 100,
+				translateX: - 200,
 			}, 200 )
 			.add( {
 				targets: this.nav,

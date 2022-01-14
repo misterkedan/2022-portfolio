@@ -16,11 +16,13 @@ class LinksScreen extends Screen {
 		this.links = Array.from( this.domElement.getElementsByTagName( 'a' ) );
 		this.linksTexts = this.links.map( link => link.innerText );
 
+		this.translation = 100;
+
 		this.items = Array.from( this.domElement.getElementsByTagName( 'li' ) );
 		this.items.forEach( item => {
 
 			item.style.opacity = 0;
-			item.style.transform = 'translateX(120px)';
+			item.style.transform = `translateX(${this.translation}px)`;
 
 		} );
 
@@ -131,7 +133,6 @@ class LinksScreen extends Screen {
 				output: link,
 				from: this.linksTexts[ i ],
 				to: '',
-				//mode: Textformer.modes.REVERSE,
 				autoplay: false,
 			} );
 
@@ -150,7 +151,7 @@ class LinksScreen extends Screen {
 			this.tweeningOut.add( {
 				targets: item,
 				opacity: 0,
-				translateX: 120,
+				translateX: this.translation,
 			}, i * 150 );
 
 		} );

@@ -24,7 +24,7 @@ class AboutScreen extends Screen {
 		this.lengths = this.texts.map( text => text.length );
 		this.staggers = this.lengths.reduce( ( result, length ) => {
 
-			result.total += length * 0.5;
+			result.total += length * 0.4;
 			result.array.push( result.total );
 			return result;
 
@@ -34,13 +34,15 @@ class AboutScreen extends Screen {
 		this.tools = document.getElementById( 'tools' );
 		this.affinities = document.getElementById( 'affinities' );
 
-		this.offset = 120;
+		this.translation = 100;
 
 	}
 
 	setup( backwards ) {
 
-		const translation = ( backwards ) ? - this.offset : this.offset;
+		const translation = ( backwards )
+			? - this.translation
+			: this.translation;
 
 		const setStyle = ( element ) => {
 
@@ -67,7 +69,7 @@ class AboutScreen extends Screen {
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			delay: 300,
-			duration: 700,
+			duration: 500,
 			complete: this.completeTweenIn,
 		} )
 			.add( {
@@ -78,7 +80,7 @@ class AboutScreen extends Screen {
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
-			const duration = Math.max( this.lengths[ i ] * 8, 700 );
+			const duration = Math.max( this.lengths[ i ] * 8, 500 );
 			const stagger = this.staggers[ i ];
 
 			const textformer = new Textformer( {
@@ -111,7 +113,7 @@ class AboutScreen extends Screen {
 
 		super.tweenOut();
 
-		const translation = ( backwards ) ? this.offset : - this.offset;
+		const translation = ( backwards ) ? this.translation : - this.translation;
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
@@ -126,9 +128,6 @@ class AboutScreen extends Screen {
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
-			const duration = Math.max( this.lengths[ i ] * 4, 400 );
-			const stagger = this.staggers[ i ];
-
 			const textformer = new Textformer( {
 				output: element,
 				from: this.texts[ i ],
@@ -140,15 +139,13 @@ class AboutScreen extends Screen {
 			this.tweeningOut
 				.add( {
 					targets: textformer,
-					duration,
 					progress: 1,
-				}, stagger )
+				}, 0 )
 				.add( {
 					targets: element,
-					duration,
 					translateX: translation,
 					opacity: 0
-				}, stagger + 100 );
+				}, 100 );
 
 		} );
 

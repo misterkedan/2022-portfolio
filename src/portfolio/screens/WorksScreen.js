@@ -25,7 +25,7 @@ class WorksScreen extends Screen {
 
 		} );
 
-		this.translation = 120;
+		this.translation = 100;
 
 	}
 

@@ -14,7 +14,7 @@ class ShowcaseScreen extends Screen {
 		this.titleText = this.title.innerText;
 		this.subtitleText = this.subtitle.innerText;
 
-		this.translation = 240;
+		this.translation = 200;
 
 	}
 
@@ -103,8 +103,8 @@ class ShowcaseScreen extends Screen {
 
 		this.tweeningOut = anime.timeline( {
 			complete: this.completeTweenOut,
-			duration: ( backwards ) ? 300 : 500,
-			easing: 'easeOutQuad',
+			duration: 600,
+			easing: 'easeInOutQuad',
 		} )
 			.add( { targets: title,		progress: 1 }, 0 )
 			.add( { targets: subtitle,	progress: 1 }, 0 )
