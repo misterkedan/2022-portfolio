@@ -252,6 +252,26 @@ video {
 	margin-right: 0.6rem;
 }
 
+.js #more-title {
+	display: block;
+	font-size: 2rem;
+	letter-spacing: 0.1rem;
+	margin-bottom: 2.4rem;
+}
+
+#more-link {
+	margin-top: 3rem;
+	display: inline-block;
+	background: #00aaee;
+	color: #ffffff;
+	padding: 1rem 2rem;
+	text-decoration: none;
+	border: 0.1rem solid rgba(255,255,255,0.2);
+}
+	#more-link:hover {
+		background: #eaeef0;
+		color: #00aaee;
+	}
 
 /*-----------------------------------------------------------------------------/
 
@@ -349,6 +369,19 @@ li {
 	animation-delay: 500ms;
 	animation-timing-function: ease-in;
 	animation-fill-mode: forwards;
+}
+
+.no-js #showcase-sub {
+	margin-top: 1rem;
+	font-size: 2.2rem;
+}
+
+.no-js #showcase-main {
+	line-height: 3.5rem;
+}
+
+.no-js #info {
+	margin-top: 10rem;
 }
 
 .no-js #about {

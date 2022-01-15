@@ -7,6 +7,7 @@ import { DemoScreen } from './screens/DemoScreen';
 import { HomeScreen } from './screens/HomeScreen';
 import { LinksScreen } from './screens/LinksScreen';
 import { ShowcaseScreen } from './screens/ShowcaseScreen';
+import { MoreScreen } from './screens/MoreScreen';
 import { WorksScreen } from './screens/WorksScreen';
 
 class Portfolio {
@@ -19,6 +20,7 @@ class Portfolio {
 		this.ui = new UI( this );
 
 		const { grid } = this.background;
+
 		const home = new HomeScreen( grid, this );
 		const demos = [
 			'navscan',
@@ -26,6 +28,7 @@ class Portfolio {
 			'blockflow',
 			'ablaze'
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
+
 		const showcase = new ShowcaseScreen( grid );
 		const works = [
 			'orion',
@@ -33,12 +36,14 @@ class Portfolio {
 			'disintegrator',
 			'textformer'
 		].map( id => new WorksScreen( id, grid ) );
+		const more = new MoreScreen( grid );
+
 		const about = new AboutScreen( grid );
 		const links = new LinksScreen( grid, this.ui );
 
 		this.screens = [
 			home, ...demos,
-			showcase, ...works,
+			showcase, ...works, more,
 			about, links
 		];
 
