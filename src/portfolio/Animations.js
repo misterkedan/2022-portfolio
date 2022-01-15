@@ -26,9 +26,16 @@ class Animations {
 
 	tweenBackground( from, to, backwards ) {
 
-		if ( from.sketch === to.sketch ) return;
-
 		const { mixer } = this.portfolio.background;
+
+		if ( from.sketch === to.sketch ) return;
+		if ( mixer.anime ) return mixer.anime.complete = () => {
+
+			mixer.anime = null;
+			this.tweenBackground( from, to, backwards );
+
+		};
+
 		let sketchA = from.sketch;
 		let sketchB = to.sketch;
 		let mix = [ 0, 1 ];
@@ -45,10 +52,11 @@ class Animations {
 		mixer.resize( window.innerWidth, window.innerHeight );
 		mixer.material.uniforms.uBackwards.value = backwards;
 
-		anime( {
-			duration: 1000,
-			easing: 'easeInOutQuart',
+		mixer.anime = anime( {
+			duration: 800,
+			easing: 'easeInOutQuint',
 			targets: mixer,
+			complete: () => mixer.anime = null,
 			mix,
 		} );
 
