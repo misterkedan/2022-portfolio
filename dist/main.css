@@ -114,6 +114,7 @@ footer {
 	font-size: 1.2rem;
 }
 
+#invitation,
 #signature,
 .nav-arrow,
 .nav-link, 
@@ -171,13 +172,10 @@ footer {
 }
 
 #invitation {
-	color: rgba(255,255,255,0.5);
 	font-size: 1.5rem;
-	letter-spacing: 0.1rem;
 	text-transform: uppercase;
-	text-decoration: none;
-	/*font-weight: bold;*/
 	transition: all 200ms ease-out;
+	padding: 2rem;
 }
 
 #main-title {
@@ -284,17 +282,6 @@ video {
 	margin-bottom: 2rem;
 }
 
-/*
-#tools {
-	font-weight: bold;
-	color: #ff2ced;
-}
-
-#affinities {
-	font-weight: bold;
-	color: #00ccff;
-}
-*/
 #affinities,
 #tools {
 	font-weight: bold;
@@ -334,7 +321,7 @@ li {
 	display: none;
 	transition: opacity 500ms ease-in-out;
 }
-	.initing #fader {
+	.init #fader {
 		display: block;
 		opacity: 1;
 	}
