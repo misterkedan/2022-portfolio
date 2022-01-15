@@ -26,15 +26,15 @@ class Portfolio {
 			'navscan',
 			'rain',
 			'blockflow',
-			'ablaze'
+			'ablaze',
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
 
 		const showcase = new ShowcaseScreen( grid );
 		const works = [
 			'orion',
 			'vesuna',
+			'textformer',
 			'disintegrator',
-			'textformer'
 		].map( id => new WorksScreen( id, grid ) );
 		const more = new MoreScreen( grid );
 
