@@ -314,25 +314,13 @@ li {
 
 /-----------------------------------------------------------------------------*/
 
-#fader {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #000000;
-	pointer-events: none;
+.init #portfolio {
 	display: none;
-	transition: opacity 500ms ease-in-out;
 }
-	.init #fader {
-		display: block;
-		opacity: 1;
-	}
-	.js #fader {
-		display: block;
-		opacity: 0;
-	}
+
+.js #portfolio {
+	display: block;
+}
 
 #upgrade-push {
 	display: none;	

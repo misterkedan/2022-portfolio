@@ -19,7 +19,7 @@
 	<script defer src="lib/utils-v2.js"></script>
 	<script defer src="lib/three-r136.js"></script>
 	<script defer src="main.js"></script>
-	<script>if(window.location.search!=="?nojs"){var h=document.documentElement.classList,c="init";h.add(c),setTimeout(function(){h.remove(c)},1e4)}</script>
+	<script>if(window.location.search!=="?no-js"){var h=document.documentElement.classList,c="init";h.add(c),setTimeout(function(){h.remove(c)},5e3)}</script>
 </head>
 
 <body>
@@ -41,8 +41,12 @@
 				<a id="nav-works" class="nav-link" href="#works">Works</a>
 				<a id="nav-about" class="nav-link" href="#info">About</a>
 			</nav>
+			<div id="upgrade-push">
+				<div id="upgrade-prompt">
+					To fully experience this webgl portfolio, please consider upgrading your browser + hardware and/or enabling javascript.
+				</div>
+			</div>
 		</header>
-		
 		<main>
 			<section id="intro">
 				<div id="home" class="item">
@@ -184,12 +188,6 @@
 			<span id="pagination"></span>
 		</footer>
 	</div>
-	<div id="upgrade-push">
-		<div id="upgrade-prompt">
-			To fully experience this webgl portfolio, please consider upgrading your browser + hardware and/or enabling javascript.
-		</div>
-	</div>
-	<div id="fader"></div>
 </body>
 
 </html>

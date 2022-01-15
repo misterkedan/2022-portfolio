@@ -2,31 +2,27 @@ import { Portfolio } from './portfolio/Portfolio';
 
 function init() {
 
-	const NO_JS = '?nojs';
+	const nojs = 'no-js';
+	if ( window.location.search === `?${nojs}` ) {
 
-	if ( window.location.search === NO_JS ) return;
+		document.documentElement.classList.remove( 'init' );
+		return;
 
-	const html = document.documentElement;
+	}
 
 	try {
 
 		const portfolio = new Portfolio();
+		portfolio.load();
 
-		requestAnimationFrame( () => {
-
-			portfolio.load();
-
-			// classList.replace fails on some older browsers
-			html.classList.remove( 'no-js' );
-			html.classList.add( 'js' );
-
-		} );
+		// classList.replace fails on some older browsers
+		document.documentElement.classList.remove( nojs );
+		document.documentElement.classList.add( 'js' );
 
 	} catch ( error ) {
 
 		console.error( error );
-
-		//window.location.search = NO_JS;
+		//window.location.search = nojs;
 
 	}
 
