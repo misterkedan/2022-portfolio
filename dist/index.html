@@ -2,7 +2,7 @@
 <html class="no-js" lang="en" >
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
 
@@ -37,9 +37,9 @@
 			</div>
 			<h2 id="dynamic-title"></h2>
 			<nav>
-				<a id="nav-intro" class="nav-link" href="#intro">Intro</a>
-				<a id="nav-works" class="nav-link" href="#works">Works</a>
-				<a id="nav-about" class="nav-link" href="#info">About</a>
+				<a id="nav-intro" class="hud nav-link" href="#intro">Intro</a>
+				<a id="nav-works" class="hud nav-link" href="#works">Works</a>
+				<a id="nav-about" class="hud nav-link" href="#info">About</a>
 			</nav>
 			<div id="upgrade-push">
 				<div id="upgrade-prompt">
@@ -50,7 +50,7 @@
 		<main>
 			<section id="intro">
 				<div id="home" class="item">
-					<a id="invitation" href="javascript:void(0)">Swipe &#10095;</a>
+					<a id="invitation" class="hud" href="javascript:void(0)">Swipe &#10095;</a>
 				</div>
 				<div class="item placeholder">
 					<h2>Intro</h2>
@@ -80,7 +80,6 @@
 					</div>
 				</div>
 			</section>
-
 			<section id="works">
 				<div id="showcase" class="item">
 					<h4 id="showcase-sub">Personal works</h3>
@@ -148,7 +147,6 @@
 					<a id="more-link" href="http://sketches.pierrekeda.com/">Sketches &#10095;</a>
 				</div>
 			</section>
-
 			<section id="info">
 				<div class="item placeholder">
 					<h2>About</h2>
@@ -157,7 +155,7 @@
 					<img id="selfie" src="selfie.png">
 					<div class="description">
 						<p id="about-1">Hello!</p>
-						<p id="about-2">My name is Pierre "Keda" Audéoud. I'm a 38-years-old french creative coder, living and working freelance in Paris. I am currently looking to join a creative studio full-time.</p>
+						<p id="about-2">My name is Pierre "Keda" Audéoud. I'm a 38-years-old french creative coder, working freelance and living in Paris. I'm currently looking to join a creative studio full-time.</p>
 						<p id="about-3">Most of my code is written in vanilla javascript and three.js, with a strong focus on motion, randomness and interactivity.</p>
 						<p id="about-4"><span id="about-4a">I also really like </span> <span id="tools">GLSL</span> <span id="about-4b">&amp;</span> <span id="affinities">sci-fi aesthetics</span><span id="about-4c">.</span></p>
 					</div>
@@ -177,11 +175,12 @@
 				</div>
 			</section>
 		</main>
-
-		<a id="arrow-back" class="nav-arrow" href="javascript:void(0)">&#10094;</a>
-		<a id="arrow-forward" class="nav-arrow" href="javascript:void(0)">&#10095;</a>
-			
-		<footer>
+		<div class="arrow-controls hud">
+			<a id="arrow-back" class="hud nav-arrow" href="javascript:void(0)">&#10094;</a>
+			<a id="arrow-forward" class="hud nav-arrow" href="javascript:void(0)">&#10095;</a>
+		</div>
+		<footer class="hud">
+			<span id="wip">WIP</span>
 			<span id="signature">Pierre Keda 2022</span>
 			<span id="pagination"></span>
 		</footer>
