@@ -12,7 +12,7 @@ body {
 	overflow: hidden auto;
 }
 
-h1, h2, h3, h4, nav {
+h1, h2, h3, h4, h5, nav {
 	text-transform: uppercase;
 }
 
@@ -31,6 +31,10 @@ h3 {
 	.js h3 {
 		display: none;
 	}
+
+h5 {
+	font-weight: bold;
+}
 
 p {
 	margin-bottom: 1.6rem;
@@ -282,8 +286,8 @@ video {
 	margin-bottom: 2rem;
 }
 
-#affinities,
-#tools {
+.js #affinities,
+.js #tools {
 	font-weight: bold;
 	color: #00ff88;
 }
@@ -330,6 +334,28 @@ li {
 		opacity: 0;
 	}
 
+#upgrade-push {
+	display: none;	
+}
+	.no-js #upgrade-push {
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		top: 8rem;
+		width: 100%;
+	}
+
+#upgrade-prompt {
+	width: 28rem;
+	max-width: 90%;
+	background: #8d0000;
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	padding: 2rem 1rem;
+	margin: 1rem;
+	border: 0.1rem solid #ff0000;
+}
+
 .no-js .section-title {
 	display: flex;
 	justify-content: center;
@@ -337,6 +363,20 @@ li {
 
 .no-js .item {
 	padding: 4rem;
+}
+
+.no-js .sketch-placeholder {
+	width: 64rem;
+	height: 36rem;
+	max-width: 90%;
+	padding: 1rem;
+	background: #505050;
+	border: 0.5rem solid #ffffff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #8d8d8d;
 }
 
 .no-js #home {
