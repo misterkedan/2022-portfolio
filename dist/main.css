@@ -176,6 +176,7 @@ footer {
 	letter-spacing: 0.1rem;
 	text-transform: uppercase;
 	text-decoration: none;
+	/*font-weight: bold;*/
 	transition: all 200ms ease-out;
 }
 

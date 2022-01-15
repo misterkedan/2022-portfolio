@@ -27,18 +27,18 @@ class Background {
 			renderToScreen: false,
 		};
 
-		this.grid = new Backgrid( { ...options } );
-		this.navscan = new Navscan( { ...options } );
-		this.rain = new Rain( { ...options } );
-		this.blockflow = new Blockflow( { ...options } );
-		this.ablaze = new Ablaze( { ...options } );
+		this.grid = new Backgrid( options );
+		this.navscan = new Navscan( options );
+		this.rain = new Rain( options );
+		this.blockflow = new Blockflow( options );
+		this.ablaze = new Ablaze( options );
 
 		const sketches = [
 			this.grid,
 			this.navscan,
 			this.rain,
 			this.blockflow,
-			this.ablaze
+			this.ablaze,
 		];
 		this.mixer = new SketchMixer( this.sketchpad.renderer, sketches );
 

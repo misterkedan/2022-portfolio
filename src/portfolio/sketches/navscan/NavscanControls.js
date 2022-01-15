@@ -1,3 +1,4 @@
+import { CursorTracker } from 'keda/CursorTracker';
 import { Controls } from 'keda/three/Controls';
 
 class NavscanControls extends Controls {
@@ -8,6 +9,13 @@ class NavscanControls extends Controls {
 
 		this.amplitude = 0.5;
 		this.intensity = 0.5;
+
+	}
+
+	initTracker() {
+
+		this.tracker = new CursorTracker( { margin: 0.2 } );
+		this.trackerEnabled = true;
 
 	}
 

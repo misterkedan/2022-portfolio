@@ -43,7 +43,7 @@ const NavscanSettings = {
 	noiseScaleY: { min: 0, max: 0.1 },
 	amp: { min: 1, max: 2.5 },
 	opacity: { min: 0.4, max: 0.8 },
-	speed: { min: 0.002, max: 0.012, value: 0.01 },
+	speed: { min: 0.001, max: 0.018, value: 0.01 },
 
 };
 

@@ -48,7 +48,7 @@ class Sketch {
 			: ( typeof background === 'string' || typeof background === 'number' )
 				? new Color( background )
 				: false;
-		if ( color ) return this.stage.background = color;
+		if ( color ) return this.stage.scene.background = color;
 
 		// Linear gradient
 
