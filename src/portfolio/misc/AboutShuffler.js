@@ -24,6 +24,8 @@ class AboutShuffler {
 		this.pools[ TOOLS ] = removeInitialWord( TOOLS );
 		this.pools[ AFFINITIES ] = removeInitialWord( AFFINITIES );
 
+		this.animations = {};
+
 		this.trigger = this.trigger.bind( this );
 
 	}
@@ -53,6 +55,8 @@ class AboutShuffler {
 
 	animate( key ) {
 
+		if ( this.animations[ key ] ) this.animations[ key ].pause();
+
 		if ( ! this.pools[ key ].length ) this.reset( key );
 
 		const textformer = new Textformer( {
@@ -64,7 +68,7 @@ class AboutShuffler {
 			to: this.pools[ key ].pop(),
 		} );
 
-		anime( {
+		this.animations[ key ] = anime( {
 			duration: 2000,
 			easing: 'easeOutSine',
 			targets: textformer,
