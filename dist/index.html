@@ -19,6 +19,12 @@
 	<script defer src="lib/utils-v2.js"></script>
 	<script defer src="lib/three-r136.js"></script>
 	<script defer src="main.js"></script>
+	<script>
+		document.documentElement.classList.add( 'initing' );
+		window.initTimeout = setTimeout( function() {
+			document.documentElement.classList.remove( 'initing' );
+		}, 10000 );
+	</script>
 </head>
 
 <body>

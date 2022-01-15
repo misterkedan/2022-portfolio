@@ -10,8 +10,6 @@ function init() {
 
 	try {
 
-		html.classList.add( 'initing' );
-
 		const portfolio = new Portfolio();
 
 		requestAnimationFrame( () => {
