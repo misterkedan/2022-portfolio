@@ -4,21 +4,45 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
 
     <title>Pierre Keda - Creative Coder</title>
 	<meta name="author" content="Pierre Keda">
 	<meta name="description" content="Personal works portfolio of french creative coder Pierre Keda.">
 
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="en">
+	<meta property="og:url" content="https://www.pierrekeda.com">
+	<meta property="og:title" content="Pierre Keda">
+	<meta property="og:description" content="Personal works portfolio of french creative coder Pierre Keda.">
+	<meta property="og:image" content="https://example.com/image.jpg">
+	<meta property="og:image:alt" content="Navscan, a webgl animation by Pierre Keda.">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@pierrekeda83">
+	<meta name="twitter:url" content="https://www.pierrekeda.com">
+	<meta name="twitter:title" content="Pierre Keda">
+	<meta name="twitter:description" content="Personal works portfolio of french creative coder Pierre Keda.">
+	<meta name="twitter:image" content="https://example.com/image.jpg">
+	<meta name="twitter:image:alt" content="Navscan, a webgl animation by Pierre Keda.">
+
+	<meta name="theme-color" content="#121214">
+
+	<!--<base href="/">-->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+
+	<link rel="stylesheet" href="assets/css/reset.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="lib/reset.css">
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="assets/css/index.css">
 
-	<script defer src="lib/utils-v2.js"></script>
-	<script defer src="lib/three-r136.js"></script>
-	<script defer src="main.js"></script>
+	<script defer src="assets/js/utils-v2.js"></script>
+	<script defer src="assets/js/three-r136.js"></script>
+	<script defer src="assets/js/index.js"></script>
 	<script>if(window.location.search!=="?no-js"){var h=document.documentElement.classList,c="init";h.add(c),setTimeout(function(){h.remove(c)},5e3)}</script>
 </head>
 
@@ -87,7 +111,7 @@
 				</div>
 				<div id="orion" class="item project">
 					<h3>Orion</h3>
-					<video autoplay loop muted src="previews/orion.mp4"></video>
+					<video autoplay loop muted src="assets/videos/orion.mp4"></video>
 					<div class="description">
 						<p>This three.js experiment is a collaboration with my good friend Thibaut, who initally wrote this very cool shader. Once he handed it off to me, I polished it and built a generative application around it.</p>
 						<p>It uses my text-seeded PRNG utility (see next project), allowing to save and share random outcomes simply by bookmarking the URL.</p>
@@ -102,7 +126,7 @@
 				</div>
 				<div id="vesuna" class="item project">
 					<h3>Vesuna</h3>
-					<video autoplay loop muted src="previews/vesuna.mp4"></video>
+					<video autoplay loop muted src="assets/videos/vesuna.mp4"></video>
 					<div class="description">
 						<p>Generative applications are a lot of fun. However, when there is a wide range of possible outcomes, it can become very tedious to save, restore and share them.</p>
 						<p>To solve this issue, I wrote this tiny text-based random seed utility, built around Johannes Baagøe's Alea PRNG. It generates pseudorandom number sequences based on words, making it very easy to save/load precise results via hashtags.</p>
@@ -115,7 +139,7 @@
 				</div>
 				<div id="textformer" class="item project">
 					<h3>Textformer</h3>
-					<video autoplay loop muted src="previews/textformer.mp4"></video>
+					<video autoplay loop muted src="assets/videos/textformer.mp4"></video>
 					<div class="description">
 						<p>I love randomness, and I love experimenting with type. This logically led to this small javascript utility, that aims to build easy text animations based on random character changes.</p>
 						<p>I wanted it to be usable on its own, so I ended up writing and including a barebones animation system. It was probably overkill, as it works great with tweening engines such as gsap or anime.js.</p>
@@ -127,7 +151,7 @@
 				</div>
 				<div id="disintegrator" class="item project">
 					<h3>Disintegrator</h3>
-					<video autoplay loop muted src="previews/disintegrator.mp4"></video>
+					<video autoplay loop muted src="assets/videos/disintegrator.mp4"></video>
 					<div class="description">
 						<p>Brainstorming for an upcoming project, I envisioned elements exploding. So I made this lab to try my hand at that.</p>
 						<p>After several attempts, I ended up using tesselation, custom buffer attributes, and a mix of basic random + simplex noise. It also layers duplicates of the geometries, in order to counteract their inherent hollowness.</p>
@@ -140,7 +164,7 @@
 				</div>
 				<div id="more" class="item">
 					<h3 id="more-title">And more</h3>
-					<video autoplay loop muted src="previews/sketches.mp4"></video>
+					<video autoplay loop muted src="assets/videos/sketches.mp4"></video>
 					<div class="description">
 						<p>In order to constantly improve and learn new things, I do many little side projects and experiments. I call them "sketches". They're usually a mix of visual and technical, allowing me explore both aspects at the same time.</p>
 					</div>
@@ -152,7 +176,7 @@
 					<h2>About</h2>
 				</div>
 				<div id="about" class="item">
-					<img id="selfie" src="selfie.png">
+					<img id="selfie" src="assets/images/selfie.png">
 					<div class="description">
 						<p id="about-1">Hello!</p>
 						<p id="about-2">My name is Pierre "Keda" Audéoud. I'm a 38-years-old french creative coder, working freelance and living in Paris. I'm currently looking to join a creative studio full-time.</p>

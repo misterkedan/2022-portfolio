@@ -3,10 +3,10 @@ const path = require( 'path' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
 
 let config = {
-	entry: './src/main.js',
+	entry: './src/index.js',
 	output: {
-		filename: 'main.js',
-		path: path.resolve( __dirname, 'dist' ),
+		filename: 'index.js',
+		path: path.resolve( __dirname, 'dist/assets/js' ),
 	},
 	module: {
 		rules: [
@@ -28,7 +28,7 @@ let config = {
 	},
 	resolve: {
 		alias: {
-			keda: path.resolve( __dirname, './src/keda/' ),
+			keda: path.resolve( __dirname, './src/keda' ),
 		},
 	},
 	optimization: {
