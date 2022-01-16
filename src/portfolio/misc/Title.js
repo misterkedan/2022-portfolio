@@ -47,7 +47,7 @@ class Title {
 		}
 
 		this.tweeningIn = anime( {
-			duration: 800,
+			duration: 700,
 			delay: 400,
 			easing: 'easeOutCirc',
 			targets: this,

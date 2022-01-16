@@ -14,12 +14,12 @@ class LinksScreen extends Screen {
 		this.links = Array.from( this.domElement.getElementsByTagName( 'a' ) );
 		this.linksTexts = this.links.map( link => link.innerText );
 
-		this.tweenX = 100;
+		this.tweenX = 10;
 
 		[ ...this.spans, ...this.links ].forEach( item => {
 
 			item.style.opacity = 0;
-			item.style.transform = `translateX(${this.tweenX}px)`;
+			item.style.transform = `translateX(${this.tweenX}rem)`;
 
 		} );
 
@@ -31,8 +31,8 @@ class LinksScreen extends Screen {
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
-			delay: 400,
-			duration: 700,
+			delay: 300,
+			duration: 500,
 			complete: this.completeTweenIn,
 		} );
 
@@ -46,7 +46,7 @@ class LinksScreen extends Screen {
 				autoplay: false,
 			} );
 
-			const stagger = i * 150;
+			const stagger = i * 100;
 
 			this.tweeningIn.add( {
 				targets: textformer,
@@ -72,7 +72,7 @@ class LinksScreen extends Screen {
 				autoplay: false,
 			} );
 
-			const stagger = i * 150;
+			const stagger = i * 100;
 
 			this.tweeningIn.add( {
 				targets: textformer,
@@ -94,7 +94,8 @@ class LinksScreen extends Screen {
 		super.tweenOut();
 
 		this.tweeningOut = anime.timeline( {
-			easing: 'easeInOutQuad',
+			easing: 'easeInQuad',
+			duration: 300,
 			complete: this.completeTweenOut,
 		} );
 
@@ -103,25 +104,24 @@ class LinksScreen extends Screen {
 			const textformer = new Textformer( {
 				output: span,
 				from: this.spansTexts[ i ],
-				to: '',
+				to: ' ',
 				align: Textformer.align.LEFT,
+				steps: 15,
 				autoplay: false,
 			} );
 
-			const duration = i * 250;
+			const stagger = i > 0 ? 100 + 50 * i : 0;
 
 			this.tweeningOut.add( {
-				duration,
 				targets: textformer,
 				progress: 1,
 			}, 0 );
 
 			this.tweeningOut.add( {
-				duration,
 				targets: span,
 				opacity: 0,
 				translateX: this.tweenX,
-			}, 0 );
+			}, stagger );
 
 		} );
 
@@ -129,25 +129,24 @@ class LinksScreen extends Screen {
 
 			const textformer = new Textformer( {
 				output: link,
+				align: Textformer.align.LEFT,
 				from: this.linksTexts[ i ],
-				to: '',
+				to: ' ',
 				autoplay: false,
 			} );
 
-			const duration = i * 250;
+			const stagger = 100 + i * 50;
 
 			this.tweeningOut.add( {
-				duration,
 				targets: textformer,
 				progress: 1,
-			}, 0 );
+			}, stagger * 0.4 );
 
 			this.tweeningOut.add( {
-				duration,
 				targets: link,
 				opacity: 0,
 				translateX: this.tweenX,
-			}, 0 );
+			}, stagger );
 
 		} );
 

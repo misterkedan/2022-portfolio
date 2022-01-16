@@ -71,8 +71,8 @@ class WorksScreen extends Screen {
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
-			delay: 400,
-			duration: 700,
+			delay: 300,
+			duration: 500,
 			complete: this.completeTweenIn,
 		} )
 			.add( {
@@ -109,7 +109,6 @@ class WorksScreen extends Screen {
 				},  stagger )
 				.add( {
 					targets: textformer,
-					duration: text.length * 5,
 					progress: 1,
 				}, stagger );
 
@@ -125,7 +124,7 @@ class WorksScreen extends Screen {
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
-			duration: 400,
+			duration: 300,
 			complete: this.completeTweenOut,
 		} )
 			.add( {

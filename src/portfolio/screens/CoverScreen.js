@@ -43,18 +43,18 @@ class CoverScreen extends Screen {
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
-			duration: 700,
+			duration: 500,
 			complete: this.completeTweenIn,
 		} )
 			.add( {
 				targets: this.invitation,
 				opacity: 1,
 				translateX: 0,
-			}, 500 )
+			}, 300 )
 			.add( {
 				targets: invitation,
 				progress: 1,
-			}, 700 )
+			}, 300 )
 			.add( {
 				targets: this.nav.back,
 				opacity: 0,

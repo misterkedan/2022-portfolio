@@ -58,8 +58,8 @@ class OtherWorkTitleScreen extends Screen {
 		this.tweeningIn = anime.timeline( {
 			complete: this.completeTweenIn,
 			easing: 'easeOutCirc',
-			duration: 800,
-			delay: 400,
+			duration: 500,
+			delay: 300,
 		} )
 			.add( { targets: title, 		progress: 1 }, 0 )
 			.add( { targets: subtitle, 		progress: 1 }, 0 )
@@ -100,7 +100,7 @@ class OtherWorkTitleScreen extends Screen {
 
 		this.tweeningOut = anime.timeline( {
 			complete: this.completeTweenOut,
-			duration: 600,
+			duration: 300,
 			easing: 'easeInOutQuad',
 		} )
 			.add( { targets: title,		progress: 1 }, 0 )

@@ -22,14 +22,14 @@ class AboutScreen extends Screen {
 			`${ABOUT}-4c`,
 		].map( id => document.getElementById( id ) );
 		this.texts = this.elements.map( element => element.innerText );
-		this.lengths = this.texts.map( text => text.length );
-		this.staggers = this.lengths.reduce( ( result, length ) => {
+		//this.lengths = this.texts.map( text => text.length );
+		//this.staggers = this.lengths.reduce( ( result, length ) => {
 
-			result.total += length * 0.4;
-			result.array.push( result.total );
-			return result;
+		//	result.total += length * 0.4;
+		//	result.array.push( result.total );
+		//	return result;
 
-		}, { array: [], total: 0 } ).array;
+		//}, { array: [], total: 0 } ).array;
 
 		this.selfie = document.getElementById( 'selfie' );
 
@@ -66,6 +66,8 @@ class AboutScreen extends Screen {
 
 		setStyle( this.selfie );
 
+		console.log( tweenX );
+
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
 			element.innerText = this.texts[ i ];
@@ -81,22 +83,22 @@ class AboutScreen extends Screen {
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
-			delay: 300,
-			duration: 500,
+			delay: 250,
+			duration: 600,
 			complete: this.completeTweenIn,
 		} )
 			.add( {
 				targets: this.selfie,
 				opacity: 1,
 				translateX: 0,
-			}, 300 );
+			}, 100 );
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
-			const duration = Math.max( this.lengths[ i ] * 8, 500 );
-			const stagger = ( i > 0 )
-				? this.staggers[ i ]
-				: 400;
+			//const duration = Math.min(
+			//	Math.max( this.lengths[ i ] * 8, 300 ), 500
+			//);
+			//const stagger = this.staggers[ i ];
 
 			const textformer = new Textformer( {
 				output: element,
@@ -107,15 +109,17 @@ class AboutScreen extends Screen {
 				align: Textformer.align.LEFT,
 			} );
 
+			const stagger = Math.sqrt( i ) * 100;
+
 			this.tweeningIn
 				.add( {
 					targets: textformer,
-					duration,
+					//duration,
 					progress: 1,
 				}, stagger )
 				.add( {
 					targets: element,
-					duration,
+					//duration,
 					translateX: 0,
 					opacity: 1
 				}, stagger + 100 );

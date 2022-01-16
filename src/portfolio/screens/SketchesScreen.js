@@ -39,8 +39,8 @@ class SketchesScreen extends Screen {
 
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
-			delay: 500,
-			duration: 700,
+			delay: 300,
+			duration: 600,
 			complete: this.completeTweenIn,
 		} )
 			.add( {

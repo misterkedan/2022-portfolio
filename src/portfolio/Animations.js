@@ -53,8 +53,8 @@ class Animations {
 		mixer.material.uniforms.uBackwards.value = backwards;
 
 		mixer.anime = anime( {
-			duration: 600 + 200 * window.innerWidth / window.innerHeight,
-			easing: 'easeInOutQuint',
+			duration: 550 + 200 * window.innerWidth / window.innerHeight,
+			easing: 'cubicBezier(0.465, 0.460, 0.165, 1.000)',
 			targets: mixer,
 			complete: () => mixer.anime = null,
 			mix,
