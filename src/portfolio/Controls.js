@@ -4,7 +4,7 @@ class Controls {
 
 		this.init( portfolio );
 		this.initButtons( portfolio );
-		this.initMouse( portfolio );
+		this.initMouseSwipe( portfolio );
 		this.initTouch( portfolio );
 		this.initKeyboad( portfolio );
 
@@ -18,23 +18,26 @@ class Controls {
 
 	initButtons( portfolio ) {
 
-		const { back, forward, nav } = portfolio.ui;
+		const { nav } = portfolio;
+		nav.back.addEventListener( 'click', () => portfolio.back() );
+		nav.forward.addEventListener( 'click', () => portfolio.forward() );
+		nav.menuControl.addEventListener( 'click', () => nav.toggle() );
+		nav.menu.addEventListener( 'click', ( event ) => {
+
+			portfolio.goto( event.target.getAttribute( 'data-target' ) );
+			nav.close();
+
+		} );
 
 		portfolio.invitation.addEventListener( 'click', ()=> portfolio.goto( 1 ) );
 
-		back.addEventListener( 'click', () => portfolio.back() );
-		forward.addEventListener( 'click', () => portfolio.forward() );
-
-		nav.intro.addEventListener( 'click', () => portfolio.goto( 'navscan' ) );
-		nav.works.addEventListener( 'click', () => portfolio.goto( 'showcase' ) );
-		nav.about.addEventListener( 'click', () => portfolio.goto( 'about' ) );
-
 	}
 
-	initMouse( portfolio ) {
+	initMouseSwipe( portfolio ) {
 
 		this.onMouseDown = function ( event ) {
 
+			portfolio.nav.close();
 			this.swiping = true;
 			this.start = event.clientX;
 
@@ -42,6 +45,7 @@ class Controls {
 
 		this.onMouseUp = function ( event ) {
 
+			//if ( ! this.swiping || portfolio.nav.isOpen ) return;
 			if ( ! this.swiping ) return;
 			this.swiping = false;
 
@@ -54,6 +58,7 @@ class Controls {
 		}.bind( this );
 
 		//window.addEventListener( 'mousedown', event => console.log( event.target ) );
+		//window.addEventListener( 'wheel', event => console.log( event.target ) );
 
 		portfolio.canvas.addEventListener( 'mousedown', this.onMouseDown );
 		portfolio.canvas.addEventListener( 'mouseup', this.onMouseUp );

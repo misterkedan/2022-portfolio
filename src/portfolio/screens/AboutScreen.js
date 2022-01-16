@@ -9,7 +9,7 @@ class AboutScreen extends Screen {
 
 		const ABOUT = 'about';
 
-		super( ABOUT, sketch );
+		super( `${ABOUT}-me`, sketch );
 
 		this.elements = [
 			`${ABOUT}-1`,

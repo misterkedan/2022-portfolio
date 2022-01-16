@@ -5,34 +5,16 @@ class DynamicTitle {
 
 	constructor() {
 
-		this.domElement = document.getElementById( 'dynamic-title' );
-
-		this.hide();
+		this.domElement = document.getElementById( 'menu-control' );
 
 	}
-
-	show() {
-
-		this.domElement.style.display = 'block';
-
-	}
-
-	hide() {
-
-		this.domElement.style.display = 'none';
-
-	}
-
 
 	tween( text, backwards ) {
 
 		if ( this.tweening ) this.tweening.pause();
 
-		this.show();
-
 		const complete = function () {
 
-			if ( ! this.domElement.innerText.length ) this.hide();
 			this.tweening = null;
 
 		}.bind( this );

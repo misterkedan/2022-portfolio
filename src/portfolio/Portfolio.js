@@ -1,27 +1,26 @@
-import { UI } from './misc/UI';
 import { Animations } from './Animations';
 import { Background } from './Background';
 import { Controls } from './Controls';
 import { AboutScreen } from './screens/AboutScreen';
 import { DemoScreen } from './screens/DemoScreen';
-import { HomeScreen } from './screens/HomeScreen';
+import { CoverScreen } from './screens/CoverScreen';
 import { LinksScreen } from './screens/LinksScreen';
-import { ShowcaseScreen } from './screens/ShowcaseScreen';
-import { MoreScreen } from './screens/MoreScreen';
+import { OtherWorkTitleScreen } from './screens/OtherWorkTitleScreen';
+import { SketchesScreen } from './screens/SketchesScreen';
 import { WorksScreen } from './screens/WorksScreen';
+import { Nav } from './Nav';
 
 class Portfolio {
 
 	constructor() {
 
+		this.nav = new Nav( this );
+
 		this.background = new Background();
 		this.canvas = this.background.sketchpad.canvas;
-
-		this.ui = new UI( this );
-
 		const { grid } = this.background;
 
-		const home = new HomeScreen( grid, this );
+		const home = new CoverScreen( grid, this.nav );
 		const demos = [
 			'navscan',
 			'rain',
@@ -29,21 +28,21 @@ class Portfolio {
 			'ablaze',
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
 
-		const showcase = new ShowcaseScreen( grid );
+		const otherWorks = new OtherWorkTitleScreen( grid );
 		const works = [
 			'orion',
 			'vesuna',
 			'textformer',
 			'disintegrator',
 		].map( id => new WorksScreen( id, grid ) );
-		const more = new MoreScreen( grid );
+		const sketches = new SketchesScreen( grid );
 
 		const about = new AboutScreen( grid );
-		const links = new LinksScreen( grid, this.ui );
+		const links = new LinksScreen( grid );
 
 		this.screens = [
 			home, ...demos,
-			showcase, ...works, more,
+			otherWorks, ...works, sketches,
 			about, links
 		];
 
@@ -51,8 +50,7 @@ class Portfolio {
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
-		this.ui.paginationMax = this.length;
-
+		this.pagination = document.getElementById( 'pagination' );
 		this.invitation = home.invitation;
 		this.animations = new Animations( this );
 		this.controls = new Controls( this );
@@ -104,10 +102,13 @@ class Portfolio {
 		this.index = index;
 		this.currentScreen = this.screens[ index ];
 
-		this.ui.setNav( this.currentSection );
-		this.ui.setPagination( index + 1 );
+		this.pagination.innerText = `${index}/${this.length - 1}`;
 
-		window.location.hash = this.currentScreen.id;
+		const hash = this.currentScreen.id;
+		this.nav.update( hash );
+		this.nav.setForward( this.isEnding );
+
+		window.location.hash = hash;
 
 	}
 
@@ -132,22 +133,6 @@ class Portfolio {
 	get isEnding() {
 
 		return ( this.index === this.screens.lastIndex );
-
-	}
-
-	get currentSection() {
-
-		if (
-			this.currentScreen instanceof HomeScreen ||
-			this.currentScreen instanceof DemoScreen
-		) return 'intro';
-
-		if (
-			this.currentScreen instanceof AboutScreen ||
-			this.currentScreen instanceof LinksScreen
-		) return 'about';
-
-		return 'works';
 
 	}
 

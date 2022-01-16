@@ -2,21 +2,19 @@ import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { Screen } from './Screen';
 
-class MoreScreen extends Screen {
+class SketchesScreen extends Screen {
 
 	constructor( sketch ) {
 
-		const MORE = 'more';
+		const SKETCHES = 'sketches';
 
-		super( MORE, sketch );
+		super( SKETCHES, sketch );
 
-		this.title = document.getElementById( `${MORE}-title` );
 		this.video = this.domElement.getElementsByTagName( 'video' )[ 0 ];
 		this.paragraph = this.domElement.getElementsByTagName( 'p' )[ 0 ];
-		this.link = document.getElementById( `${MORE}-link` );
+		this.link = document.getElementById( `${SKETCHES}-link` );
 
 		this.text = this.paragraph.innerText;
-		this.titleText = this.title.innerText;
 		this.linkText = this.link.innerText;
 
 		this.tweenY = 25;
@@ -25,10 +23,9 @@ class MoreScreen extends Screen {
 
 	setup() {
 
-		[ this.title, this.video, this.paragraph, this.link ].forEach(
+		[ this.video, this.paragraph, this.link ].forEach(
 			element => element.style.opacity = 0
 		);
-		this.title.style.transform = `translateY(${this.tweenY}px)`;
 		this.video.style.transform = `translateY(${this.tweenY}px)`;
 		this.paragraph.style.transform = `translateY(${- this.tweenY}px)`;
 		this.link.style.transform = `translateY(${- this.tweenY}px)`;
@@ -47,11 +44,6 @@ class MoreScreen extends Screen {
 			complete: this.completeTweenIn,
 		} )
 			.add( {
-				targets: this.title,
-				opacity: 1,
-				translateY: 0,
-			},  150 )
-			.add( {
 				targets: this.video,
 				opacity: 1,
 				translateY: 0,
@@ -66,17 +58,6 @@ class MoreScreen extends Screen {
 				opacity: 1,
 				translateY: 0,
 			},  150 )
-			.add( {
-				targets: new Textformer( {
-					autoplay: false,
-					output: this.title,
-					from: '',
-					to: this.titleText,
-					mode: Textformer.modes.EXPAND,
-					align: Textformer.align.LEFT,
-				} ),
-				progress: 1,
-			},  300 )
 			.add( {
 				targets: new Textformer( {
 					autoplay: false,
@@ -113,11 +94,6 @@ class MoreScreen extends Screen {
 			complete: this.completeTweenOut,
 		} )
 			.add( {
-				targets: this.title,
-				opacity: 0,
-				translateY: this.tweenY,
-			},  0 )
-			.add( {
 				targets: this.video,
 				opacity: 0,
 				translateY: this.tweenY,
@@ -132,17 +108,6 @@ class MoreScreen extends Screen {
 				opacity: 0,
 				translateY: - this.tweenY,
 			}, 0 )
-			.add( {
-				targets: new Textformer( {
-					autoplay: false,
-					output: this.title,
-					from: this.titleText,
-					to: '',
-					mode: Textformer.modes.COLLAPSE,
-					align: Textformer.align.LEFT,
-				} ),
-				progress: 1,
-			},  0 )
 			.add( {
 				targets: new Textformer( {
 					autoplay: false,
@@ -165,11 +130,10 @@ class MoreScreen extends Screen {
 				} ),
 				progress: 1,
 			}, 0 )
-
 		;
 
 	}
 
 }
 
-export { MoreScreen };
+export { SketchesScreen };

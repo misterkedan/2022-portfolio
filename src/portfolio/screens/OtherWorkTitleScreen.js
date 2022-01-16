@@ -2,14 +2,16 @@ import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { Screen } from './Screen';
 
-class ShowcaseScreen extends Screen {
+class OtherWorkTitleScreen extends Screen {
 
 	constructor( sketch ) {
 
-		super( 'showcase', sketch );
+		const ID = 'other-works';
 
-		this.title = document.getElementById( 'showcase-main' );
-		this.subtitle = document.getElementById( 'showcase-sub' );
+		super( ID, sketch );
+
+		this.title = document.getElementById( `${ID}-main` );
+		this.subtitle = document.getElementById( `${ID}-sub` );
 
 		this.titleText = this.title.innerText;
 		this.subtitleText = this.subtitle.innerText;
@@ -118,4 +120,4 @@ class ShowcaseScreen extends Screen {
 
 }
 
-export { ShowcaseScreen };
+export { OtherWorkTitleScreen };

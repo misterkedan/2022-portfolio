@@ -1,32 +1,32 @@
 import anime from 'animejs';
 import { Textformer } from 'textformer';
-import { Screen } from '../screens/Screen';
+import { Screen } from './Screen';
 
-class HomeScreen extends Screen {
+class CoverScreen extends Screen {
 
-	constructor( sketch, portfolio ) {
+	constructor( sketch, nav ) {
 
-		super( 'home', sketch );
+		super( 'cover', sketch );
 
-		this.portfolio = portfolio;
-		this.ui = portfolio.ui;
+		this.nav = nav;
 
 		this.invitation = document.getElementById( 'invitation' );
 		this.invitationText = this.invitation.innerText;
 
-		this.nav = document.getElementsByTagName( 'nav' )[ 0 ];
 		this.footer = document.getElementsByTagName( 'footer' )[ 0 ];
 
-		const translate = 20;
-		this.nav.style.transform = `translateY(${translate}px)`;
-		this.ui.back.style.transform = `translateX(${translate}px)`;
-		this.ui.forward.style.transform = `translateX(-${translate}px)`;
-		this.footer.style.bottom = `${translate}px`;
-		this.ui.pagination.style.bottom = `${translate}px`;
+		const translate = 4;
 		this.translate = translate;
+		this.nav.back.style.transform = `translateX(-${translate}rem)`;
+		this.nav.forward.style.transform = `translateX(${translate}rem)`;
+		this.nav.domElement.style.transform = `translateY(-${translate}rem)`;
+		this.footer.style.bottom = `-${translate}rem`;
+
+		this.nav.domElement.style.opacity = 0;
+		this.footer.style.opacity = 0;
 
 		const initialHash = window.location.hash;
-		if ( ! initialHash.length || initialHash === '#home' ) this.show();
+		if ( ! initialHash.length || initialHash === '#cover' ) this.show();
 
 	}
 
@@ -41,33 +41,11 @@ class HomeScreen extends Screen {
 			autoplay: false,
 		} );
 
-		//this.ui.setNav( false );
-
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			duration: 700,
 			complete: this.completeTweenIn,
 		} )
-			.add( {
-				targets: this.ui.back,
-				opacity: 0,
-				translateX: this.translate,
-			}, 100 )
-			.add( {
-				targets: this.ui.forward,
-				opacity: 0,
-				translateX: - this.translate,
-			}, 100 )
-			.add( {
-				targets: this.nav,
-				translateY: this.translate,
-				opacity: 0,
-			}, 300 )
-			.add( {
-				targets: [ this.footer, this.ui.pagination ],
-				opacity: 0,
-				bottom: this.translate,
-			}, 300 )
 			.add( {
 				targets: this.invitation,
 				opacity: 1,
@@ -76,7 +54,28 @@ class HomeScreen extends Screen {
 			.add( {
 				targets: invitation,
 				progress: 1,
-			}, 700 );
+			}, 700 )
+			.add( {
+				targets: this.nav.back,
+				opacity: 0,
+				translateX: this.translate,
+			}, 0 )
+			.add( {
+				targets: this.nav.forward,
+				opacity: 0,
+				translateX: - this.translate,
+			}, 0 )
+			.add( {
+				targets: this.nav.domElement,
+				translateY: - this.translate,
+				opacity: 0,
+			}, 0 )
+			.add( {
+				targets: this.footer,
+				opacity: 0,
+				bottom: - this.translate,
+			}, 0 )
+		;
 
 	}
 
@@ -106,23 +105,23 @@ class HomeScreen extends Screen {
 				translateX: - 200,
 			}, 200 )
 			.add( {
-				targets: this.nav,
+				targets: this.nav.domElement,
 				translateY: 0,
 				opacity: 1,
 			}, 400 )
 			.add( {
-				targets: [ this.footer, this.ui.pagination ],
+				targets: this.footer,
 				opacity: 1,
 				bottom: 0,
 			}, 400 )
 			.add( {
-				targets: this.ui.back,
+				targets: this.nav.back,
 				opacity: 1,
 				translateX: 0,
 			}, 600 )
 			.add( {
-				targets: this.ui.forward,
-				opacity: ( this.portfolio.isEnding ) ? 0 : 1,
+				targets: this.nav.forward,
+				opacity: 1,
 				translateX: 0,
 			}, 600 )
 
@@ -132,4 +131,4 @@ class HomeScreen extends Screen {
 
 }
 
-export { HomeScreen };
+export { CoverScreen };

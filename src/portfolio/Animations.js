@@ -2,7 +2,7 @@ import anime from 'animejs';
 import { DynamicTitle } from './misc/DynamicTitle';
 import { Title } from './misc/Title';
 import { DemoScreen } from './screens/DemoScreen';
-import { WorksScreen } from './screens/WorksScreen';
+import { CoverScreen } from './screens/CoverScreen';
 
 class Animations {
 
@@ -87,11 +87,8 @@ class Animations {
 		if ( ! fromIsDemo && toIsDemo ) this.title.tweenIn();
 		else if ( fromIsDemo && ! toIsDemo ) this.title.tweenOut();
 
-		const fromIsWork = ( from instanceof WorksScreen );
-		const toIsWork = ( to instanceof WorksScreen );
-		if ( ! fromIsWork && ! toIsWork ) return;
-		const dynamicTitle = ( toIsWork ) ? to.id : '';
-		this.dynamicTitle.tween( dynamicTitle, backwards );
+		let newTitle = ( to instanceof CoverScreen ) ? '' : to.id.replaceAll( '-', ' ' );
+		this.dynamicTitle.tween( newTitle, backwards );
 
 	}
 

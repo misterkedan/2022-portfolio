@@ -4,11 +4,9 @@ import { Screen } from './Screen';
 
 class LinksScreen extends Screen {
 
-	constructor( sketch, ui ) {
+	constructor( sketch ) {
 
-		super( 'links', sketch );
-
-		this.ui = ui;
+		super( 'contact', sketch );
 
 		this.spans = Array.from( this.domElement.getElementsByTagName( 'span' ) );
 		this.spansTexts = this.spans.map( span => span.innerText );
@@ -18,8 +16,7 @@ class LinksScreen extends Screen {
 
 		this.tweenX = 100;
 
-		this.items = Array.from( this.domElement.getElementsByTagName( 'li' ) );
-		this.items.forEach( item => {
+		[ ...this.spans, ...this.links ].forEach( item => {
 
 			item.style.opacity = 0;
 			item.style.transform = `translateX(${this.tweenX}px)`;
@@ -35,21 +32,17 @@ class LinksScreen extends Screen {
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			delay: 400,
-			duration: 500,
+			duration: 700,
 			complete: this.completeTweenIn,
-		} )
-			.add( {
-				targets: this.ui.forward,
-				opacity: 0,
-			} );
+		} );
 
 		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
 
 			const textformer = new Textformer( {
 				output: span,
 				from: '',
+				steps: 15,
 				to: this.spansTexts[ i ],
-				align: Textformer.align.LEFT,
 				autoplay: false,
 			} );
 
@@ -60,34 +53,37 @@ class LinksScreen extends Screen {
 				progress: 1,
 			}, stagger );
 
+			this.tweeningIn.add( {
+				targets: span,
+				opacity: 1,
+				translateX: 0,
+			}, stagger );
+
 		} );
 
 		Object.entries( this.links ).forEach( ( [ i, link ] ) => {
 
 			const textformer = new Textformer( {
 				output: link,
-				from: '',
+				from: ' ',
+				steps: 15,
 				to: this.linksTexts[ i ],
 				mode: Textformer.modes.REVERSE,
 				autoplay: false,
 			} );
 
-			const stagger = 150 + i * 150;
+			const stagger = i * 150;
 
 			this.tweeningIn.add( {
 				targets: textformer,
 				progress: 1,
 			}, stagger );
 
-		} );
-
-		Object.entries( this.items ).forEach( ( [ i, item ] ) => {
-
 			this.tweeningIn.add( {
-				targets: item,
+				targets: link,
 				opacity: 1,
 				translateX: 0,
-			}, 300 + i * 150 );
+			}, stagger );
 
 		} );
 
@@ -99,13 +95,8 @@ class LinksScreen extends Screen {
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeInOutQuad',
-			duration: 400,
 			complete: this.completeTweenOut,
-		} )
-			.add( {
-				targets: this.ui.forward,
-				opacity: 1,
-			} );
+		} );
 
 		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
 
@@ -117,12 +108,19 @@ class LinksScreen extends Screen {
 				autoplay: false,
 			} );
 
-			const duration = i * 200;
+			const duration = i * 250;
 
 			this.tweeningOut.add( {
 				duration,
 				targets: textformer,
 				progress: 1,
+			}, 0 );
+
+			this.tweeningOut.add( {
+				duration,
+				targets: span,
+				opacity: 0,
+				translateX: this.tweenX,
 			}, 0 );
 
 		} );
@@ -136,7 +134,7 @@ class LinksScreen extends Screen {
 				autoplay: false,
 			} );
 
-			const duration = i * 200;
+			const duration = i * 250;
 
 			this.tweeningOut.add( {
 				duration,
@@ -144,15 +142,12 @@ class LinksScreen extends Screen {
 				progress: 1,
 			}, 0 );
 
-		} );
-
-		Object.entries( this.items ).forEach( ( [ i, item ] ) => {
-
 			this.tweeningOut.add( {
-				targets: item,
+				duration,
+				targets: link,
 				opacity: 0,
 				translateX: this.tweenX,
-			}, i * 150 );
+			}, 0 );
 
 		} );
 
