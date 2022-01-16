@@ -17,7 +17,7 @@ class SketchesScreen extends Screen {
 		this.text = this.paragraph.innerText;
 		this.linkText = this.link.innerText;
 
-		this.tweenY = 25;
+		this.tweenY = 2.5;
 
 	}
 
@@ -26,9 +26,9 @@ class SketchesScreen extends Screen {
 		[ this.video, this.paragraph, this.link ].forEach(
 			element => element.style.opacity = 0
 		);
-		this.video.style.transform = `translateY(${this.tweenY}px)`;
-		this.paragraph.style.transform = `translateY(${- this.tweenY}px)`;
-		this.link.style.transform = `translateY(${- this.tweenY}px)`;
+		this.video.style.transform = `translateY(${this.tweenY}rem)`;
+		this.paragraph.style.transform = `translateY(${- this.tweenY}rem)`;
+		this.link.style.transform = `translateY(${- this.tweenY}rem)`;
 
 	}
 

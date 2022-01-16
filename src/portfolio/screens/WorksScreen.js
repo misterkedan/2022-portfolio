@@ -27,8 +27,8 @@ class WorksScreen extends Screen {
 
 		this.links = this.domElement.getElementsByClassName( 'project-links' )[ 0 ];
 
-		this.tweenX = 100;
-		this.tweenY = 20;
+		this.tweenX = 10;
+		this.tweenY = 1;
 
 	}
 
@@ -51,12 +51,12 @@ class WorksScreen extends Screen {
 		const tweenX = ( backwards ) ? - this.tweenX :  this.tweenX;
 
 		this.video.style.opacity = 0;
-		this.video.style.transform = `translateX(${tweenX}px)`;
+		this.video.style.transform = `translateX(${tweenX}rem)`;
 
 		const setStyle = ( element ) => {
 
 			element.style.opacity = 0;
-			element.style.transform = `translateY(${this.tweenY}px)`;
+			element.style.transform = `translateY(${this.tweenY}rem)`;
 
 		};
 

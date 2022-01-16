@@ -16,7 +16,7 @@ class OtherWorkTitleScreen extends Screen {
 		this.titleText = this.title.innerText;
 		this.subtitleText = this.subtitle.innerText;
 
-		this.tweenX = 200;
+		this.tweenX = 20;
 
 	}
 
@@ -24,7 +24,7 @@ class OtherWorkTitleScreen extends Screen {
 
 		const tweenX = ( backwards ) ? - this.tweenX : this.tweenX;
 
-		const transform = `translateX(${tweenX}px)`;
+		const transform = `translateX(${tweenX}rem)`;
 
 		[ this.title, this.subtitle ].forEach( element => {
 

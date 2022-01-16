@@ -35,7 +35,7 @@ class AboutScreen extends Screen {
 
 		this.shuffler = new AboutShuffler();
 
-		this.tweenX = 100;
+		this.tweenX = 10;
 
 	}
 
@@ -60,7 +60,7 @@ class AboutScreen extends Screen {
 		const setStyle = ( element ) => {
 
 			element.style.opacity = 0;
-			element.style.transform = `translateX(${tweenX}px)`;
+			element.style.transform = `translateX(${tweenX}rem)`;
 
 		};
 
