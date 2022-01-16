@@ -53,8 +53,8 @@ class Animations {
 		mixer.material.uniforms.uBackwards.value = backwards;
 
 		mixer.anime = anime( {
-			duration: 550 + 200 * window.innerWidth / window.innerHeight,
-			easing: 'cubicBezier(0.465, 0.460, 0.165, 1.000)',
+			duration: 600 + 100 * window.innerWidth / window.innerHeight,
+			easing: 'cubicBezier(0.465, 0.450, 0.160, 1.000)',
 			targets: mixer,
 			complete: () => mixer.anime = null,
 			mix,
@@ -72,7 +72,7 @@ class Animations {
 		const offset = ( backwards ) ? baseOffset : - baseOffset;
 
 		anime( {
-			duration: 1500,
+			duration: 1200,
 			easing: 'easeOutCirc',
 			targets: grid,
 			offset: [ 0, offset ],

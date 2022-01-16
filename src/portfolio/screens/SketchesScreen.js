@@ -17,7 +17,7 @@ class SketchesScreen extends Screen {
 		this.text = this.paragraph.innerText;
 		this.linkText = this.link.innerText;
 
-		this.tweenY = 2.5;
+		this.tweenY = 1.5;
 
 	}
 

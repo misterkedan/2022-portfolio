@@ -98,7 +98,7 @@ void main() {
 
 	// Slanted mask
 	
-	float slant = 0.2 / uAspect;
+	float slant = 0.12 / uAspect;
 	const float slantEase = 0.5;
 	float offset = ( uBackwards ) 
 		? slant * mix( 1.0, uMix, slantEase )
