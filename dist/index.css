@@ -242,7 +242,6 @@ nav {
 
 .menu-screen {
 	font-size: 1.6rem;
-	padding-left: 5.5rem;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -636,11 +635,10 @@ footer {
 
 	.menu-section {
 		margin-top: 1.4rem;
-		/*padding-bottom: 0.2rem;*/
 	}
-	.menu-section:first-child {
-		margin-top: 0;
-	}
+		.menu-section:first-child {
+			margin-top: 0;
+		}
 
 	#contact-social li {
 		margin-top: 0.2rem;
