@@ -19,7 +19,7 @@ class Animations {
 
 		this.tweenBackground( from, to, backwards );
 		this.tweenBackgrid( from, to, backwards );
-		this.tweenCyber( from, to, backwards );
+		this.tweenCyberdark( from, to, backwards );
 		this.tweenTitles( from, to, backwards );
 		this.tweenScreens( from, to, backwards );
 
@@ -82,7 +82,7 @@ class Animations {
 
 	}
 
-	tweenCyber( from, to ) {
+	tweenCyberdark( from, to ) {
 
 		const { cyber } = this.portfolio.background;
 

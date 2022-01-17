@@ -7,7 +7,7 @@ import { Blockflow } from './sketches/blockflow/Blockflow';
 import { Backgrid } from './sketches/backgrid/Backgrid';
 import { Navscan } from './sketches/navscan/Navscan';
 import { Rain } from './sketches/rain/Rain';
-import { Cyber } from './sketches/cyber/Cyber';
+import { Cyberdark } from './sketches/cyberdark/Cyberdark';
 
 class Background {
 
@@ -34,8 +34,8 @@ class Background {
 		this.navscan = new Navscan( options );
 		this.rain = new Rain( options );
 		this.blockflow = new Blockflow( options );
-		this.ablaze = new Ablaze( options );
-		this.cyber = new Cyber( options, this.mixer.radialBlur );
+		this.ablaze = new Ablaze( options, this.mixer.radialBlur );
+		this.cyber = new Cyberdark( options, this.mixer.radialBlur );
 
 		this.grid.blur = 0;
 		this.navscan.blur = 0;

@@ -35,15 +35,15 @@ class Portfolio {
 			'textformer',
 			'disintegrator',
 		].map( id => new WorksScreen( id, cyber ) );
+		const sketches = new SketchesScreen( cyber );
 
-		const sketches = new SketchesScreen( grid );
 		const about = new AboutScreen( grid );
 		const links = new LinksScreen( grid );
 
 		this.screens = [
 			home, ...demos,
-			otherWorks, ...works,
-			sketches, about, links
+			otherWorks, ...works, sketches,
+			about, links
 		];
 
 		this.length = this.screens.length;
