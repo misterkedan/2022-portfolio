@@ -49,7 +49,7 @@ class ProjectsScreen extends Screen {
 
 		const addTextformer = function ( i, item, delay = 0 ) {
 
-			const stagger = delay + i * 150;
+			const stagger = delay + i * 100;
 
 			tweeningIn.add( {
 				targets: new Textformer( {
@@ -78,7 +78,7 @@ class ProjectsScreen extends Screen {
 		);
 
 		Object.entries( this.summaries ).forEach(
-			( [ i, item ] ) => addTextformer( i, item, 150 )
+			( [ i, item ] ) => addTextformer( i, item, 100 )
 		);
 
 	}
@@ -98,7 +98,7 @@ class ProjectsScreen extends Screen {
 
 		const addTextformer = function ( i, item, delay = 0 ) {
 
-			const stagger = delay + i * 40;
+			const stagger = delay + i * 30;
 
 			tweeningOut.add( {
 				targets: new Textformer( {

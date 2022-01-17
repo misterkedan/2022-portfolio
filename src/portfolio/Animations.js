@@ -19,7 +19,6 @@ class Animations {
 
 		this.tweenBackground( from, to, backwards );
 		this.tweenBackgrid( from, to, backwards );
-		this.tweenCyberdark( from, to, backwards );
 		this.tweenTitles( from, to, backwards );
 		this.tweenScreens( from, to, backwards );
 
@@ -70,7 +69,7 @@ class Animations {
 
 		if ( from.sketch !== grid && to.sketch !== grid ) return;
 
-		const baseOffset = grid.tileSize * 21;
+		const baseOffset = grid.tileSize * 15;
 		const offset = ( backwards ) ? baseOffset : - baseOffset;
 
 		anime( {
@@ -78,24 +77,6 @@ class Animations {
 			easing: 'easeOutCirc',
 			targets: grid,
 			offset: [ 0, offset ],
-		} );
-
-	}
-
-	tweenCyberdark( from, to ) {
-
-		const { cyber } = this.portfolio.background;
-
-		if ( from.sketch !== cyber && to.sketch !== cyber ) return;
-
-		const index = this.portfolio.index - 5;
-		const offset = - cyber.step * index;
-
-		anime( {
-			duration: 1200,
-			easing: 'easeOutCirc',
-			targets: cyber,
-			offset
 		} );
 
 	}

@@ -38,7 +38,7 @@ class Cyberdark extends Sketch {
 
 		this.controls = new CyberdarkControls( this );
 
-		//this.controls.initGUI();
+		this.controls.initGUI();
 
 	}
 
@@ -107,16 +107,11 @@ class Cyberdark extends Sketch {
 		base.dispose();
 		edges.dispose();
 
-		this.step = bounds.x * 0.1;
-		this.initialX = bounds.x * 0.3;
-
 	}
 
 	tick( delta ) {
 
 		this.traveled.value += delta * this.speed;
-
-		this.particles.position.x = this.initialX + this.offset;
 
 		super.tick( delta );
 

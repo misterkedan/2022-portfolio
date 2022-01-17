@@ -3,31 +3,34 @@ const CyberdarkSettings = {
 	name: 'Cyberdark',
 
 	background: {
-		color1: '#0c0c12',
-		color2: '#252a2d',
+		color1: '#151519',
+		color2: '#262627',
 	},
 
 	depth: 50,
 
 	particle: {
-		color: '#293033',
-		opacity: 0.62,
-		size: 0.1,
+		//color: '#ff2425',
+		//color: '#222425',
+		//color: '#1d2225',
+		color: '#323739',
+		opacity: 0.6,
+		size: 0.04,
 		length: 5,
 
-		count: 10000,
+		count: 6000,
 
 		bounds: {
-			x: 40,
+			x: 30,
 			y: 10,
 		},
 
-		noiseScale: 0.4,
+		noiseScale: 0.2,
 		variance: 1.4,
 	},
 
 	speed: {
-		value: 0.005,
+		value: 0.004,
 	},
 
 	bloom: {
