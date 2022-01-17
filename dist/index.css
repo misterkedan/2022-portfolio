@@ -158,7 +158,6 @@ nav {
 		box-shadow: 0 1rem 5rem rgba(0,0,0,0.1);
 	}
 
-#invitation,
 .menu-section,
 .menu-screen,
 .control {
@@ -279,11 +278,13 @@ footer {
 /-----------------------------------------------------------------------------*/
 
 #invitation {
-	font-size: 1.5rem;
-	text-transform: uppercase;
+	font-size: 6rem;
+	/*font-weight: bold;*/
+	/*text-transform: uppercase;*/
 	transition: all 200ms ease-out;
 	padding: 2rem;
-	color: rgba(255,255,255,0.4);
+	color: rgba(255,255,255,0.7);
+	/*text-shadow: 0 0 2rem #000000;*/
 }
 
 #main-title {
@@ -310,8 +311,6 @@ footer {
 
 /-----------------------------------------------------------------------------*/
 
-
-
 #projects-overview {
 	display: flex;
 	flex-direction: column;
@@ -319,31 +318,29 @@ footer {
 	justify-content: space-between;
 }
 
-.project-shortcut {
-	margin-top: 2.4rem;
-	text-align: center;
-	padding: 0.8rem;
-	opacity: 0.7;
-	transition: all 300ms ease-out;
-	transform: scale(1);
-}
-	.project-shortcut:hover {
-		opacity: 1;
-		transform: scale(1.1);
+	.project-shortcut {
+		margin-top: 2.4rem;
+		text-align: center;
+		padding: 0.8rem;
+		opacity: 0.7;
+		transition: all 300ms ease-out;
+		transform: scale(1);
+	}
+		.project-shortcut:hover {
+			opacity: 1;
+			transform: scale(1.1);
+		}
+
+	.project-name {
+		font-size: 2.6rem;
+		line-height: 0.7em;
+		color: #ffffff;
 	}
 
-.project-name {
-	font-size: 2.6rem;
-	line-height: 0.7em;
-	color: #ffffff;
-}
-
-.project-summary {
-	font-size: 1.6rem;
-	color: #bccfd7
-}
-
-
+	.project-summary {
+		font-size: 1.6rem;
+		color: #bccfd7
+	}
 
 .description {
 	padding: 0 0.2rem;
@@ -354,14 +351,10 @@ footer {
 .project .description {
 	line-height: 1.4em;
 	color: rgba(255,255,255,0.8);
-	/*color: #ffffff;*/
-	/*text-shadow: 0 0.1rem 1rem #000000;*/
 }
 
 .project-links {
 	margin: 1.4rem 0 2rem;
-	/*display: flex;*/
-	/*justify-content: space-between;*/
 }
 .project-links a {
 	margin-right: 1rem;
@@ -387,9 +380,7 @@ footer {
 }
 
 #sketches-link {
-	margin-top: 3rem;
-
-	
+	margin-top: 3rem;	
 }
 
 
@@ -615,7 +606,11 @@ footer {
 		color: #55ccff;
 	}
 
-	#invitation:hover,
+	#invitation:hover {
+		color: #ffffff;
+		text-shadow: 0 0 3rem #0088ff;
+	}
+
 	.control:hover,
 	#menu li:hover {
 		color: #ffffff;

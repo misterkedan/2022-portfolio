@@ -24,9 +24,10 @@ class BackgridControls extends Controls {
 		// Tracker
 
 		const targetIntensity = ( sketch.camera.aspect > 1 )
-			? tracker.reverseCenterX
-			: tracker.reverseCenterY
+			? tracker.centerX
+			: tracker.centerY
 		;
+
 		this.intensity = lerp(
 			this.intensity,
 			targetIntensity,

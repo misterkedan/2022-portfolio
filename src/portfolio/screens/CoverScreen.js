@@ -34,13 +34,6 @@ class CoverScreen extends Screen {
 
 		super.tweenIn();
 
-		const invitation = new Textformer( {
-			output: this.invitation,
-			from: '',
-			to: this.invitationText,
-			autoplay: false,
-		} );
-
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			duration: 500,
@@ -51,10 +44,7 @@ class CoverScreen extends Screen {
 				opacity: 1,
 				translateX: 0,
 			}, 300 )
-			.add( {
-				targets: invitation,
-				progress: 1,
-			}, 300 )
+
 			.add( {
 				targets: this.nav.back,
 				opacity: 0,
@@ -83,47 +73,36 @@ class CoverScreen extends Screen {
 
 		super.tweenOut();
 
-		const invitation = new Textformer( {
-			output: this.invitation,
-			from: this.invitationText,
-			to: '',
-			autoplay: false,
-		} );
-
 		this.tweeningOut = anime.timeline( {
-			easing: 'easeOutCirc',
-			duration: 700,
+			easing: 'easeInOutQuad',
+			duration: 300,
 			complete: this.completeTweenOut,
 		} )
-			.add( {
-				targets: invitation,
-				progress: 1,
-			}, 0 )
 			.add( {
 				targets: this.invitation,
 				opacity: 0,
 				translateX: - 200,
-			}, 200 )
+			}, 0 )
 			.add( {
 				targets: this.nav.domElement,
 				translateY: 0,
 				opacity: 1,
-			}, 400 )
+			}, 200 )
 			.add( {
 				targets: this.footer,
 				opacity: 1,
 				bottom: 0,
-			}, 400 )
+			}, 200 )
 			.add( {
 				targets: this.nav.back,
 				opacity: 1,
 				translateX: 0,
-			}, 600 )
+			}, 150 )
 			.add( {
 				targets: this.nav.forward,
 				opacity: 1,
 				translateX: 0,
-			}, 600 )
+			}, 150 )
 
 		;
 
