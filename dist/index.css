@@ -321,6 +321,10 @@ footer {
 	margin-right: 0.6rem;
 }
 
+#sketches .description {
+	margin: 1rem 0;
+}
+
 #sketches-link {
 	margin-top: 3rem;
 	display: inline-block;
