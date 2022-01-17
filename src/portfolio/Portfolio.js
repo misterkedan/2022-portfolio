@@ -36,9 +36,9 @@ class Portfolio {
 			'disintegrator',
 		].map( id => new ProjectScreen( id, cyber ) );
 
-		const sketches = new SketchesScreen( grid );
-		const about = new AboutScreen( grid );
-		const links = new LinksScreen( grid );
+		const sketches = new SketchesScreen( cyber );
+		const about = new AboutScreen( cyber );
+		const links = new LinksScreen( cyber );
 
 		this.screens = [
 			home, ...demos,
