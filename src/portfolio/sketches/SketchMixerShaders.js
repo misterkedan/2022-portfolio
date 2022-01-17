@@ -1,3 +1,5 @@
+import { ShaderUtils } from 'keda/three/misc/ShaderUtils';
+
 const SketchMixerShaders = {};
 
 SketchMixerShaders.uniforms = {
@@ -56,11 +58,7 @@ float perlin( float i, float j ) {
 
 }
 
-float parabola( float x, float power ) {
-
-	return pow( 4.0 * x * ( 1.0 - x ), power );
-
-}
+${ ShaderUtils.parabola }
 
 void main() {
 

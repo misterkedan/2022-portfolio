@@ -47,8 +47,9 @@ em {
 
 video {
 	margin: 0 0 3rem;
-	border: 0.2rem solid rgba(255,255,255,0.04);
-	box-shadow: 0 2rem 4rem rgba(0,0,0,0.7);
+	/*border: 0.1rem solid rgba(0,0,0,0.4);*/
+	border: 0.2rem solid rgba(255,255,255,0.6);
+	/*box-shadow: 0 2rem 4rem rgba(0,0,0,0.6);*/
 }
 
 ::selection {
@@ -306,6 +307,12 @@ footer {
 	max-width: 45em;
 }
 
+.project .description {
+	line-height: 1.4em;
+	color: #ffffff;
+	/*text-shadow: 0 0.1rem 1rem #000000;*/
+}
+
 .project-links {
 	margin-top: 2.4rem;
 }
@@ -465,10 +472,6 @@ footer {
 /-----------------------------------------------------------------------------*/
 
 @media ( max-width: 640px ) {
-
-	/*.description {
-		font-size: 1.3rem;
-	}*/
 
 	.js .item {
 		padding: 5.2rem 3rem 8rem;

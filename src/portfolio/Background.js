@@ -7,6 +7,7 @@ import { Blockflow } from './sketches/blockflow/Blockflow';
 import { Backgrid } from './sketches/backgrid/Backgrid';
 import { Navscan } from './sketches/navscan/Navscan';
 import { Rain } from './sketches/rain/Rain';
+import { Cyber } from './sketches/cyber/Cyber';
 
 class Background {
 
@@ -27,20 +28,32 @@ class Background {
 			renderToScreen: false,
 		};
 
+		this.mixer = new SketchMixer( this.sketchpad.renderer );
+
 		this.grid = new Backgrid( options );
 		this.navscan = new Navscan( options );
 		this.rain = new Rain( options );
 		this.blockflow = new Blockflow( options );
 		this.ablaze = new Ablaze( options );
+		this.cyber = new Cyber( options, this.mixer.radialBlur );
 
-		const sketches = [
+		this.grid.blur = 0;
+		this.navscan.blur = 0;
+		this.rain.blur = 0.01;
+		this.blockflow.blur = 0;
+		this.ablaze.blur = 0.015;
+		this.cyber.blur = 0;
+
+		this.mixer.sketches = [
 			this.grid,
 			this.navscan,
 			this.rain,
 			this.blockflow,
 			this.ablaze,
+			this.cyber,
 		];
-		this.mixer = new SketchMixer( this.sketchpad.renderer, sketches );
+
+		//this.mixer = new SketchMixer( this.sketchpad.renderer, sketches );
 
 		this.sketchpad.init( this.mixer );
 

@@ -1,5 +1,6 @@
 import { NormalBlending } from 'three';
 import { FloatPack } from 'keda/three/gpgpu/FloatPack';
+import parabola from 'keda/glsl/functions/parabola.glsl';
 import rotateX from 'keda/glsl/transform/rotateX.glsl';
 import rotateY from 'keda/glsl/transform/rotateY.glsl';
 import rotateZ from 'keda/glsl/transform/rotateZ.glsl';
@@ -11,14 +12,15 @@ import simplex3D from 'keda/glsl/simplex3D.glsl';
 
 const ShaderUtils = {
 
-	rotateX: rotateX,
-	rotateY: rotateY,
-	rotateZ: rotateZ,
-	scale: scale,
-	bayerMatrixDither: bayerMatrixDither,
-	linearGradient: linearGradient,
-	loopValue: loopValue,
-	simplex3D: simplex3D,
+	parabola,
+	rotateX,
+	rotateY,
+	rotateZ,
+	scale,
+	bayerMatrixDither,
+	linearGradient,
+	loopValue,
+	simplex3D,
 
 	floatPack: FloatPack.glsl,
 

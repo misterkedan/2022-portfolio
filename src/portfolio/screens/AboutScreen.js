@@ -66,8 +66,6 @@ class AboutScreen extends Screen {
 
 		setStyle( this.selfie );
 
-		console.log( tweenX );
-
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
 			element.innerText = this.texts[ i ];
@@ -84,7 +82,7 @@ class AboutScreen extends Screen {
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
 			delay: 250,
-			duration: 600,
+			duration: 650,
 			complete: this.completeTweenIn,
 		} )
 			.add( {
@@ -105,6 +103,8 @@ class AboutScreen extends Screen {
 				from: '',
 				to: this.texts[ i ],
 				mode: Textformer.modes.REVERSE,
+				steps: 30,
+				stagger: 30,
 				autoplay: false,
 				align: Textformer.align.LEFT,
 			} );

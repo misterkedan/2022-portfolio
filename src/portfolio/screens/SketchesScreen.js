@@ -36,10 +36,9 @@ class SketchesScreen extends Screen {
 
 		super.tweenIn();
 
-
 		this.tweeningIn = anime.timeline( {
 			easing: 'easeOutCirc',
-			delay: 300,
+			delay: 400,
 			duration: 600,
 			complete: this.completeTweenIn,
 		} )
@@ -90,7 +89,7 @@ class SketchesScreen extends Screen {
 
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeOutQuad',
-			duration: 400,
+			duration: 300,
 			complete: this.completeTweenOut,
 		} )
 			.add( {

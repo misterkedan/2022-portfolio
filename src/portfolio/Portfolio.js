@@ -18,7 +18,7 @@ class Portfolio {
 
 		this.background = new Background();
 		this.canvas = this.background.sketchpad.canvas;
-		const { grid } = this.background;
+		const { grid, cyber } = this.background;
 
 		const home = new CoverScreen( grid, this.nav );
 		const demos = [
@@ -28,22 +28,22 @@ class Portfolio {
 			'ablaze',
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
 
-		const otherWorks = new OtherWorkTitleScreen( grid );
+		const otherWorks = new OtherWorkTitleScreen( cyber );
 		const works = [
 			'orion',
 			'vesuna',
 			'textformer',
 			'disintegrator',
-		].map( id => new WorksScreen( id, grid ) );
-		const sketches = new SketchesScreen( grid );
+		].map( id => new WorksScreen( id, cyber ) );
 
+		const sketches = new SketchesScreen( grid );
 		const about = new AboutScreen( grid );
 		const links = new LinksScreen( grid );
 
 		this.screens = [
 			home, ...demos,
-			otherWorks, ...works, sketches,
-			about, links
+			otherWorks, ...works,
+			sketches, about, links
 		];
 
 		this.length = this.screens.length;

@@ -5,6 +5,9 @@ import {
 	Scene,
 	ShaderMaterial
 } from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+import { RadialBlurPass } from '../../keda/three/postprocessing/RadialBlurPass';
 import { SketchMixerShaders } from './SketchMixerShaders';
 
 class SketchMixer {
@@ -31,7 +34,14 @@ class SketchMixer {
 		this.scene.add( this.quad );
 
 		this.sketches = sketches;
-		this.renderer = renderer;
+
+		this.composer = new EffectComposer( renderer );
+		this.composer.addPass( new RenderPass( this.scene, this.camera ) );
+
+		this.radialBlur = new RadialBlurPass( { strength: 0 } );
+		this.composer.addPass( this.radialBlur );
+
+		//this.renderer = renderer;
 
 	}
 
@@ -65,6 +75,8 @@ class SketchMixer {
 
 		this.material.uniforms.uAspect.value = aspect;
 
+		this.composer.setSize( width, height );
+
 	}
 
 	tick( delta ) {
@@ -80,7 +92,9 @@ class SketchMixer {
 		} else this.lastTicked = ( mix === 0 ) ? mixA : mixB;
 
 		this.lastTicked.tick( delta );
-		this.renderer.render( this.scene, this.camera );
+
+		//this.renderer.render( this.scene, this.camera );
+		this.composer.render();
 
 	}
 
@@ -99,6 +113,18 @@ class SketchMixer {
 	set mix( mix ) {
 
 		this.material.uniforms.uMix.value = mix;
+
+	}
+
+	get blur() {
+
+		return this.radialBlur.strength;
+
+	}
+
+	set blur( value ) {
+
+		this.radialBlur.strength = value;
 
 	}
 

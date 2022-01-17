@@ -18,7 +18,8 @@ class Animations {
 	tween( from, to, backwards ) {
 
 		this.tweenBackground( from, to, backwards );
-		this.tweenGrid( from, to, backwards );
+		this.tweenBackgrid( from, to, backwards );
+		this.tweenCyber( from, to, backwards );
 		this.tweenTitles( from, to, backwards );
 		this.tweenScreens( from, to, backwards );
 
@@ -58,11 +59,12 @@ class Animations {
 			targets: mixer,
 			complete: () => mixer.anime = null,
 			mix,
+			blur: to.sketch.blur,
 		} );
 
 	}
 
-	tweenGrid( from, to, backwards ) {
+	tweenBackgrid( from, to, backwards ) {
 
 		const { grid } = this.portfolio.background;
 
@@ -76,6 +78,24 @@ class Animations {
 			easing: 'easeOutCirc',
 			targets: grid,
 			offset: [ 0, offset ],
+		} );
+
+	}
+
+	tweenCyber( from, to ) {
+
+		const { cyber } = this.portfolio.background;
+
+		if ( from.sketch !== cyber && to.sketch !== cyber ) return;
+
+		const index = this.portfolio.index - 5;
+		const offset = - cyber.step * index;
+
+		anime( {
+			duration: 1200,
+			easing: 'easeOutCirc',
+			targets: cyber,
+			offset
 		} );
 
 	}
