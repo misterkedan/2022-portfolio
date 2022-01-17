@@ -5,9 +5,9 @@ import { AboutScreen } from './screens/AboutScreen';
 import { DemoScreen } from './screens/DemoScreen';
 import { CoverScreen } from './screens/CoverScreen';
 import { LinksScreen } from './screens/LinksScreen';
-import { OtherWorkTitleScreen } from './screens/OtherWorkTitleScreen';
+import { ProjectsScreen } from './screens/ProjectsScreen';
 import { SketchesScreen } from './screens/SketchesScreen';
-import { WorksScreen } from './screens/WorksScreen';
+import { ProjectScreen } from './screens/ProjectScreen';
 import { Nav } from './Nav';
 
 class Portfolio {
@@ -28,22 +28,22 @@ class Portfolio {
 			'ablaze',
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
 
-		const otherWorks = new OtherWorkTitleScreen( cyber );
-		const works = [
+		const projectMenu = new ProjectsScreen( cyber );
+		const projects = [
 			'orion',
 			'vesuna',
 			'textformer',
 			'disintegrator',
-		].map( id => new WorksScreen( id, cyber ) );
-		const sketches = new SketchesScreen( cyber );
+		].map( id => new ProjectScreen( id, cyber ) );
 
+		const sketches = new SketchesScreen( grid );
 		const about = new AboutScreen( grid );
 		const links = new LinksScreen( grid );
 
 		this.screens = [
 			home, ...demos,
-			otherWorks, ...works, sketches,
-			about, links
+			projectMenu, ...projects,
+			sketches, about, links
 		];
 
 		this.length = this.screens.length;
@@ -51,8 +51,11 @@ class Portfolio {
 		this.currentScreen = this.screens[ this.index ];
 
 		this.pagination = document.getElementById( 'pagination' );
-		this.invitation = home.invitation;
+
 		this.animations = new Animations( this );
+
+		this.invitation = home.invitation;
+		this.projectMenu = projectMenu.domElement;
 		this.controls = new Controls( this );
 
 	}

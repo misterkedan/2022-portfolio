@@ -103,72 +103,92 @@
 				</div>
 			</section>
 
-			<section id="works">
-				<div id="other-works" class="item">
-					<h4 id="other-works-sub">Personal works</h3>
-					<h2 id="other-works-main">Showcase</h2>
+			<section id="personal-projects">
+				<div id="projects" class="item">
+					<ul id="projects-overview">
+						<li class="project-shortcut control">
+							<h4 class="project-name" data-target="orion">Orion</h4>
+							<span class="project-summary" data-target="orion">Generative 3D experiment</span>
+						</li>
+						<li class="project-shortcut control">
+							<h4 class="project-name" data-target="vesuna">Vesuna</h4>
+							<span class="project-summary" data-target="vesuna">Random seeding utility</span>
+						</li>
+						<li class="project-shortcut control">
+							<h4 class="project-name" data-target="textformer">Textformer</h4>
+							<span class="project-summary" data-target="textformer">Text animation library</span>
+						</li>
+						<li class="project-shortcut control">
+							<h4 class="project-name" data-target="disintegrator">Disintegrator</h4>
+							<span class="project-summary" data-target="disintegrator">Mesh disintegration lab</span>
+						</li>
+					</ul>
 				</div>
 				<div id="orion" class="item project">
 					<h3>Orion</h3>
 					<video autoplay loop muted src="assets/videos/orion.mp4"></video>
 					<div class="description">
-						<p>This three.js experiment is a collaboration with my good friend Thibaut, who initally wrote this very cool shader. Once he handed it off to me, I polished it and built a generative application around it.</p>
-						<p>It uses my text-seeded PRNG utility (see next project), allowing to save and share random outcomes simply by bookmarking the URL.</p>
-						<p>I really loved working on the generative side, so I'll definitely do more of that in the future.</p>
+						<p>Collaborative three.js experiment, made with a friend of mine.</p>
+						<p>He wrote the initial shader, I polished it and built a little generative app around it.</p>
+						
 						<div class="project-links">
-							<a href="https://pierrekeda.github.io/orion/">Live</a>  
 							<a href="https://github.com/pierrekeda/orion/">Github</a>
 							<a href="https://www.thibautfoussard.com/">Thibaut</a>
-							<a href="https://projects.thibautfoussard.com/plasma/">Original shader</a>
+							<a href="https://projects.thibautfoussard.com/plasma/">Initial shader</a>
 						</div>
+						
 					</div>
+					<a class="cta" href="https://pierrekeda.github.io/orion/" target="blank">Open</a>
 					
 				</div>
 				<div id="vesuna" class="item project">
 					<h3>Vesuna</h3>
 					<video autoplay loop muted src="assets/videos/vesuna.mp4"></video>
 					<div class="description">
-						<p>Generative applications are a lot of fun. However, when there is a wide range of possible outcomes, it can become very tedious to save, restore and share them.</p>
-						<p>To solve this issue, I wrote this tiny text-based random seed utility, built around Johannes Baagøe's Alea PRNG. It generates pseudorandom number sequences based on words, making it very easy to save/load precise results via hashtags.</p>
+						<p>Utility to use texts as random seeds, based on Johannes Baagøe's Alea PRNG.</p>
+						<p>Replacing the typical Math.random() in generative apps, it allows to bookmark and share specific outcomes.</p>
 						<div class="project-links">
-							<a href="https://pierrekeda.github.io/vesuna/">Demo</a>  
-							<a href="https://github.com/pierrekeda/vesuna/">Github</a>
+							<a href="https://pierrekeda.github.io/vesuna/">Demo</a>
 							<a href="https://github.com/nquinlan/better-random-numbers-for-javascript-mirror#alea/">Alea</a>
 						</div>
 					</div>
+					<a class="cta" href="https://github.com/pierrekeda/vesuna/">Github</a>
 				</div>
 				<div id="textformer" class="item project">
 					<h3>Textformer</h3>
 					<video autoplay loop muted src="assets/videos/textformer.mp4"></video>
 					<div class="description">
-						<p>I love randomness, and I love experimenting with type. This logically led to this small javascript utility, that aims to build easy text animations based on random character changes.</p>
-						<p>I wanted it to be usable on its own, so I ended up writing and including a barebones animation system. It was probably overkill, as it works great with tweening engines such as gsap or anime.js.</p>
+						<p>Small javascript library for easy text animations, using random character changes.</p>
+						<p>Includes a barebones tweening engine, which was total overkill as it works great with gsap, anime.js etc.</p>
 						<div class="project-links">
-							<a href="https://pierrekeda.github.io/textformer/">Demo</a>  
-							<a href="https://github.com/pierrekeda/textformer/">Github</a>
+							<a href="https://pierrekeda.github.io/textformer/">Demo</a>
 						</div>
 					</div>
+					<a class="cta" href="https://github.com/pierrekeda/textformer/">Github</a>
 				</div>
 				<div id="disintegrator" class="item project">
 					<h3>Disintegrator</h3>
 					<video autoplay loop muted src="assets/videos/disintegrator.mp4"></video>
 					<div class="description">
-						<p>Brainstorming for an upcoming project, I envisioned elements exploding. So I made this lab to try my hand at that.</p>
-						<p>After several attempts, I ended up using tesselation, custom buffer attributes, and a mix of basic random + simplex noise. It also layers duplicates of the geometries, in order to counteract their inherent hollowness.</p>
-						<p>It is still raw and optimizable, but the visual result is pretty close to what I was aiming for.</p>
+						<p>Lab for an upcoming project.</p>
+						<p>Tesselation, custom buffer attributes, and a mix of basic random + simplex noise.</p>
 						<div class="project-links">
-							<a href="https://pierrekeda.com/wip/disintegrator/0.9.3/">Live</a>  
 							<a href="https://github.com/pierrekeda/">Github</a>
 						</div>
+						<div class="cta-wrapper">
+							<a class="cta" href="https://pierrekeda.com/wip/disintegrator/0.9.3/">Open</a><br>
+						</div>
+						
 					</div>
 				</div>
 				<div id="sketches" class="item">
 					<h3>Sketches</h3>
 					<video autoplay loop muted src="assets/videos/sketches.mp4"></video>
 					<div class="description">
-						<p>In order to constantly improve and learn new things, I do many little side projects and experiments. I call them "sketches". They're usually a mix of visual and technical, allowing me explore both aspects at the same time.</p>
+						<p>In order to improve and learn new things, I constantly make little coding side projects. I call them "sketches".</p>
+						<p>They allow me to test, explore and experiment freely.</p>
 					</div>
-					<a id="sketches-link" href="http://sketches.pierrekeda.com/">Sketches &#10095;</a>
+					<a id="sketches-link" class="cta" href="http://sketches.pierrekeda.com/">Browse sketches</a>
 				</div>
 			</section>
 			
@@ -219,7 +239,7 @@
 					<li class="menu-screen" data-target="blockflow">Blockflow</li>
 					<li class="menu-screen" data-target="ablaze">Ablaze</li>
 	
-					<li class="menu-section" data-target="other-works">OTHER WORKS</li>
+					<li class="menu-section" data-target="projects">Projects</li>
 					<li class="menu-screen" data-target="orion">Orion</li>
 					<li class="menu-screen" data-target="vesuna">Vesuna</li>
 					<li class="menu-screen" data-target="textformer">Textformer</li>

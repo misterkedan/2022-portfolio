@@ -30,6 +30,11 @@ class Controls {
 		} );
 
 		portfolio.invitation.addEventListener( 'click', ()=> portfolio.goto( 1 ) );
+		portfolio.projectMenu.addEventListener( 'click', ( event ) => {
+
+			portfolio.goto( event.target.getAttribute( 'data-target' ) );
+
+		} );
 
 	}
 
@@ -61,7 +66,7 @@ class Controls {
 		//window.addEventListener( 'wheel', event => console.log( event.target ) );
 
 		portfolio.canvas.addEventListener( 'mousedown', this.onMouseDown );
-		portfolio.canvas.addEventListener( 'mouseup', this.onMouseUp );
+		window.addEventListener( 'mouseup', this.onMouseUp );
 
 	}
 
