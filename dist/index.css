@@ -47,11 +47,7 @@ em {
 
 video {
 	margin: 2rem 0 2.6rem;
-	/*border: 0.1rem solid rgba(0,0,0,0.4);*/
 	border: 0.2rem solid rgba(255,255,255,0.1);
-	/*border: 0.5rem solid rgba(255,255,255,0.7);*/
-	/*box-shadow: 0 2rem 4rem rgba(0,0,0,0.4);*/
-	/*box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);*/
 }
 
 ::selection {
@@ -71,15 +67,12 @@ a.cta {
 	padding: 1rem 2rem;
 	text-decoration: none;
 	border: 0.1rem solid rgba(255,255,255,0.2);
-}
-
-.note {
-	font-style: italic;
+	transition: color 200ms ease-out;
 }
 
 /*-----------------------------------------------------------------------------/
 
-	JS SETUP
+	SETUP JS
 
 /-----------------------------------------------------------------------------*/
 
@@ -225,7 +218,7 @@ nav {
 	width: 32rem;
 	text-align: left;
 	background: rgba(255,255,255,0.98);
-	padding-bottom: 2rem;
+	padding: 2rem 0;
 }
 
 .menu-section,
@@ -247,6 +240,120 @@ nav {
 .menu-screen {
 	font-size: 1.6rem;
 }
+
+/*-----------------------------------------------------------------------------/
+
+	MAIN
+
+/-----------------------------------------------------------------------------*/
+
+	/*-------------------------------------------------------------------------/
+
+		Intro
+
+	/-------------------------------------------------------------------------*/
+
+	#invitation {
+		font-size: 6rem;
+		transition: color 200ms ease-in-out;
+		padding: 2rem;
+		color: rgba(255,255,255,0.7);
+	}
+
+	#main-title {
+		display: flex;
+		width: 100%;
+		user-select: none;
+	}
+		#name-first {
+			font-size: 4.7rem;
+		}
+		#name-alias {
+			display: block;
+			font-size: 7.2rem;
+			line-height: 4.6rem;
+			margin-bottom: 1rem;
+		}
+		#vocation {
+			font-size: 2rem;
+		}
+
+	/*-------------------------------------------------------------------------/
+
+		Projects
+
+	/-------------------------------------------------------------------------*/
+
+	#projects-overview {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.project-shortcut {
+		margin-top: 2.8rem;
+		text-align: center;
+		padding: 0.8rem;
+	}
+
+	.project-name {
+		font-size: 2.8rem;
+		line-height: 0.8em;
+		color: #ffffff;
+	}
+
+	.project-summary {
+		font-size: 1.6rem;
+		color: #b4ccd4 ;
+	}
+
+	.description {
+		padding: 0 0.2rem;
+		text-align: left;
+		max-width: 45em;
+
+		line-height: 1.4em;
+		color: rgba(255,255,255,0.8);
+		margin-bottom: 2.6rem;
+	}
+
+	/*-------------------------------------------------------------------------/
+
+		Infos
+
+	/-------------------------------------------------------------------------*/
+
+	#selfie {
+		margin-bottom: 2rem;
+	}
+
+	.js #affinities,
+	.js #tools {
+		font-weight: bold;
+		color: #00ff88;
+	}
+
+	#contact-card {
+		text-align: left;
+		padding: 2rem;
+	}
+
+	#email {
+		display: block;
+		margin: 2rem 0 2.5rem;
+	}
+
+	#contact-social li {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 1rem;
+	}
+
+	#contact-social a {
+		text-align: right;
+	}
+
 
 /*-----------------------------------------------------------------------------/
 
@@ -275,153 +382,7 @@ footer {
 
 /*-----------------------------------------------------------------------------/
 
-	Intro
-
-/-----------------------------------------------------------------------------*/
-
-#invitation {
-	font-size: 6rem;
-	transition: all 200ms ease-out;
-	padding: 2rem;
-	color: rgba(255,255,255,0.7);
-}
-
-#main-title {
-	display: flex;
-	width: 100%;
-	user-select: none;
-}
-	#name-first {
-		font-size: 4.7rem;
-	}
-	#name-alias {
-		display: block;
-		font-size: 7.2rem;
-		line-height: 4.6rem;
-		margin-bottom: 1rem;
-	}
-	#vocation {
-		font-size: 2rem;
-	}
-
-/*-----------------------------------------------------------------------------/
-
-	PROJECTS
-
-/-----------------------------------------------------------------------------*/
-
-#projects-overview {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-}
-
-	.project-shortcut {
-		margin-top: 2.4rem;
-		text-align: center;
-		padding: 0.8rem;
-		opacity: 0.8;
-		transition: all 100ms ease-out;
-		transform: scale(1);
-	}
-		.project-shortcut:hover {
-			opacity: 1;
-			transform: scale(1.1);
-		}
-
-	.project-name {
-		font-size: 2.6rem;
-		line-height: 0.7em;
-		color: #ffffff;
-	}
-
-	.project-summary {
-		font-size: 1.6rem;
-		color: #bccfd7
-	}
-
-.description {
-	padding: 0 0.2rem;
-	text-align: left;
-	max-width: 45em;
-}
-
-.project .description {
-	line-height: 1.4em;
-	color: rgba(255,255,255,0.8);
-}
-
-.project-links {
-	margin: 1.4rem 0 2rem;
-}
-.project-links a {
-	margin-right: 1rem;
-}
-
-.project-footer {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 2.4em;
-}
-.project-back {
-	text-decoration: underline;
-	margin-top: 2rem;
-}
-
-.cta-wrapper {
-	width: 100%;
-	text-align: center;
-}
-
-#sketches .description {
-	margin: 1rem 0;
-}
-
-#sketches-link {
-	margin-top: 3rem;	
-}
-
-
-/*-----------------------------------------------------------------------------/
-
-	INFOS
-
-/-----------------------------------------------------------------------------*/
-
-#selfie {
-	margin-bottom: 2rem;
-}
-
-.js #affinities,
-.js #tools {
-	font-weight: bold;
-	color: #00ff88;
-}
-
-#contact-card {
-	text-align: left;
-	padding: 2rem;
-}
-
-#email {
-	display: block;
-	margin: 2rem 0 2.5rem;
-}
-
-#contact-social li {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 1rem;
-}
-
-#contact-social a {
-	text-align: right;
-}
-
-/*-----------------------------------------------------------------------------/
-
-	Init / NO JS
+	INIT / NO JS
 
 /-----------------------------------------------------------------------------*/
 
@@ -508,14 +469,10 @@ footer {
 .no-js #contact {
 	padding: 9rem 4rem 15rem;
 }
-/*
-.no-js .arrow-controls {
-	display: none;
-}*/
 
 /*-----------------------------------------------------------------------------/
 
-	Media
+	MEDIA
 
 /-----------------------------------------------------------------------------*/
 
@@ -604,13 +561,11 @@ footer {
 	a:hover {
 		color: #55ccff;
 	}
-
-	#invitation:hover {
-		color: #ffffff;
-	}
-
+	
 	.control:hover,
-	#menu li:hover {
+	#menu li:hover,
+	#invitation:hover,
+	.project-shortcut:hover .project-summary {
 		color: #ffffff;
 	}
 
@@ -626,6 +581,7 @@ footer {
 	a.cta:hover {
 		background: #eaeef0;
 		color: #00aaee;
+		box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.7);
 	}
 
 	.menu-section,

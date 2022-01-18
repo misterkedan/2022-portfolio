@@ -3,7 +3,7 @@ const CyberdarkSettings = {
 	name: 'Cyberdark',
 
 	background: {
-		color1: '#151519',
+		color1: '#060610',
 		color2: '#262627',
 	},
 
