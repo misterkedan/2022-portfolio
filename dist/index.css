@@ -3,13 +3,11 @@ html {
 }
 
 body {
-	background: #000000;
     color: #ffffff;
 	color: rgba(255,255,255,0.9);
 	font-family: 'JetBrains Mono', monospace;
 	font-size: 1.4rem;
 	text-align: center;
-
 	overflow: hidden auto;
 }
 
@@ -48,6 +46,7 @@ em {
 video {
 	margin: 2rem 0 2.6rem;
 	border: 0.2rem solid rgba(255,255,255,0.1);
+	width: 640px;
 }
 
 ::selection {
@@ -60,25 +59,11 @@ a:visited {
 	color: #00aaee;
 }
 
-a.cta {
-	display: inline-block;
-	background: #00aaee;
-	color: #ffffff;
-	padding: 1rem 2rem;
-	text-decoration: none;
-	border: 0.1rem solid rgba(255,255,255,0.2);
-	transition: color 200ms ease-out;
-}
-
 /*-----------------------------------------------------------------------------/
 
 	SETUP JS
 
 /-----------------------------------------------------------------------------*/
-
-#background {
-	position: fixed;
-}
 
 .item {
 	min-width: 100%;
@@ -106,21 +91,20 @@ a.cta {
 
 .js #portfolio {
 	pointer-events: none;
+	user-select: none;
 }
 
-.js #portfolio a {
+a.cta {
+	display: inline-block;
+	background: #00aaee;
+	color: #ffffff;
+	padding: 1rem 2rem;
+	text-decoration: none;
+	border: 0.1rem solid rgba(255,255,255,0.2);
+	transition: color 200ms ease-out;
 	pointer-events: initial;
-}
-
-.js #projects-main {
-	font-size: 2.6rem;
-	line-height: 3.2rem;
-	letter-spacing: 0.1rem;
-}
-
-.js #projects-sub {
-	font-size: 1.4rem;
-	letter-spacing: 0.1rem;
+	cursor: pointer;
+	user-select: none;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -141,7 +125,7 @@ nav {
 	justify-content: flex-start;
 }
 
-#controls {
+#nav-controls {
 	width: 32rem;
 	max-width: 100%;
 	display: flex;
@@ -149,12 +133,13 @@ nav {
 	flex-direction: row;
 	z-index: 10;
 }
-	.open #controls {
+	.open #nav-controls {
 		box-shadow: 0 1rem 5rem rgba(0,0,0,0.1);
 	}
 
-.menu-section,
-.menu-screen,
+.dropdown-section,
+.dropdown-screen,
+.menu-item,
 .control {
 	display: inline-block;
 	text-decoration: none;
@@ -166,13 +151,13 @@ nav {
 	-webkit-tap-highlight-color: transparent;
 }
 
-.control {
+nav .control {
 	display: inline-block;
 	padding: 2rem 2rem 1rem;
 	font-size: 2rem;
 	color: rgba(255,255,255,0.8);
 }
-	.open .control {
+	nav.open .control {
 		padding-top: 1.4rem;
 		border-top: 0.6rem solid #00aaee;
 		background: #ffffff;
@@ -184,60 +169,62 @@ nav {
 	cursor: initial;
 }
 
-#menu-control {
+#dropdown-button {
 	flex-grow: 10;
 	text-align: center;
 	text-transform: uppercase;
 }
-	.open #menu-control {
+	.open #dropdown-button {
 		font-weight: bold;
 	}
 
 /*-----------------------------------------------------------------------------/
 
-	MENU
+	DROPDOWN
 
 /-----------------------------------------------------------------------------*/
 
-#menu-dropdown {
+#dropdown-wrapper {
+	font-style: italic;
 	display: none;
 	pointer-events: initial;
 	overflow-y: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
-	#menu-dropdown::-webkit-scrollbar {
+	#dropdown-wrapper::-webkit-scrollbar {
 		display: none;
 	}
-	.open #menu-dropdown {
+	.open #dropdown-wrapper {
 		display: block;
 		box-shadow: 0 1rem 4rem rgba(0,0,0,0.6);
 	}
 
-#menu {
+#dropdown {
 	width: 32rem;
 	text-align: left;
 	background: rgba(255,255,255,0.98);
 	padding: 2rem 0;
 }
 
-.menu-section,
-.menu-screen {
+.dropdown-section,
+.dropdown-screen {
 	display: block;
 	color: rgba(0,0,0,0.7);
 	padding: 0.8rem 3.2rem;
 }
-#menu li.selected {
+#dropdown li.selected {
 	color: #00aaee;
 }
 
-.menu-section {
+.dropdown-section {
 	font-weight: bold;
 	text-transform: uppercase;
-	font-size: 2.2rem;
+	font-size: 2rem;
 }
 
-.menu-screen {
+.dropdown-screen {
+	padding-left: 3.3rem;
 	font-size: 1.6rem;
 }
 
@@ -271,7 +258,7 @@ nav {
 		#name-alias {
 			display: block;
 			font-size: 7.2rem;
-			line-height: 4.6rem;
+			line-height: 0.6;
 			margin-bottom: 1rem;
 		}
 		#vocation {
@@ -284,38 +271,49 @@ nav {
 
 	/-------------------------------------------------------------------------*/
 
-	#projects-overview {
+	#menu-list {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
+		text-transform: uppercase;
 	}
 
-	.project-shortcut {
-		margin-top: 2.8rem;
-		text-align: center;
-		padding: 0.8rem;
+	.menu-item {
+		margin-top: 2rem;
+		line-height: 1.2;
+		padding: 1rem;
+		pointer-events: none;
 	}
 
-	.project-name {
-		font-size: 2.8rem;
-		line-height: 0.8em;
-		color: #ffffff;
+	.menu-item-title {
+		color: rgba(255,255,255,0.8);
+		font-size: 2.6rem;
 	}
 
-	.project-summary {
-		font-size: 1.6rem;
-		color: #b4ccd4 ;
+	.menu-item-summary {
+		font-size: 1.4rem;
+		color: #b4ccd4;
+		display: block;
+	}
+
+	.menu-item-summary.note {
+		margin-top: 0.3rem;
 	}
 
 	.description {
 		padding: 0 0.2rem;
 		text-align: left;
 		max-width: 45em;
-
 		line-height: 1.4em;
 		color: rgba(255,255,255,0.8);
 		margin-bottom: 2.6rem;
+	}
+
+	.note {
+		color: rgba(255,255,255,0.2);
+		font-style: italic;
+		font-size: 1.2rem;
 	}
 
 	/*-------------------------------------------------------------------------/
@@ -339,9 +337,17 @@ nav {
 		padding: 2rem;
 	}
 
+	#contact-card a {
+		pointer-events: initial;
+	}
+
 	#email {
 		display: block;
 		margin: 2rem 0 2.5rem;
+	}
+
+	#email a {
+		user-select: text;
 	}
 
 	#contact-social li {
@@ -397,39 +403,53 @@ footer {
 #upgrade-push {
 	display: none;	
 }
-	.no-js #upgrade-push {
+	.nojs #upgrade-push {
 		display: flex;
 		justify-content: center;
 		position: absolute;
 		top: 8rem;
 		width: 100%;
 	}
+	.nojs #upgrade-prompt {
+		width: 28rem;
+		max-width: 90%;
+		background: #8d0000;
+		font-size: 1.2rem;
+		line-height: 1.2;
+		padding: 1.5rem 1rem;
+		margin: 1rem;
+		border: 0.1rem solid #ff0000;
+	}
 
-#upgrade-prompt {
-	width: 28rem;
-	max-width: 90%;
-	background: #8d0000;
-	font-size: 1.2rem;
-	line-height: 1.5rem;
-	padding: 2rem 1rem;
-	margin: 1rem;
-	border: 0.1rem solid #ff0000;
+#background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #080809;
+	background: -moz-linear-gradient(top,  #080809 0%, #201f23 100%);
+	background: -webkit-linear-gradient(top,  #080809 0%,#201f23 100%);
+	background: linear-gradient(to bottom,  #080809 0%,#201f23 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#080809', endColorstr='#201f23',GradientType=0 );
 }
+	.nojs #background {
+		z-index: -1;
+	}
 
-.no-js nav {
+.nojs nav {
 	display: none;
 }
 
-.no-js .section-title {
-	display: flex;
-	justify-content: center;
+.nojs h2 {
+	margin-top: 10rem;
 }
 
-.no-js .item {
+.nojs .item {
 	padding: 4rem;
 }
 
-.no-js .sketch-placeholder {
+.nojs .sketch-placeholder {
 	width: 64rem;
 	height: 36rem;
 	max-width: 90%;
@@ -442,32 +462,24 @@ footer {
 	color: #8d8d8d;
 }
 
-.no-js #cover {
+.nojs .project {
+	margin: 4rem 0;
+}
+
+.nojs #cover {
 	display: none;
 }
 
-.no-js #main-title {
+.nojs #main-title {
 	height: 100vh;
 }
 
-.no-js #projects-sub {
-	margin-top: 1rem;
-	font-size: 2.2rem;
+.nojs #selfie {
+	margin-top: 2rem;
 }
 
-.no-js #projects-main {
-	line-height: 3.5rem;
-}
-
-.no-js #infos {
-	margin-top: 10rem;
-}
-
-.no-js #about-me {
-	padding-bottom: 2rem;
-}
-.no-js #contact {
-	padding: 9rem 4rem 15rem;
+.nojs #contact {
+	padding: 10rem 4rem 18rem;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -478,9 +490,9 @@ footer {
 
 @media ( max-width: 640px ) {
 
-	#controls,
-	#menu-dropdown,
-	#menu {
+	#nav-controls,
+	#dropdown-wrapper,
+	#dropdown {
 		width: 100%;
 	}
 
@@ -494,19 +506,24 @@ footer {
 
 }
 
-
 @media (max-width: 300px) {
 
-	.no-js #contact {
-		padding: 2rem 1rem 6rem;
+	.nojs #contact {
+		padding: 2rem 1rem 12rem;
 	}
 
 	.description {
 		padding: 0 0.4rem;
 	}
 
-	nav {
+	#back, 
+	#forward {
 		display: none;
+	}
+
+	.dropdown-section,
+	.dropdown-screen {
+		padding: 0 0.8rem;
 	}
 
 	h2, h3, p,
@@ -516,11 +533,11 @@ footer {
 		padding: 0;
 	}
 
-	.no-js h2 {
+	.nojs h2 {
 		font-size: 2.8rem;
 	}
 
-	.no-js h3 {
+	.nojs h3 {
 		font-size: 1.8rem;
 		margin-bottom: 1rem;
 	}
@@ -544,8 +561,18 @@ footer {
 	}
 
 	.js .item,
-	.no-js .item {
+	.nojs .item {
 		padding: 12rem 1rem;
+	}
+
+	.menu-item {
+		padding: 0;
+	}
+	.menu-item-title {
+		font-size: 1.6rem;
+	}
+	.menu-item-summary {
+		font-size: 1.2rem;
 	}
 
 	footer {
@@ -563,39 +590,47 @@ footer {
 	}
 	
 	.control:hover,
-	#menu li:hover,
-	#invitation:hover,
-	.project-shortcut:hover .project-summary {
+	#dropdown li:hover,
+	.js .menu-item:hover .menu-item-title,
+	#invitation:hover {
 		color: #ffffff;
+	}
+
+	.js .menu-item:hover .menu-item-summary:not(.note) {
+		color: #eaeef0;
 	}
 
 	.open .control:hover {
 		color: #00aaee;
 	}
 
-	#menu li:hover {
+	#dropdown li:hover {
 		background: #00aaee;
 		color: #ffffff;
 	}
 
-	a.cta:hover {
+	#portfolio .cta:hover {
 		background: #eaeef0;
 		color: #00aaee;
 		box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.7);
 	}
 
-	.menu-section,
-	.menu-screen {
+	.dropdown-section,
+	.dropdown-screen {
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
 	}
 
-	.menu-section {
+	.dropdown-section {
 		margin-top: 1.4rem;
 	}
-		.menu-section:first-child {
+		.dropdown-section:first-child {
 			margin-top: 0;
 		}
+
+	.menu-item {
+		pointer-events: initial;
+	}
 
 	#contact-social li {
 		margin-top: 0.2rem;

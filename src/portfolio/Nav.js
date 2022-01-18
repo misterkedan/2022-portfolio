@@ -8,10 +8,10 @@ class Nav extends Tweenable {
 
 		this.back = document.getElementById( 'back' );
 		this.forward = document.getElementById( 'forward' );
-		this.menuControl = document.getElementById( 'menu-control' );
+		this.dropdownButton = document.getElementById( 'dropdown-button' );
 
-		this.menu = document.getElementById( 'menu' );
-		this.items = Array.from( this.menu.querySelectorAll( 'li' ) );
+		this.dropdown = document.getElementById( 'dropdown' );
+		this.items = Array.from( this.dropdown.querySelectorAll( 'li' ) );
 
 	}
 

@@ -2,7 +2,7 @@ import { Portfolio } from './portfolio/Portfolio';
 
 function init() {
 
-	const nojs = 'no-js';
+	const nojs = 'nojs';
 	if ( window.location.search === `?${nojs}` ) {
 
 		document.documentElement.classList.remove( 'init' );

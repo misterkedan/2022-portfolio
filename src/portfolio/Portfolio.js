@@ -5,8 +5,7 @@ import { AboutScreen } from './screens/AboutScreen';
 import { DemoScreen } from './screens/DemoScreen';
 import { CoverScreen } from './screens/CoverScreen';
 import { LinksScreen } from './screens/LinksScreen';
-import { ProjectsScreen } from './screens/ProjectsScreen';
-import { SketchesScreen } from './screens/SketchesScreen';
+import { MenuScreen } from './screens/MenuScreen';
 import { ProjectScreen } from './screens/ProjectScreen';
 import { Nav } from './Nav';
 
@@ -28,22 +27,23 @@ class Portfolio {
 			'ablaze',
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
 
-		const projectMenu = new ProjectsScreen( cyber );
+		const menu = new MenuScreen( cyber );
 		const projects = [
 			'orion',
 			'vesuna',
 			'textformer',
 			'disintegrator',
+			'sketches',
 		].map( id => new ProjectScreen( id, cyber ) );
 
-		const sketches = new SketchesScreen( cyber );
+		//const sketches = new SketchesScreen( cyber );
 		const about = new AboutScreen( cyber );
 		const links = new LinksScreen( cyber );
 
 		this.screens = [
 			home, ...demos,
-			projectMenu, ...projects,
-			sketches, about, links
+			menu, ...projects,
+			about, links
 		];
 
 		this.length = this.screens.length;
@@ -55,7 +55,7 @@ class Portfolio {
 		this.animations = new Animations( this );
 
 		this.invitation = home.invitation;
-		this.projectMenu = projectMenu.domElement;
+		this.menu = menu;
 		this.controls = new Controls( this );
 
 	}
@@ -87,8 +87,8 @@ class Portfolio {
 	goto( index ) {
 
 		if ( typeof index === 'string' ) index = this.indexOf( index );
-
 		if ( index === this.index ) return;
+		index = Math.min( Math.max( index, 0 ), this.screens.length - 1 );
 
 		const from = this.currentScreen;
 		const to = this.screens[ index ];

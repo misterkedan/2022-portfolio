@@ -19,13 +19,13 @@ class Screen extends Tweenable {
 
 	getAll( selector ) {
 
-		return this.domElement.querySelectorAll( selector );
+		return Array.from( this.domElement.querySelectorAll( selector ) );
 
 	}
 
 	prepTextform( selector ) {
 
-		return Array.from( this.getAll( selector ) ).map( ( element ) => {
+		return this.getAll( selector ).map( ( element ) => {
 
 			return {
 				element: element,

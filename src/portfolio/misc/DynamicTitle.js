@@ -5,7 +5,7 @@ class DynamicTitle {
 
 	constructor() {
 
-		this.domElement = document.getElementById( 'menu-control' );
+		this.domElement = document.getElementById( 'dropdown-button' );
 
 	}
 

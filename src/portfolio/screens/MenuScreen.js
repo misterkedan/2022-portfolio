@@ -2,14 +2,15 @@ import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { Screen } from './Screen';
 
-class ProjectsScreen extends Screen {
+class MenuScreen extends Screen {
 
 	constructor( sketch ) {
 
-		super( 'projects', sketch );
+		super( 'menu', sketch );
 
-		this.names = this.prepTextform( '.project-name' );
-		this.summaries = this.prepTextform( '.project-summary' );
+		this.items = this.getAll( 'li' );
+		this.names = this.prepTextform( '.menu-item-title' );
+		this.summaries = this.prepTextform( '.menu-item-summary' );
 
 		this.tweenX = 12;
 
@@ -132,4 +133,4 @@ class ProjectsScreen extends Screen {
 
 }
 
-export { ProjectsScreen };
+export { MenuScreen };
