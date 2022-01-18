@@ -204,18 +204,19 @@ nav .control {
 	width: 32rem;
 	text-align: left;
 	background: rgba(255,255,255,0.98);
-	padding: 2rem 0;
+	padding: 1rem 1rem;
 }
 
 .dropdown-section,
 .dropdown-screen {
 	display: block;
 	color: rgba(0,0,0,0.7);
-	padding: 0.8rem 3.2rem;
+	padding: 0.8rem 1.2rem;
 }
-#dropdown li.selected {
-	color: #00aaee;
-}
+	.dropdown-section:selected,
+	.dropdown-screen:selected {
+		color: #00aaee;
+	}
 
 .dropdown-section {
 	font-weight: bold;
@@ -224,7 +225,6 @@ nav .control {
 }
 
 .dropdown-screen {
-	padding-left: 3.3rem;
 	font-size: 1.6rem;
 }
 
@@ -604,11 +604,6 @@ footer {
 		color: #00aaee;
 	}
 
-	#dropdown li:hover {
-		background: #00aaee;
-		color: #ffffff;
-	}
-
 	#portfolio .cta:hover {
 		background: #eaeef0;
 		color: #00aaee;
@@ -617,9 +612,14 @@ footer {
 
 	.dropdown-section,
 	.dropdown-screen {
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
+		padding-top: 0.4rem;
+		padding-bottom: 0.4rem;
 	}
+		.dropdown-section:hover,
+		.dropdown-screen:hover {
+			background: #00aaee;
+			color: #ffffff;
+		}
 
 	.dropdown-section {
 		margin-top: 1.4rem;
