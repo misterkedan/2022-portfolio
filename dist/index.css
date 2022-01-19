@@ -73,6 +73,8 @@ a:visited {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	z-index: 1;
 }
 
 .js .item {
@@ -189,7 +191,7 @@ nav .control {
 	align-items: center;
 	justify-content: center;
 
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -198,6 +200,8 @@ nav .control {
 	display: none;
 	pointer-events: initial;
 	background: #eaeeef;
+
+	z-index: 1000;
 }
 
 #menu-wrapper {
@@ -260,7 +264,7 @@ nav .control {
 	#invitation {
 		font-size: 6rem;
 		transition: color 200ms ease-in-out;
-		padding: 2rem;
+		padding: 2rem 5rem;
 		color: rgba(255,255,255,0.7);
 	}
 
@@ -338,7 +342,7 @@ nav .control {
 	/-------------------------------------------------------------------------*/
 
 	#selfie {
-		margin-bottom: 2rem;
+		margin: 2rem 0;
 	}
 
 	.js #affinities,
@@ -383,7 +387,7 @@ nav .control {
 /-----------------------------------------------------------------------------*/
 
 footer {
-	color: rgba(255,255,255,0.4);
+	color: rgba(255,255,255,0.1);
 	letter-spacing: 0.1rem;
 
 	position: fixed;
@@ -489,10 +493,6 @@ footer {
 	height: 100vh;
 }
 
-.nojs #selfie {
-	margin-top: 2rem;
-}
-
 .nojs #contact {
 	padding: 10rem 4rem 18rem;
 }
@@ -502,6 +502,27 @@ footer {
 	MEDIA
 
 /-----------------------------------------------------------------------------*/
+
+
+
+@media ( max-height: 680px ) {
+
+	.js video {
+		width: 480px;
+		max-width: 80vw;
+	}
+
+	.js .description {
+		width: 34em;
+		max-width: 80vw;
+	}
+
+	.js .project {
+		padding-top: 12rem;
+		padding-bottom: 12rem;
+	}
+
+}
 
 @media ( max-width: 640px ) {
 
@@ -521,6 +542,7 @@ footer {
 
 }
 
+
 @media (max-width: 300px) {
 
 	.nojs #contact {
@@ -531,6 +553,10 @@ footer {
 		padding: 0 0.4rem;
 	}
 
+	#menu-button {
+		font-size: 1.4rem;
+	}
+
 	#back, 
 	#forward {
 		display: none;
@@ -539,13 +565,6 @@ footer {
 	.menu-section,
 	.menu-screen {
 		padding: 0 0.8rem;
-	}
-
-	h2, h3, p,
-	#contact-card {
-		max-width: 100%;
-		overflow-wrap: break-word;
-		padding: 0;
 	}
 
 	.nojs h2 {
@@ -580,6 +599,9 @@ footer {
 		padding: 12rem 1rem;
 	}
 
+	#portfolio .item {
+		max-width: 100%;
+	}
 	.other-project {
 		padding: 0;
 	}
@@ -590,10 +612,23 @@ footer {
 		font-size: 1.2rem;
 	}
 
+	#contact-social li {
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
+
 	footer {
 		padding-bottom: 1rem;
 		flex-direction: column;
 
+	}
+
+	h2, h3, h4, h5, p, span, ul, li, a,
+	#contact-card {
+		max-width: 100%;
+		overflow-wrap: break-word;
+		padding: 0;
 	}
 
 }
@@ -625,7 +660,7 @@ footer {
 	}
 
 	#menu {
-		margin: 10rem 0.5rem;
+		margin: 4rem 0.5rem;
 	}
 
 	.menu-section,

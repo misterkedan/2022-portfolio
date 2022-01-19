@@ -59,6 +59,9 @@ class Portfolio {
 		this.otherProjects = otherProjects;
 		this.controls = new Controls( this );
 
+
+
+
 	}
 
 	load() {
@@ -86,6 +89,13 @@ class Portfolio {
 	}
 
 	goto( index ) {
+
+		if ( this.locked ) return;
+		this.locked = setTimeout( function () {
+
+			this.locked = false;
+
+		}.bind( this ), 400 );
 
 		if ( typeof index === 'string' ) index = this.indexOf( index );
 		if ( index === this.index ) return;
@@ -138,6 +148,36 @@ class Portfolio {
 	get isEnding() {
 
 		return ( this.index === this.screens.lastIndex );
+
+	}
+
+	/*-------------------------------------------------------------------------/
+
+		Scroll utils
+
+	/-------------------------------------------------------------------------*/
+
+	get height() {
+
+		return this.currentScreen.domElement.clientHeight;
+
+	}
+
+	get offset() {
+
+		return window.pageYOffset || window.scrollY;
+
+	}
+
+	get canScrollUp() {
+
+		return ( this.offset > 0 );
+
+	}
+
+	get canScrollDown() {
+
+		return ( ( window.innerHeight + this.offset ) < this.height );
 
 	}
 

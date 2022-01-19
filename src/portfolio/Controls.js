@@ -7,6 +7,7 @@ class Controls {
 		this.initMouseSwipe( portfolio );
 		this.initTouch( portfolio );
 		this.initKeyboad( portfolio );
+		this.initWheel( portfolio );
 
 	}
 
@@ -38,6 +39,43 @@ class Controls {
 				event.currentTarget.getAttribute( 'data-ref' ) || 0
 			) )
 		);
+
+	}
+
+	initWheel( portfolio ) {
+
+		window.addEventListener( 'wheel', ( event ) => {
+
+			if ( event.target === portfolio.menu.domElement ) return;
+
+			if ( event.deltaX ) {
+
+				if ( event.deltaX > 0 ) portfolio.forward();
+				else portfolio.back();
+				return;
+
+			}
+
+			if ( ! event.deltaY ) return;
+
+			if ( event.deltaY > 0 && ! portfolio.canScrollDown ) {
+
+				portfolio.forward();
+				window.scrollTo( window.scrollX, 0 );
+
+			}
+
+			if ( event.deltaY < 0 && ! portfolio.canScrollUp ) {
+
+				portfolio.back();
+				window.scrollTo(
+					window.scrollX,
+					Math.max( 0, portfolio.height - window.innerHeight ),
+				);
+
+			}
+
+		} );
 
 	}
 
