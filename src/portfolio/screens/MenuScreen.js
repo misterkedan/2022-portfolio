@@ -6,11 +6,11 @@ class MenuScreen extends Screen {
 
 	constructor( sketch ) {
 
-		super( 'menu', sketch );
+		super( 'other-projects', sketch );
 
 		this.items = this.getAll( 'li' );
-		this.names = this.prepTextform( '.menu-item-title' );
-		this.summaries = this.prepTextform( '.menu-item-summary' );
+		this.names = this.prepTextform( '.other-project-title' );
+		this.summaries = this.prepTextform( '.other-project-summary' );
 
 		this.tweenX = 12;
 

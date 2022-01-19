@@ -139,7 +139,7 @@ nav {
 
 .dropdown-section,
 .dropdown-screen,
-.menu-item,
+.other-project,
 .control {
 	display: inline-block;
 	text-decoration: none;
@@ -281,7 +281,7 @@ nav .control {
 
 	/-------------------------------------------------------------------------*/
 
-	#menu-list {
+	#other-list {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -289,25 +289,25 @@ nav .control {
 		text-transform: uppercase;
 	}
 
-	.menu-item {
+	.other-project {
 		margin-top: 2rem;
 		line-height: 1.2;
 		padding: 1rem;
 		pointer-events: none;
 	}
 
-	.menu-item-title {
+	.other-project-title {
 		color: rgba(255,255,255,0.8);
 		font-size: 2.6rem;
 	}
 
-	.menu-item-summary {
+	.other-project-summary {
 		font-size: 1.4rem;
 		color: #b4ccd4;
 		display: block;
 	}
 
-	.menu-item-summary.note {
+	.other-project-summary.note {
 		margin-top: 0.3rem;
 	}
 
@@ -575,13 +575,13 @@ footer {
 		padding: 12rem 1rem;
 	}
 
-	.menu-item {
+	.other-project {
 		padding: 0;
 	}
-	.menu-item-title {
+	.other-project-title {
 		font-size: 1.6rem;
 	}
-	.menu-item-summary {
+	.other-project-summary {
 		font-size: 1.2rem;
 	}
 
@@ -600,12 +600,12 @@ footer {
 	}
 	
 	.control:hover,
-	.js .menu-item:hover .menu-item-title,
+	.js .other-project:hover .other-project-title,
 	#invitation:hover {
 		color: #ffffff;
 	}
 
-	.js .menu-item:hover .menu-item-summary:not(.note) {
+	.js .other-project:hover .other-project-summary:not(.note) {
 		color: #eaeef0;
 	}
 
@@ -637,7 +637,7 @@ footer {
 			margin-top: 0;
 		}
 
-	.menu-item {
+	.other-project {
 		pointer-events: initial;
 	}
 

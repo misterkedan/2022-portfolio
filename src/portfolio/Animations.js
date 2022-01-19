@@ -90,7 +90,7 @@ class Animations {
 		else if ( fromIsDemo && ! toIsDemo ) this.title.tweenOut();
 
 		let newTitle = ( to instanceof CoverScreen ) ? ''
-			: ( to instanceof MenuScreen ) ? 'projects'
+			: ( to instanceof MenuScreen ) ? 'other projects'
 				: to.id.replaceAll( '-', ' ' );
 		this.dynamicTitle.tween( newTitle, backwards );
 
