@@ -24,17 +24,26 @@ class Controls {
 		nav.dropdownButton.addEventListener( 'click', () => nav.toggle() );
 		nav.dropdown.addEventListener( 'click', ( event ) => {
 
-			portfolio.goto( event.target.getAttribute( 'data-target' ) );
+			const text = event.target.innerText.toLowerCase();
+			const hash = nav.exceptions[ text ] || text.replaceAll( ' ', '-' );
+			portfolio.goto( hash );
 			nav.tweenOut();
 
 		} );
 
 		portfolio.invitation.addEventListener( 'click', ()=> portfolio.goto( 1 ) );
-		portfolio.menu.items.forEach( item => item.addEventListener( 'click', ( event ) => {
+		portfolio.menu.items.forEach( item => item.addEventListener(
+			'click', ( event ) => {
 
-			portfolio.goto( event.currentTarget.getAttribute( 'data-target' ) );
+				portfolio.goto(
+					event.currentTarget
+						.querySelector( 'h4' )
+						.innerText
+						.toLowerCase()
+				);
 
-		} ) );
+			} )
+		);
 
 	}
 

@@ -15,23 +15,20 @@ class Nav extends Tweenable {
 		this.container = this.get( '#dropdown-wrapper' );
 		this.dropdown = this.get( '#dropdown' );
 		this.items = this.prepTextform( 'li' );
-		console.log( this.items );
+
+		this.exceptions = {
+			demos: 'navscan',
+			infos: 'about-me',
+		};
+
+		this.items.forEach( item => {
+
+			const text = item.text.toLowerCase();
+			item.target = this.exceptions[ text ] || text.replaceAll( ' ', '-' );
+
+		} );
 
 	}
-
-	//open() {
-
-	//	this.isOpen = true;
-	//	this.domElement.classList.add( 'open' );
-
-	//}
-
-	//close() {
-
-	//	this.isOpen = false;
-	//	this.domElement.classList.remove( 'open' );
-
-	//}
 
 	show() {
 
@@ -52,17 +49,13 @@ class Nav extends Tweenable {
 		if ( this.isOpen ) this.tweenOut();
 		else this.tweenIn();
 
-		//if ( this.isOpen ) this.close();
-		//else this.open();
-
 	}
 
 
 	update( hash ) {
 
-		const item = this.items.filter(
-			item => item.element.getAttribute( 'data-target' ) === hash
-		).pop().element || this.items[ 1 ].element;
+		const filter = this.items.filter( item => item.target === hash );
+		const item = filter.length ? filter.pop().element : this.items[ 0 ].element;
 
 		const SELECTED = 'selected';
 		this.currentItem?.classList.remove( SELECTED );
