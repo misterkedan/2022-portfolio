@@ -626,7 +626,7 @@ footer {
 	}
 		.dropdown-section:hover,
 		.dropdown-screen:hover {
-			background: rgba(0, 170, 238, 0.1);
+			background: #ffffff;
 			color: #00aaee;
 		}
 
