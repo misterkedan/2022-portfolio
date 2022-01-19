@@ -425,8 +425,8 @@ footer {
 	.nojs #upgrade-push {
 		display: flex;
 		justify-content: center;
-		position: absolute;
-		top: 8rem;
+		/*position: absolute;*/
+		margin: 8rem 0;
 		width: 100%;
 	}
 	.nojs #upgrade-prompt {
@@ -502,8 +502,6 @@ footer {
 	MEDIA
 
 /-----------------------------------------------------------------------------*/
-
-
 
 @media ( max-height: 680px ) {
 

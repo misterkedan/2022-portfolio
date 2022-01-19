@@ -43,14 +43,14 @@ class OtherProjectsScreen extends Screen {
 		const tweeningIn = anime.timeline( {
 			complete: this.completeTweenIn,
 			easing: 'easeOutCirc',
-			duration: 500,
+			duration: 450,
 			delay: 100,
 		} );
 		this.tweeningIn = tweeningIn;
 
 		const addTextformer = function ( i, item, delay = 0 ) {
 
-			const stagger = delay + i * 100;
+			const stagger = delay + i * 50;
 
 			tweeningIn.add( {
 				targets: new Textformer( {
