@@ -10,9 +10,6 @@ const CyberdarkSettings = {
 	depth: 50,
 
 	particle: {
-		//color: '#ff2425',
-		//color: '#222425',
-		//color: '#1d2225',
 		color: '#323739',
 		opacity: 0.6,
 		size: 0.04,

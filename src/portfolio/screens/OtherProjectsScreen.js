@@ -55,10 +55,7 @@ class OtherProjectsScreen extends Screen {
 			tweeningIn.add( {
 				targets: new Textformer( {
 					autoplay: false,
-					//mode: Textformer.modes.EXPAND,
 					align: Textformer.align.LEFT,
-					//steps: 30,
-					//stagger: 15,
 					from: '',
 					to: item.text,
 					output: item.element,

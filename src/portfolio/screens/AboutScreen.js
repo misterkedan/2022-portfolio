@@ -22,14 +22,6 @@ class AboutScreen extends Screen {
 			`${ABOUT}-4c`,
 		].map( id => document.getElementById( id ) );
 		this.texts = this.elements.map( element => element.innerText );
-		//this.lengths = this.texts.map( text => text.length );
-		//this.staggers = this.lengths.reduce( ( result, length ) => {
-
-		//	result.total += length * 0.4;
-		//	result.array.push( result.total );
-		//	return result;
-
-		//}, { array: [], total: 0 } ).array;
 
 		this.selfie = document.getElementById( 'selfie' );
 
@@ -93,11 +85,6 @@ class AboutScreen extends Screen {
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
-			//const duration = Math.min(
-			//	Math.max( this.lengths[ i ] * 8, 300 ), 500
-			//);
-			//const stagger = this.staggers[ i ];
-
 			const textformer = new Textformer( {
 				output: element,
 				from: '',
@@ -114,12 +101,10 @@ class AboutScreen extends Screen {
 			this.tweeningIn
 				.add( {
 					targets: textformer,
-					//duration,
 					progress: 1,
 				}, stagger )
 				.add( {
 					targets: element,
-					//duration,
 					translateX: 0,
 					opacity: 1
 				}, stagger + 100 );

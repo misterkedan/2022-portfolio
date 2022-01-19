@@ -75,7 +75,6 @@ class Menu extends Tweenable {
 
 		super.tweenOut();
 
-		//this.hide();
 		this.tweeningOut = anime.timeline( {
 			easing: 'easeOutQuad',
 			duration: 300,

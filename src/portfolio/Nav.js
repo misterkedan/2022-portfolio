@@ -21,33 +21,6 @@ class Nav extends Tweenable {
 
 	}
 
-	//show() {
-
-	//	this.isOpen = true;
-	//	this.domElement.classList.add( 'open' );
-
-	//}
-
-	//hide() {
-
-	//	this.isOpen = false;
-	//	this.domElement.classList.remove( 'open' );
-
-	//}
-
-	//toggle() {
-
-	//	if ( this.isOpen ) this.tweenOut();
-	//	else this.tweenIn();
-
-	//}
-
-
-
-
-
-
-
 }
 
 export { Nav };

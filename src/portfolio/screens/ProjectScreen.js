@@ -74,7 +74,6 @@ class ProjectScreen extends Screen {
 			tweeningIn.add( {
 				targets: new Textformer( {
 					autoplay: false,
-					//mode: Textformer.modes.EXPAND,
 					align: Textformer.align.LEFT,
 					steps: 30,
 					stagger: 15,
@@ -126,7 +125,6 @@ class ProjectScreen extends Screen {
 			tweeningOut.add( {
 				targets: new Textformer( {
 					autoplay: false,
-					//mode: Textformer.modes.EXPAND,
 					align: Textformer.align.LEFT,
 					steps: 30,
 					stagger: 15,

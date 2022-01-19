@@ -16,12 +16,12 @@ class Portfolio {
 
 		this.nav = new Nav();
 		this.menu = new Menu();
-
 		this.background = new Background();
-		this.canvas = this.background.sketchpad.canvas;
-		const { grid, cyber } = this.background;
 
-		const home = new CoverScreen( grid, this.nav );
+		this.canvas = this.background.sketchpad.canvas;
+		const { cyber } = this.background;
+
+		const home = new CoverScreen( this.background.grid, this.nav );
 		const demos = [
 			'navscan',
 			'rain',
@@ -38,7 +38,6 @@ class Portfolio {
 			'sketches',
 		].map( id => new ProjectScreen( id, cyber ) );
 
-		//const sketches = new SketchesScreen( cyber );
 		const about = new AboutScreen( cyber );
 		const links = new LinksScreen( cyber );
 

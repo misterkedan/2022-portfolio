@@ -196,7 +196,6 @@ nav .control {
 	height: 100%;
 
 	display: none;
-	/*display: flex;*/
 	pointer-events: initial;
 	background: #eaeeef;
 }
@@ -295,7 +294,6 @@ nav .control {
 		align-items: center;
 		justify-content: space-between;
 		text-transform: uppercase;
-		/*letter-spacing: 0.1rem;*/
 	}
 
 	.other-project {
