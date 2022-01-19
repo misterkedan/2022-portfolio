@@ -84,7 +84,7 @@ class Menu extends Tweenable {
 			opacity: 0,
 		}, 100 );
 
-		Object.entries( this.items ).forEach( ( [ i, item ] ) => {
+		this.items.forEach( ( item ) => {
 
 			this.tweeningOut.add( {
 				targets: new Textformer( {

@@ -1,5 +1,4 @@
 import anime from 'animejs';
-import { Textformer } from 'textformer';
 import { Screen } from './Screen';
 
 class CoverScreen extends Screen {

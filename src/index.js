@@ -3,7 +3,8 @@ import { Portfolio } from './portfolio/Portfolio';
 function init() {
 
 	const nojs = 'nojs';
-	if ( window.location.search === `?${nojs}` ) {
+
+	if ( new RegExp( nojs ).test( window.location.search ) ) {
 
 		document.documentElement.classList.remove( 'init' );
 		return;
