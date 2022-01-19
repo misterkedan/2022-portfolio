@@ -109,23 +109,23 @@
 				</div>
 				<div id="other-projects" class="item">
 					<ul id="other-list">
-						<li class="other-project">
+						<li class="other-project" data-ref="orion">
 							<h4 class="other-project-title">Orion</h4>
 							<span class="other-project-summary">Generative 3D experiment</span>
 						</li>
-						<li class="other-project">
+						<li class="other-project" data-ref="vesuna">
 							<h4 class="other-project-title">Vesuna</h4>
 							<span class="other-project-summary">Random seed utility</span>
 						</li>
-						<li class="other-project">
+						<li class="other-project" data-ref="textformer">
 							<h4 class="other-project-title">Textformer</h4>
 							<span class="other-project-summary">Text animation library</span>
 						</li>
-						<li class="other-project">
+						<li class="other-project" data-ref="disintegrator">
 							<h4 class="other-project-title">Disintegrator</h4>
 							<span class="other-project-summary">Mesh destruction lab</span>
 						</li>
-						<li class="other-project">
+						<li class="other-project" data-ref="sketches">
 							<h4 class="other-project-title">Sketches</h4>
 							<span class="other-project-summary">Practice makes Pierre-fect!</span>
 							<span class="other-project-summary note">(collective groan)</span>
@@ -212,31 +212,10 @@
 		<nav>
 			<div id="nav-controls">
 				<div id="back" class="control">&#10094;</div>
-				<div id="dropdown-button" class="control" ></div>
+				<div id="menu-button" class="control" ></div>
 				<div id="forward" class="control">&#10095;</div>
 			</div>
-			<div id="dropdown-wrapper">
-				<ul id="dropdown">
-					<li class="dropdown-section">Cover</li>
-	
-					<li class="dropdown-section">Demos</li>
-					<li class="dropdown-screen">Navscan</li>
-					<li class="dropdown-screen">Rain</li>
-					<li class="dropdown-screen">Blockflow</li>
-					<li class="dropdown-screen">Ablaze</li>
-	
-					<li class="dropdown-section">Other projects</li>
-					<li class="dropdown-screen">Orion</li>
-					<li class="dropdown-screen">Vesuna</li>
-					<li class="dropdown-screen">Textformer</li>
-					<li class="dropdown-screen">Disintegrator</li>
-					<li class="dropdown-screen">Sketches</li>
-	
-					<li class="dropdown-section">Infos</li>
-					<li class="dropdown-screen">About me</li>
-					<li class="dropdown-screen">Contact</li>
-				</ul>
-			</div>
+			
 		</nav>
 
 		<footer>
@@ -244,6 +223,31 @@
 			<span id="signature">Pierre Keda, 2022</span>
 			<span id="pagination"></span>
 		</footer>
+
+		<div id="menu-overlay">
+			<div id="menu-wrapper">
+				<ul id="menu">
+					<li class="menu-section" data-ref="cover">Cover</li>
+	
+					<li class="menu-section" data-ref="navscan">Demos</li>
+					<li class="menu-screen" data-ref="navscan">Navscan</li>
+					<li class="menu-screen" data-ref="rain">Rain</li>
+					<li class="menu-screen" data-ref="blockflow">Blockflow</li>
+					<li class="menu-screen" data-ref="ablaze">Ablaze</li>
+	
+					<li class="menu-section" data-ref="other-projects">Other projects</li>
+					<li class="menu-screen" data-ref="orion">Orion</li>
+					<li class="menu-screen" data-ref="vesuna">Vesuna</li>
+					<li class="menu-screen" data-ref="textformer">Textformer</li>
+					<li class="menu-screen" data-ref="disintegrator">Disintegrator</li>
+					<li class="menu-screen" data-ref="sketches">Sketches</li>
+	
+					<li class="menu-section" data-ref="about-me">Infos</li>
+					<li class="menu-screen" data-ref="about-me">About me</li>
+					<li class="menu-screen" data-ref="contact">Contact</li>
+				</ul>
+			</div>
+		</div>
 
 	</div> <!-- #portfolio -->
 

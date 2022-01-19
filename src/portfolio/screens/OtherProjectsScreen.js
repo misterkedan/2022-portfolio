@@ -2,7 +2,7 @@ import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { Screen } from './Screen';
 
-class MenuScreen extends Screen {
+class OtherProjectsScreen extends Screen {
 
 	constructor( sketch ) {
 
@@ -133,4 +133,4 @@ class MenuScreen extends Screen {
 
 }
 
-export { MenuScreen };
+export { OtherProjectsScreen };

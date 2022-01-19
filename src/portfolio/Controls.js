@@ -18,31 +18,25 @@ class Controls {
 
 	initButtons( portfolio ) {
 
-		const { nav } = portfolio;
+		const { nav, menu } = portfolio;
 		nav.back.addEventListener( 'click', () => portfolio.back() );
 		nav.forward.addEventListener( 'click', () => portfolio.forward() );
-		nav.dropdownButton.addEventListener( 'click', () => nav.toggle() );
-		nav.dropdown.addEventListener( 'click', ( event ) => {
+		nav.menuButton.addEventListener( 'click', () => menu.tweenIn() );
 
-			const text = event.target.innerText.toLowerCase();
-			const hash = nav.exceptions[ text ] || text.replaceAll( ' ', '-' );
-			portfolio.goto( hash );
-			nav.tweenOut();
+		menu.list.addEventListener( 'click', ( event ) => {
+
+			portfolio.goto( event.target.getAttribute( 'data-ref' ) || 0 );
+			menu.tweenOut();
 
 		} );
+		menu.domElement.addEventListener( 'click', () => menu.tweenOut() );
 
 		portfolio.invitation.addEventListener( 'click', ()=> portfolio.goto( 1 ) );
-		portfolio.menu.items.forEach( item => item.addEventListener(
-			'click', ( event ) => {
 
-				portfolio.goto(
-					event.currentTarget
-						.querySelector( 'h4' )
-						.innerText
-						.toLowerCase()
-				);
-
-			} )
+		portfolio.otherProjects.items.forEach(
+			item => item.addEventListener( 'click', ( event ) => portfolio.goto(
+				event.currentTarget.getAttribute( 'data-ref' ) || 0
+			) )
 		);
 
 	}
@@ -52,7 +46,6 @@ class Controls {
 		this.onMouseDown = function ( event ) {
 
 			if ( event.button > 0 ) return;
-			portfolio.nav.tweenOut();
 			this.swiping = true;
 			this.start = event.clientX;
 
@@ -60,7 +53,6 @@ class Controls {
 
 		this.onMouseUp = function ( event ) {
 
-			//if ( ! this.swiping || portfolio.nav.isOpen ) return;
 			if ( ! this.swiping ) return;
 			this.swiping = false;
 

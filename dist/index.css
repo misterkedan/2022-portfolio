@@ -128,17 +128,16 @@ nav {
 #nav-controls {
 	width: 32rem;
 	max-width: 100%;
+}
+
+#nav-controls {
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
-	z-index: 10;
 }
-	.open #nav-controls {
-		box-shadow: 0 1rem 5rem rgba(0,0,0,0.1);
-	}
 
-.dropdown-section,
-.dropdown-screen,
+.menu-section,
+.menu-screen,
 .other-project,
 .control {
 	display: inline-block;
@@ -153,15 +152,11 @@ nav {
 
 nav .control {
 	display: inline-block;
-	margin-top: 1rem;
-	padding: 1rem 2rem 1rem;
+	margin-top: 1.5rem;
+	padding: 1rem 1.5rem 1rem;
 	font-size: 2rem;
 	color: rgba(255,255,255,0.8);
 }
-	nav.open .control {
-		background: #ffffff;
-		color: rgba(0,0,0,0.7);
-	}
 
 #back {
 	border-top-left-radius: 0.2rem;
@@ -176,66 +171,79 @@ nav .control {
 	cursor: initial;
 }
 
-#dropdown-button {
+#menu-button {
 	flex-grow: 10;
 	text-align: center;
-	text-transform: uppercase;
+	padding: 1rem 0 1rem;
+	text-transform: lowercase;
+	letter-spacing: 0.1em;
 }
-	.open #dropdown-button {
-		font-weight: bold;
-	}
 
 /*-----------------------------------------------------------------------------/
 
-	DROPDOWN
+	MENU
 
 /-----------------------------------------------------------------------------*/
 
-#dropdown-wrapper {
-	font-style: italic;
+#menu-overlay {
+	align-items: center;
+	justify-content: center;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
 	display: none;
+	/*display: flex;*/
 	pointer-events: initial;
-	overflow-y: scroll;
+	background: #eaeeef;
+}
+
+#menu-wrapper {
+	max-width: 100%;
+	max-height: 100%;
+
+	overflow: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
-	#dropdown-wrapper::-webkit-scrollbar {
+	#menu-wrapper::-webkit-scrollbar {
 		display: none;
 	}
-	.open #dropdown-wrapper {
-		display: block;
-		box-shadow: 0 1rem 4rem rgba(0,0,0,0.6);
-	}
 
-#dropdown {
-	width: 32rem;
+#menu {
 	text-align: left;
-	background: rgba(255,255,255,0.98);
-	padding: 1rem 0.4rem;
+	padding: 2rem 0.2rem;
 	border-bottom-left-radius: 0.2rem;
 	border-bottom-right-radius: 0.2rem;
+	text-transform: lowercase;
+	
 }
 
-.dropdown-section,
-.dropdown-screen {
+.menu-section,
+.menu-screen {
+	margin-top: 0;
 	display: block;
-	color: rgba(0,0,0,0.7);
-	padding: 0.8rem 1.2rem;
+	color: rgba(0,0,0,0.4);
+	padding: 2rem;
 }
-	.open #dropdown .dropdown-section.selected,
-	.open #dropdown .dropdown-screen.selected {
-		background:#55ccff;
-		color: rgba(255,255,255,0.9);
+	#menu .menu-section.selected,
+	#menu .menu-screen.selected {
+		background: none;
+		color: rgba(0,0,0,0.6);
+		font-weight: bold;
 	}
 
-.dropdown-section {
-	font-weight: bold;
-	text-transform: uppercase;
+.menu-section {
 	font-size: 2rem;
 }
 
-.dropdown-screen {
+.menu-screen {
 	font-size: 1.6rem;
+	padding-left: 5rem;
+	font-style: italic;
 }
 
 /*-----------------------------------------------------------------------------/
@@ -287,28 +295,27 @@ nav .control {
 		align-items: center;
 		justify-content: space-between;
 		text-transform: uppercase;
+		/*letter-spacing: 0.1rem;*/
 	}
 
 	.other-project {
 		margin-top: 2.2rem;
-		line-height: 1.2;
+		line-height: 1.4;
 		padding: 1rem;
 		pointer-events: none;
 	}
 
 	.other-project-title {
-		color: rgba(255,255,255,0.8);
+		text-transform: lowercase;
+		letter-spacing: 0.2em;
+		color: rgba(255,255,255,0.9);
 		font-size: 2.4rem;
 	}
 
 	.other-project-summary {
 		font-size: 1.4rem;
-		color: #b4ccd4;
+		color: #c7dce4;
 		display: block;
-	}
-
-	.other-project-summary.note {
-		margin-top: 0.3rem;
 	}
 
 	.description {
@@ -501,8 +508,8 @@ footer {
 @media ( max-width: 640px ) {
 
 	#nav-controls,
-	#dropdown-wrapper,
-	#dropdown {
+	#menu-wrapper,
+	#menu {
 		width: 100%;
 	}
 
@@ -531,8 +538,8 @@ footer {
 		display: none;
 	}
 
-	.dropdown-section,
-	.dropdown-screen {
+	.menu-section,
+	.menu-screen {
 		padding: 0 0.8rem;
 	}
 
@@ -619,23 +626,30 @@ footer {
 		box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.7);
 	}
 
-	.dropdown-section,
-	.dropdown-screen {
+	#menu {
+		margin: 10rem 0.5rem;
+	}
+
+	.menu-section,
+	.menu-screen {
 		padding-top: 0.4rem;
 		padding-bottom: 0.4rem;
+		border: none;
 	}
-		.dropdown-section:hover,
-		.dropdown-screen:hover {
-			background: #ffffff;
-			color: #00aaee;
+		.menu-section:hover,
+		.menu-screen:hover {
+			background: rgba(255,255,255,0.33);
+			color: rgba(0,0,0,0.6);
 		}
 
-	.dropdown-section {
-		margin-top: 1.4rem;
+	.menu-section {
+		margin-top: 2rem;
+		font-size: 2.4rem;
 	}
-		.dropdown-section:first-child {
-			margin-top: 0;
-		}
+	
+	.menu-screen {
+		font-size: 1.6rem;
+	}
 
 	.other-project {
 		pointer-events: initial;

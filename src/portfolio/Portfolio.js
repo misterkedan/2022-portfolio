@@ -5,15 +5,17 @@ import { AboutScreen } from './screens/AboutScreen';
 import { DemoScreen } from './screens/DemoScreen';
 import { CoverScreen } from './screens/CoverScreen';
 import { LinksScreen } from './screens/LinksScreen';
-import { MenuScreen } from './screens/MenuScreen';
+import { OtherProjectsScreen } from './screens/OtherProjectsScreen';
 import { ProjectScreen } from './screens/ProjectScreen';
 import { Nav } from './Nav';
+import { Menu } from './misc/Menu';
 
 class Portfolio {
 
 	constructor() {
 
-		this.nav = new Nav( this );
+		this.nav = new Nav();
+		this.menu = new Menu();
 
 		this.background = new Background();
 		this.canvas = this.background.sketchpad.canvas;
@@ -27,7 +29,7 @@ class Portfolio {
 			'ablaze',
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
 
-		const menu = new MenuScreen( cyber );
+		const otherProjects = new OtherProjectsScreen( cyber );
 		const projects = [
 			'orion',
 			'vesuna',
@@ -42,7 +44,7 @@ class Portfolio {
 
 		this.screens = [
 			home, ...demos,
-			menu, ...projects,
+			otherProjects, ...projects,
 			about, links
 		];
 
@@ -55,7 +57,7 @@ class Portfolio {
 		this.animations = new Animations( this );
 
 		this.invitation = home.invitation;
-		this.menu = menu;
+		this.otherProjects = otherProjects;
 		this.controls = new Controls( this );
 
 	}
@@ -88,6 +90,7 @@ class Portfolio {
 
 		if ( typeof index === 'string' ) index = this.indexOf( index );
 		if ( index === this.index ) return;
+
 		index = Math.min( Math.max( index, 0 ), this.screens.length - 1 );
 
 		const from = this.currentScreen;
@@ -108,7 +111,7 @@ class Portfolio {
 		this.pagination.innerText = `${index}/${this.length - 1}`;
 
 		const hash = this.currentScreen.id;
-		this.nav.update( hash );
+		this.menu.update( hash );
 		this.nav.setForward( this.isEnding );
 
 		window.location.hash = hash;

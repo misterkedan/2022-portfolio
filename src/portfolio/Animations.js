@@ -3,7 +3,6 @@ import { DynamicTitle } from './misc/DynamicTitle';
 import { Title } from './misc/Title';
 import { DemoScreen } from './screens/DemoScreen';
 import { CoverScreen } from './screens/CoverScreen';
-import { MenuScreen } from './screens/MenuScreen';
 
 class Animations {
 
@@ -89,9 +88,7 @@ class Animations {
 		if ( ! fromIsDemo && toIsDemo ) this.title.tweenIn();
 		else if ( fromIsDemo && ! toIsDemo ) this.title.tweenOut();
 
-		let newTitle = ( to instanceof CoverScreen ) ? ''
-			: ( to instanceof MenuScreen ) ? 'other projects'
-				: to.id.replaceAll( '-', ' ' );
+		let newTitle = ( to instanceof CoverScreen ) ? '' : to.id.replaceAll( '-', ' ' );
 		this.dynamicTitle.tween( newTitle, backwards );
 
 	}
