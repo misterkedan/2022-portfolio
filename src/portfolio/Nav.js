@@ -1,3 +1,5 @@
+import anime from 'animejs';
+import { Textformer } from 'textformer';
 import { Tweenable } from './misc/Tweenable';
 
 class Nav extends Tweenable {
@@ -6,23 +8,39 @@ class Nav extends Tweenable {
 
 		super( document.querySelector( 'nav' ), 'flex' );
 
-		this.back = document.getElementById( 'back' );
-		this.forward = document.getElementById( 'forward' );
-		this.dropdownButton = document.getElementById( 'dropdown-button' );
+		this.back = this.get( '#back' );
+		this.forward = this.get( '#forward' );
+		this.dropdownButton = this.get( '#dropdown-button' );
 
-		this.dropdown = document.getElementById( 'dropdown' );
-		this.items = Array.from( this.dropdown.querySelectorAll( 'li' ) );
+		this.container = this.get( '#dropdown-wrapper' );
+		this.dropdown = this.get( '#dropdown' );
+		this.items = this.prepTextform( 'li' );
+		console.log( this.items );
 
 	}
 
-	open() {
+	//open() {
+
+	//	this.isOpen = true;
+	//	this.domElement.classList.add( 'open' );
+
+	//}
+
+	//close() {
+
+	//	this.isOpen = false;
+	//	this.domElement.classList.remove( 'open' );
+
+	//}
+
+	show() {
 
 		this.isOpen = true;
 		this.domElement.classList.add( 'open' );
 
 	}
 
-	close() {
+	hide() {
 
 		this.isOpen = false;
 		this.domElement.classList.remove( 'open' );
@@ -31,16 +49,20 @@ class Nav extends Tweenable {
 
 	toggle() {
 
-		if ( this.isOpen ) this.close();
-		else this.open();
+		if ( this.isOpen ) this.tweenOut();
+		else this.tweenIn();
+
+		//if ( this.isOpen ) this.close();
+		//else this.open();
 
 	}
+
 
 	update( hash ) {
 
 		const item = this.items.filter(
-			item => item.getAttribute( 'data-target' ) === hash
-		).pop() || this.items[ 1 ];
+			item => item.element.getAttribute( 'data-target' ) === hash
+		).pop().element || this.items[ 1 ].element;
 
 		const SELECTED = 'selected';
 		this.currentItem?.classList.remove( SELECTED );
@@ -54,6 +76,55 @@ class Nav extends Tweenable {
 		const DISABLED = 'disabled';
 		if ( isEnding ) this.forward.classList.add( DISABLED );
 		else this.forward.classList.remove( DISABLED );
+
+	}
+
+	setup() {
+
+		this.setOpacity( this.container, 0 );
+		this.items.forEach( item => this.setOpacity( item.element, 0 ) );
+
+	}
+
+	tweenIn() {
+
+		super.tweenIn();
+
+		this.tweeningIn = anime.timeline( {
+			easing: 'easeOutCirc',
+			duration: 250,
+			complete: this.completeTweenIn,
+		} ).add( {
+			targets: this.container,
+			opacity: 1,
+		} );
+
+		Object.entries( this.items ).forEach( ( [ i, item ] ) => {
+
+			const stagger = i * 30;
+
+			this.tweeningIn.add( {
+				targets: new Textformer( {
+					autoplay: false,
+					from: '',
+					to: item.text,
+					output: item.element,
+				} ),
+				progress: 1,
+			}, 50 + stagger ).add( {
+				targets: item.element,
+				opacity: 1,
+			}, stagger );
+
+		} );
+
+	}
+
+	tweenOut() {
+
+		super.tweenOut();
+
+		this.hide();
 
 	}
 

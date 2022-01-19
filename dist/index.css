@@ -159,9 +159,6 @@ nav .control {
 	color: rgba(255,255,255,0.8);
 }
 	nav.open .control {
-		/*padding-top: 1.4rem;*/
-		/*border-top: 0.6rem solid #00aaee;*/
-		/*margin-top: 0.6rem;*/
 		background: #ffffff;
 		color: rgba(0,0,0,0.7);
 	}
@@ -214,7 +211,7 @@ nav .control {
 	width: 32rem;
 	text-align: left;
 	background: rgba(255,255,255,0.98);
-	padding: 1rem 1rem;
+	padding: 1rem 0.4rem;
 	border-bottom-left-radius: 0.2rem;
 	border-bottom-right-radius: 0.2rem;
 }

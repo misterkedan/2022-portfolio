@@ -21,6 +21,49 @@ class Tweenable {
 
 	}
 
+	/*-------------------------------------------------------------------------/
+
+		Init
+
+	/-------------------------------------------------------------------------*/
+
+	get( selector ) {
+
+		return this.domElement.querySelector( selector );
+
+	}
+
+	getAll( selector ) {
+
+		return Array.from( this.domElement.querySelectorAll( selector ) );
+
+	}
+
+	prepTextform( selector ) {
+
+		return this.getAll( selector ).map( ( element ) => {
+
+			return {
+				element: element,
+				text: element.innerText
+			};
+
+		} );
+
+	}
+
+	setup() {
+
+		// Setup for tween in subclasses
+
+	}
+
+	/*-------------------------------------------------------------------------/
+
+		Tween
+
+	/-------------------------------------------------------------------------*/
+
 	show() {
 
 		this.domElement.style.display = this.displayType;
@@ -30,12 +73,6 @@ class Tweenable {
 	hide() {
 
 		this.domElement.style.display = 'none';
-
-	}
-
-	setup() {
-
-		// Setup for tween in subclasses
 
 	}
 
@@ -63,6 +100,24 @@ class Tweenable {
 			this.tweeningIn = null;
 
 		}
+
+	}
+
+	setX( element, x ) {
+
+		element.style.transform = `translateX(${x}rem)`;
+
+	}
+
+	setY( element, y ) {
+
+		element.style.transform = `translateY(${y}rem)`;
+
+	}
+
+	setOpacity( element, opacity ) {
+
+		element.style.opacity = opacity;
 
 	}
 

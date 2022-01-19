@@ -39,8 +39,8 @@ class ProjectScreen extends Screen {
 
 		const setStyle = ( element ) => {
 
-			Screen.setOpacity( element, 0 );
-			Screen.setX( element, tweenX );
+			this.setOpacity( element, 0 );
+			this.setX( element, tweenX );
 
 		};
 
@@ -59,12 +59,11 @@ class ProjectScreen extends Screen {
 			delay: 300,
 			duration: 500,
 			complete: this.completeTweenIn,
-		} )
-			.add( {
-				targets: this.video,
-				opacity: 1,
-				translateX: 0,
-			}, 0 )
+		} ).add( {
+			targets: this.video,
+			opacity: 1,
+			translateX: 0,
+		}, 0 )
 		;
 		this.tweeningIn = tweeningIn;
 

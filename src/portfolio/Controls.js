@@ -25,14 +25,13 @@ class Controls {
 		nav.dropdown.addEventListener( 'click', ( event ) => {
 
 			portfolio.goto( event.target.getAttribute( 'data-target' ) );
-			nav.close();
+			nav.tweenOut();
 
 		} );
 
 		portfolio.invitation.addEventListener( 'click', ()=> portfolio.goto( 1 ) );
 		portfolio.menu.items.forEach( item => item.addEventListener( 'click', ( event ) => {
 
-			console.log( { target: event.currentTarget } );
 			portfolio.goto( event.currentTarget.getAttribute( 'data-target' ) );
 
 		} ) );
@@ -44,7 +43,7 @@ class Controls {
 		this.onMouseDown = function ( event ) {
 
 			if ( event.button > 0 ) return;
-			portfolio.nav.close();
+			portfolio.nav.tweenOut();
 			this.swiping = true;
 			this.start = event.clientX;
 

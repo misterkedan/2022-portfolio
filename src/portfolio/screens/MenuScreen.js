@@ -44,7 +44,7 @@ class MenuScreen extends Screen {
 			complete: this.completeTweenIn,
 			easing: 'easeOutCirc',
 			duration: 500,
-			delay: 300,
+			delay: 100,
 		} );
 		this.tweeningIn = tweeningIn;
 
@@ -55,16 +55,16 @@ class MenuScreen extends Screen {
 			tweeningIn.add( {
 				targets: new Textformer( {
 					autoplay: false,
-					mode: Textformer.modes.EXPAND,
+					//mode: Textformer.modes.EXPAND,
 					align: Textformer.align.LEFT,
-					steps: 30,
-					stagger: 15,
+					//steps: 30,
+					//stagger: 15,
 					from: '',
 					to: item.text,
 					output: item.element,
 				} ),
 				progress: 1,
-			}, stagger );
+			}, 150 + stagger );
 
 			tweeningIn.add( {
 				targets: item.element,
@@ -104,7 +104,7 @@ class MenuScreen extends Screen {
 			tweeningOut.add( {
 				targets: new Textformer( {
 					autoplay: false,
-					mode: Textformer.modes.COLLAPSE,
+					mode: Textformer.modes.REVERSE,
 					align: Textformer.align.LEFT,
 					from: item.text,
 					to: '',
