@@ -7,8 +7,9 @@ import { CoverScreen } from './screens/CoverScreen';
 import { LinksScreen } from './screens/LinksScreen';
 import { OtherProjectsScreen } from './screens/OtherProjectsScreen';
 import { ProjectScreen } from './screens/ProjectScreen';
-import { Nav } from './Nav';
+import { Nav } from './misc/Nav';
 import { Menu } from './misc/Menu';
+import { NavProgress } from './misc/NavProgress';
 
 class Portfolio {
 
@@ -51,9 +52,10 @@ class Portfolio {
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
-		this.pagination = document.getElementById( 'pagination' );
+		this.navProgress = new NavProgress( this.length - 1 );
 
 		this.animations = new Animations( this );
+
 
 		this.invitation = home.invitation;
 		this.otherProjects = otherProjects;
@@ -116,8 +118,6 @@ class Portfolio {
 
 		this.index = index;
 		this.currentScreen = this.screens[ index ];
-
-		this.pagination.innerText = `${index}/${this.length - 1}`;
 
 		const hash = this.currentScreen.id;
 		this.menu.update( hash );

@@ -3,7 +3,7 @@ class Controls {
 	constructor( portfolio ) {
 
 		this.init( portfolio );
-		this.initButtons( portfolio );
+		this.initClick( portfolio );
 		this.initMouseSwipe( portfolio );
 		this.initTouch( portfolio );
 		this.initKeyboad( portfolio );
@@ -17,7 +17,7 @@ class Controls {
 
 	}
 
-	initButtons( portfolio ) {
+	initClick( portfolio ) {
 
 		const { nav, menu } = portfolio;
 		nav.back.addEventListener( 'click', () => portfolio.back() );
@@ -47,6 +47,14 @@ class Controls {
 				'click', () => portfolio.goto( 'other-projects' )
 			)
 		);
+
+		portfolio.navProgress.domElement.addEventListener( 'click', ( event ) => {
+
+			const target = event.clientX / window.innerWidth;
+			const index = Math.round( target * ( portfolio.length - 1 ) );
+			portfolio.goto( index );
+
+		} );
 
 	}
 

@@ -1,5 +1,5 @@
 
-import { Tweenable } from './misc/Tweenable';
+import { Tweenable } from './Tweenable';
 
 class Nav extends Tweenable {
 

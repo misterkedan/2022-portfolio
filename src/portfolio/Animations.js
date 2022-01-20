@@ -21,6 +21,7 @@ class Animations {
 		this.tweenBackgrid( from, to, backwards );
 		this.tweenTitles( from, to, backwards );
 		this.tweenScreens( from, to, backwards );
+		this.tweenProgress();
 
 	}
 
@@ -97,6 +98,12 @@ class Animations {
 
 		if ( to.tweenIn ) to.tweenIn( backwards );
 		if ( from.tweenOut ) from.tweenOut( backwards );
+
+	}
+
+	tweenProgress() {
+
+		this.portfolio.navProgress.tween( this.portfolio.index );
 
 	}
 
