@@ -26,8 +26,10 @@ class Controls {
 
 		menu.list.addEventListener( 'click', ( event ) => {
 
-			portfolio.goto( event.target.getAttribute( 'data-ref' ) || 0 );
 			menu.tweenOut();
+			const target = event.target.getAttribute( 'data-ref' );
+			if ( ! target ) return;
+			setTimeout( () => portfolio.goto( target ), 200 );
 
 		} );
 		menu.domElement.addEventListener( 'click', () => menu.tweenOut() );
