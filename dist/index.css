@@ -424,29 +424,26 @@ footer {
 	#contact-card {
 		text-align: left;
 		padding: 2rem;
-	}
-
-	#contact-card a {
 		pointer-events: initial;
+		user-select: all;
 	}
 
 	#email {
-		display: block;
-		margin: 1rem 0 4rem;
+		margin: 1rem 0 3rem;
 	}
 
-	#email a {
+	#email-address {
+		display: block;
 		user-select: text;
 	}
 
-	#contact-social li {
-		display: flex;
-		justify-content: space-between;
-		margin-top: 1rem;
+	.social-item {
+		margin-top: 3rem;
 	}
 
-	#contact-social a {
-		text-align: right;
+	.social-label, 
+	.social-link {
+		display: block;
 	}
 
 /*-----------------------------------------------------------------------------/
@@ -629,11 +626,31 @@ footer {
 			color: #55ccff
 		}
 
+	.social-item {
+		margin-top: 0.8rem;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.social-label, 
+	.social-link {
+		display: inline-block;
+	}
+
+	.social-link {
+		text-align: right;
+	}
+
 	@media (min-height: 500px) {
 
-		#portfolio #contact-card {
+		/*#portfolio #contact-card {
 			pointer-events: initial;
-		}
+		}*/
+
+		/*#contact-social li {
+			display: inline-block;
+			margin-top: 0.8rem;
+		}*/
 
 	}
 
@@ -703,6 +720,10 @@ footer {
 
 @media (max-width: 300px) {
 
+	#invitation{
+		font-size: 4rem;
+	}
+
 	#menu-button {
 		font-size: 1.4rem;
 	}
@@ -712,9 +733,10 @@ footer {
 		display: none;
 	}
 
+
 	.menu-section,
 	.menu-screen {
-		padding: 0 0.8rem;
+		padding: 0 1rem;
 	}
 
 	#name {
@@ -741,17 +763,8 @@ footer {
 	}
 
 	.js .item {
+		width: 100%;
 		padding: 12rem 1rem;
-	}
-	
-	.description {
-		padding: 0 0.4rem;
-	}
-
-	#other-projects {
-		width: 90%;
-		padding-left:0;
-		padding-right: 0;
 	}
 
 	.other-project-title {
@@ -761,23 +774,28 @@ footer {
 		font-size: 1.2rem;
 	}
 
-	#contact-social li {
+	#email {
+		text-align: center;
+	}
+	.social-item {
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: 1rem;
+		margin-bottom: 3rem;
 	}
 
 	footer {
 		padding-bottom: 1rem;
 		flex-direction: column;
-
 	}
 
-	h2, h3, h4, h5, p, span, ul, li, a,
+	ul,
 	#contact-card {
 		max-width: 100%;
 		overflow-wrap: break-word;
-		padding: 0;
+		padding-left: 0;
+		padding-right: 0;
+		margin-right: 0;
+		margin-left: 0;
 	}
 
 	.nojs h2 {

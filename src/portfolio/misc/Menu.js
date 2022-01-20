@@ -15,6 +15,20 @@ class Menu extends Tweenable {
 
 	}
 
+	show() {
+
+		super.show();
+		this.opened = true;
+
+	}
+
+	hide() {
+
+		super.hide();
+		this.opened = false;
+
+	}
+
 	update( hash ) {
 
 		const filter = this.items.filter(

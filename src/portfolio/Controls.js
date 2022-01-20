@@ -62,7 +62,7 @@ class Controls {
 
 		window.addEventListener( 'wheel', ( event ) => {
 
-			if ( event.target === portfolio.menu.domElement ) return;
+			if ( portfolio.menu.opened ) return;
 
 			if ( event.deltaX ) {
 
