@@ -263,10 +263,11 @@ nav .control {
 	/-------------------------------------------------------------------------*/
 
 	#invitation {
-		font-size: 6rem;
-		transition: color 200ms ease-in-out;
 		padding: 2rem 5rem;
+		font-size: 6rem;
 		color: rgba(255,255,255,0.7);
+		text-shadow: 0 0 1rem #000000;
+		transition: color 200ms ease-in-out;
 	}
 
 	#main-title {
