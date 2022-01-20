@@ -19,7 +19,7 @@ class NavProgress extends Tweenable {
 		) ).toPrecision( 2 );
 
 		anime( {
-			duration: 300,
+			duration: 500,
 			easing: 'easeInOutQuad',
 			targets: this.bar,
 			scaleX: width,
