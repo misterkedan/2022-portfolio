@@ -46,6 +46,7 @@ class Menu extends Tweenable {
 			complete: this.completeTweenIn,
 		} ).add( {
 			targets: this.domElement,
+			duration: 600,
 			opacity: 1,
 		} );
 

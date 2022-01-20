@@ -43,12 +43,6 @@ em {
 	font-style: italic;
 }
 
-video {
-	margin: 2rem 0 2.6rem;
-	border: 0.2rem solid rgba(255, 255, 255, 0.1);
-	width: 640px;
-}
-
 ::selection {
 	background-color: #ffffff;
     color: #000000;
@@ -82,8 +76,9 @@ a:visited {
 	top: 0;
 	left: 0;
 	display: none;
-	
+
 	padding: 6rem 4rem;
+	/*padding: 6rem 4rem;*/
 }
 
 .js h3,
@@ -144,8 +139,6 @@ nav {
 	position: absolute;
 	width: 100%;
 	height: 3rem;
-	opacity: 0.5;
-	transition: opacity 250ms ease-in-out;
 }
 
 #nav-progress-background,
@@ -159,21 +152,18 @@ nav {
 }
 
 #nav-progress-background {
-	background: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.25);
 }
 
 #nav-progress-bar {
 	-ms-transform-origin: 0 0;
 	-webkit-transform-origin: 0 0;
 	transform-origin: 0 0;
-	background: rgba(255, 255, 255, 0.6);
+	background: rgba(255, 255, 255, 0.5);
 }
-	#nav-progress:hover {
-		opacity: 1;
-	}
 	#nav-progress:hover #nav-progress-background,
 	#nav-progress:hover #nav-progress-bar {
-		height: 0.8rem;
+		height: 1rem;
 	}
 
 #nav-controls {
@@ -293,7 +283,7 @@ footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	padding: 1rem 1.6rem;
+	padding: 1rem 1.6rem 2rem;
 	font-size: 1.2rem;
 
 	text-align: center;
@@ -368,13 +358,19 @@ footer {
 		display: block;
 	}
 
+	video {
+		/*margin: 2rem 0 2.6rem;*/
+		border: 0.2rem solid rgba(255, 255, 255, 0.1);
+		width: 640px;
+	}
+
 	.description {
 		padding: 0 0.2rem;
 		text-align: left;
 		max-width: 45em;
 		line-height: 1.4em;
 		color: rgba(255, 255, 255, 0.8);
-		margin-bottom: 2.6rem;
+		margin: 3rem 0;
 	}
 
 	.note {
@@ -384,7 +380,11 @@ footer {
 	}
 
 	.menu-return {
+		position: absolute;
+		bottom: 7rem;
 		display: none;
+		align-self: left;
+		color: rgba(255, 255, 255, 0.2);
 	}
 
 	/*-------------------------------------------------------------------------/
@@ -394,7 +394,7 @@ footer {
 	/-------------------------------------------------------------------------*/
 
 	#selfie {
-		margin: 2rem 0;
+		margin: 4rem 0 1rem;
 	}
 
 	.js #affinities,
@@ -414,7 +414,7 @@ footer {
 
 	#email {
 		display: block;
-		margin: 2rem 0 2.5rem;
+		margin: 1rem 0 4rem;
 	}
 
 	#email a {
@@ -602,17 +602,11 @@ footer {
 
 	.js .menu-return {
 		display: block;
-		margin-top: 2.5rem;
-		color: rgba(255, 255, 255, 0.2);
 	}
 		.menu-return:hover {
 			color: rgba(255, 255, 255, 0.8);
 			text-decoration: underline;
 		}
-
-	#contact-social li {
-		margin-top: 0.2rem;
-	}
 
 	@media (min-height: 500px) {
 
@@ -638,30 +632,20 @@ footer {
 			padding: 2.5rem 3rem 5rem;
 		}
 
-		.menu-screen,
-		.menu-section {
-			padding-right: 4rem;
+	}
+
+	
+	@media ( max-height: 745px ) {
+		
+		.js .item {
+			padding-top: 8rem;
+			padding-bottom: 8rem;
 		}
 
-	}
+		.js .project {
+			padding-bottom: 16rem;
+		}
 
-}
-
-@media ( max-height: 680px ) {
-
-	.js video {
-		width: 480px;
-		max-width: 80vw;
-	}
-
-	.js .description {
-		width: 34em;
-		max-width: 80vw;
-	}
-
-	.js .project {
-		padding-top: 12rem;
-		padding-bottom: 12rem;
 	}
 
 }
@@ -743,17 +727,16 @@ footer {
 		font-size: 1.2rem;
 	}
 
-	.js .item,
-	.nojs .item {
+	.js .item {
 		padding: 12rem 1rem;
 	}
+	
+	#other-projects {
+		width: 90%;
+		padding-left:0;
+		padding-right: 0;
+	}
 
-	#portfolio .item {
-		max-width: 100%;
-	}
-	.other-project {
-		padding: 0;
-	}
 	.other-project-title {
 		font-size: 1.6rem;
 	}
