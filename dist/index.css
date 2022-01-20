@@ -222,7 +222,10 @@ nav .control {
 	border-bottom-left-radius: 0.2rem;
 	border-bottom-right-radius: 0.2rem;
 	text-transform: lowercase;
-	
+}
+
+#menu-close {
+	display: none
 }
 
 .menu-section,
@@ -503,6 +506,105 @@ footer {
 
 /-----------------------------------------------------------------------------*/
 
+@media (hover: hover) and (pointer: fine) {
+	
+	a:hover {
+		color: #55ccff;
+	}
+	
+	.control:hover,
+	.js .other-project:hover .other-project-title,
+	#invitation:hover {
+		color: #ffffff;
+	}
+
+	.js .other-project:hover .other-project-summary:not(.note) {
+		color: #eaeef0;
+	}
+
+	.open .control:hover {
+		color: #00aaee;
+	}
+
+	#portfolio .cta:hover {
+		background: #eaeef0;
+		color: #00aaee;
+		box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.7);
+	}
+
+	#menu {
+		margin: 4rem 0.5rem;
+	}
+
+	#menu-close-button {
+		display: inline-block;
+		padding: 1rem;
+		font-size: 2rem;
+		color: rgba(0,0,0,0.2);
+		cursor: pointer;
+		pointer-events: initial;
+		transition: all 100ms ease-out;
+	}
+		#menu-close-button:hover {
+			color: rgba(0,0,0,0.7);
+			transform: scale(1.2);
+		}
+
+	.menu-section,
+	.menu-screen {
+		padding-top: 0.4rem;
+		padding-bottom: 0.4rem;
+		border: none;
+	}
+		.menu-section:hover,
+		.menu-screen:hover {
+			background: rgba(255,255,255,0.33);
+			color: rgba(0,0,0,0.6);
+		}
+
+	.menu-section {
+		margin-top: 2rem;
+		font-size: 2.4rem;
+	}
+	
+	.menu-screen {
+		font-size: 1.6rem;
+	}
+
+	.other-project {
+		pointer-events: initial;
+	}
+
+	#contact-social li {
+		margin-top: 0.2rem;
+	}
+
+	@media (min-height: 500px) {
+		#portfolio #contact-card {
+			pointer-events: initial;
+		}
+	}
+
+	@media (min-width: 300px) {
+
+		.js #menu-close {
+			display: block;
+			text-align: right;
+		}
+
+	}
+	
+	@media (min-width: 640px) {
+
+		#menu {
+			border: 2px solid rgba(0,0,0,0.05);
+			padding: 2.5rem 4rem 5rem;
+		}
+
+	}
+
+}
+
 @media ( max-height: 680px ) {
 
 	.js video {
@@ -520,6 +622,8 @@ footer {
 		padding-bottom: 12rem;
 	}
 
+	
+
 }
 
 @media ( max-width: 640px ) {
@@ -528,6 +632,14 @@ footer {
 	#menu-wrapper,
 	#menu {
 		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	#menu-close-button {
+		margin-right: 1rem;
 	}
 
 	#back {
@@ -631,69 +743,4 @@ footer {
 
 }
 
-@media (hover: hover) and (pointer: fine) {
-	
-	a:hover {
-		color: #55ccff;
-	}
-	
-	.control:hover,
-	.js .other-project:hover .other-project-title,
-	#invitation:hover {
-		color: #ffffff;
-	}
 
-	.js .other-project:hover .other-project-summary:not(.note) {
-		color: #eaeef0;
-	}
-
-	.open .control:hover {
-		color: #00aaee;
-	}
-
-	#portfolio .cta:hover {
-		background: #eaeef0;
-		color: #00aaee;
-		box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.7);
-	}
-
-	#menu {
-		margin: 4rem 0.5rem;
-	}
-
-	.menu-section,
-	.menu-screen {
-		padding-top: 0.4rem;
-		padding-bottom: 0.4rem;
-		border: none;
-	}
-		.menu-section:hover,
-		.menu-screen:hover {
-			background: rgba(255,255,255,0.33);
-			color: rgba(0,0,0,0.6);
-		}
-
-	.menu-section {
-		margin-top: 2rem;
-		font-size: 2.4rem;
-	}
-	
-	.menu-screen {
-		font-size: 1.6rem;
-	}
-
-	.other-project {
-		pointer-events: initial;
-	}
-
-	#contact-social li {
-		margin-top: 0.2rem;
-	}
-
-	@media ( min-height: 500px ) {
-		#portfolio #contact-card {
-			pointer-events: initial;
-		}
-	}
-
-}
