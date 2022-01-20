@@ -155,7 +155,9 @@ class Portfolio {
 
 	get height() {
 
-		return this.currentScreen.domElement.clientHeight;
+		return ( this.currentScreen instanceof DemoScreen )
+			? this.animations.overlay.domElement.clientHeight
+			: this.currentScreen.domElement.clientHeight;
 
 	}
 
