@@ -42,6 +42,7 @@ class LinksScreen extends Screen {
 				output: span,
 				from: '',
 				steps: 15,
+				align: Textformer.align.LEFT,
 				to: this.spansTexts[ i ],
 				autoplay: false,
 			} );
