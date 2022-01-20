@@ -56,13 +56,9 @@ class Portfolio {
 
 		this.animations = new Animations( this );
 
-
 		this.invitation = home.invitation;
 		this.otherProjects = otherProjects;
 		this.controls = new Controls( this );
-
-
-
 
 	}
 

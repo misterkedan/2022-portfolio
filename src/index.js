@@ -23,7 +23,8 @@ function init() {
 	} catch ( error ) {
 
 		console.error( error );
-		//window.location.search = nojs;
+
+		//setTimeout( () => window.location.search = nojs, 3000 );
 
 	}
 

@@ -313,8 +313,7 @@ footer {
 		transition: color 200ms ease-in-out;
 	}
 
-	#main-title {
-		display: flex;
+	#demo-overlay {
 		width: 100%;
 		user-select: none;
 	}
@@ -330,6 +329,29 @@ footer {
 		#vocation {
 			font-size: 2rem;
 		}
+
+	#demo-launcher {
+		position:absolute;
+		bottom: 7.4rem;
+		width: 100%;
+	}
+
+	.demo-launch{
+		display: inline-block;
+		text-transform: uppercase;
+		font-size: 1.6rem;
+		font-weight: bold;
+		letter-spacing: 0.1rem;
+		border: 0.4rem solid rgba(255, 255, 255, 0.5);
+		padding: 0.7rem 1.4rem;
+		margin: 3rem 1rem 0;
+		transition: background 100ms ease-out, color 100ms ease-out;
+	}
+
+	.demo-launch, 
+	.demo-launch:visited {
+		color: rgba(255, 255, 255, 0.5); 
+	}
 
 	/*-------------------------------------------------------------------------/
 
@@ -484,6 +506,7 @@ footer {
 
 .nojs nav,
 .nojs #cover,
+.nojs #demo-launcher,
 .nojs #other-projects {
 	display: none;
 }
@@ -513,10 +536,6 @@ footer {
 	margin: 4rem 0;
 }
 
-.nojs #main-title {
-	height: 100vh;
-}
-
 .nojs #contact {
 	padding: 10rem 4rem 18rem;
 }
@@ -529,12 +548,17 @@ footer {
 
 @media (hover: hover) and (pointer: fine) {
 	
+	#nav-progress {
+		pointer-events: all;
+	}
+
 	a:hover {
 		color: #55ccff;
 	}
 	
-	#nav-progress {
-		pointer-events: all;
+	.demo-launch:hover {
+		background: rgba( 255, 255, 255, 0.98 );
+		color: rgba(0, 0, 0, 0.6);
 	}
 
 	#nav-controls .control:hover,
@@ -565,7 +589,7 @@ footer {
 		display: inline-block;
 		padding: 0 0.6rem;
 		font-size: 2rem;
-		color: rgba(0, 0, 0, 0.15);
+		color: rgba(0, 0, 0, 0.2);
 		cursor: pointer;
 		pointer-events: initial;
 		transition: all 100ms ease-out;
@@ -628,14 +652,14 @@ footer {
 	@media (min-width: 640px) {
 
 		#menu {
-			border: 2px solid rgba(0, 0, 0, 0.04);
+			border: 2px solid rgba(0, 0, 0, 0.03);
 			padding: 2.5rem 3rem 5rem;
 		}
 
 	}
 
 	
-	@media ( max-height: 745px ) {
+	@media (max-height: 745px) {
 		
 		.js .item {
 			padding-top: 8rem;
@@ -650,7 +674,15 @@ footer {
 
 }
 
-@media ( max-width: 640px ) {
+@media (max-height: 460px) {
+
+	#demo-launcher{
+		display: none;
+	} 
+
+}
+
+@media (max-width: 640px) {
 
 	#nav-controls,
 	#menu-wrapper,
@@ -678,14 +710,6 @@ footer {
 
 @media (max-width: 300px) {
 
-	.nojs #contact {
-		padding: 2rem 1rem 12rem;
-	}
-
-	.description {
-		padding: 0 0.4rem;
-	}
-
 	#menu-button {
 		font-size: 1.4rem;
 	}
@@ -698,15 +722,6 @@ footer {
 	.menu-section,
 	.menu-screen {
 		padding: 0 0.8rem;
-	}
-
-	.nojs h2 {
-		font-size: 2.8rem;
-	}
-
-	.nojs h3 {
-		font-size: 1.8rem;
-		margin-bottom: 1rem;
 	}
 
 	#name {
@@ -727,10 +742,19 @@ footer {
 		font-size: 1.2rem;
 	}
 
+	.demo-launch {
+		font-size: 1.2rem;
+		padding: 0.5rem;
+	}
+
 	.js .item {
 		padding: 12rem 1rem;
 	}
 	
+	.description {
+		padding: 0 0.4rem;
+	}
+
 	#other-projects {
 		width: 90%;
 		padding-left:0;
@@ -761,6 +785,19 @@ footer {
 		max-width: 100%;
 		overflow-wrap: break-word;
 		padding: 0;
+	}
+
+	.nojs h2 {
+		font-size: 2.8rem;
+	}
+
+	.nojs h3 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+	}
+
+	.nojs #contact {
+		padding: 2rem 1rem 12rem;
 	}
 
 }

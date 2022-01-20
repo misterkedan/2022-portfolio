@@ -1,6 +1,6 @@
 import anime from 'animejs';
 import { DynamicTitle } from './misc/DynamicTitle';
-import { Title } from './misc/Title';
+import { DemoOverlay } from './misc/DemoOverlay';
 import { DemoScreen } from './screens/DemoScreen';
 import { CoverScreen } from './screens/CoverScreen';
 
@@ -10,7 +10,7 @@ class Animations {
 
 		this.portfolio = portfolio;
 
-		this.title = new Title();
+		this.overlay = new DemoOverlay();
 		this.dynamicTitle = new DynamicTitle();
 
 	}
@@ -18,10 +18,23 @@ class Animations {
 	tween( from, to, backwards ) {
 
 		this.tweenBackground( from, to, backwards );
-		this.tweenBackgrid( from, to, backwards );
-		this.tweenTitles( from, to, backwards );
 		this.tweenScreens( from, to, backwards );
+		this.tweenOverlay( from, to, backwards );
+		this.tweenDynamicTitle( from, to, backwards );
 		this.tweenProgress();
+
+		this.tweenBackgrid( from, to, backwards );
+
+	}
+
+	tweenOverlay( from, to, backwards ) {
+
+		const fromIsDemo = ( from instanceof DemoScreen );
+		const toIsDemo = ( to instanceof DemoScreen );
+		if ( ! fromIsDemo && toIsDemo ) this.overlay.tweenIn( backwards );
+		else if ( fromIsDemo && ! toIsDemo ) this.overlay.tweenOut( backwards );
+
+		if ( toIsDemo ) this.overlay.set( this.portfolio.currentScreen.id );
 
 	}
 
@@ -82,14 +95,11 @@ class Animations {
 
 	}
 
-	tweenTitles( from, to, backwards ) {
+	tweenDynamicTitle( from, to, backwards ) {
 
-		const fromIsDemo = ( from instanceof DemoScreen );
-		const toIsDemo = ( to instanceof DemoScreen );
-		if ( ! fromIsDemo && toIsDemo ) this.title.tweenIn();
-		else if ( fromIsDemo && ! toIsDemo ) this.title.tweenOut();
-
-		let newTitle = ( to instanceof CoverScreen ) ? '' : to.id.replaceAll( '-', ' ' );
+		let newTitle = ( to instanceof CoverScreen )
+			? ''
+			: to.id.replaceAll( '-', ' ' );
 		this.dynamicTitle.tween( newTitle, backwards );
 
 	}
