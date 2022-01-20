@@ -40,6 +40,12 @@ class Controls {
 			) )
 		);
 
+		Array.from( document.querySelectorAll( '.menu-return' ) ).forEach(
+			element => element.addEventListener(
+				'click', () => portfolio.goto( 'other-projects' )
+			)
+		);
+
 	}
 
 	initWheel( portfolio ) {

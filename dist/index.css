@@ -142,7 +142,6 @@ nav {
 .menu-screen,
 .other-project,
 .control {
-	display: inline-block;
 	text-decoration: none;
 	user-select: none;
 	pointer-events: initial;
@@ -231,7 +230,6 @@ nav .control {
 .menu-section,
 .menu-screen {
 	margin-top: 0;
-	display: block;
 	color: rgba(0,0,0,0.4);
 	padding: 2rem;
 }
@@ -295,14 +293,6 @@ nav .control {
 
 	/-------------------------------------------------------------------------*/
 
-	#other-list {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-		text-transform: uppercase;
-	}
-
 	.other-project {
 		margin-top: 2.2rem;
 		line-height: 1.4;
@@ -318,6 +308,7 @@ nav .control {
 	}
 
 	.other-project-summary {
+		text-transform: uppercase;
 		font-size: 1.4rem;
 		color: #c7dce4;
 		display: block;
@@ -336,6 +327,10 @@ nav .control {
 		color: rgba(255,255,255,0.2);
 		font-style: italic;
 		font-size: 1.2rem;
+	}
+
+	.menu-return {
+		display: none;
 	}
 
 	/*-------------------------------------------------------------------------/
@@ -459,7 +454,9 @@ footer {
 		z-index: -1;
 	}
 
-.nojs nav {
+.nojs nav,
+.nojs #cover,
+.nojs #other-projects {
 	display: none;
 }
 
@@ -486,10 +483,6 @@ footer {
 
 .nojs .project {
 	margin: 4rem 0;
-}
-
-.nojs #cover {
-	display: none;
 }
 
 .nojs #main-title {
@@ -575,6 +568,16 @@ footer {
 		pointer-events: initial;
 	}
 
+	.js .menu-return {
+		display: block;
+		margin-top: 2.5rem;
+		color: rgba(255,255,255,0.2);
+	}
+		.menu-return:hover {
+			color: rgba(255,255,255,0.8);
+			text-decoration: underline;
+		}
+
 	#contact-social li {
 		margin-top: 0.2rem;
 	}
@@ -629,8 +632,6 @@ footer {
 		padding-bottom: 12rem;
 	}
 
-	
-
 }
 
 @media ( max-width: 640px ) {
@@ -658,7 +659,6 @@ footer {
 	}
 
 }
-
 
 @media (max-width: 300px) {
 
@@ -749,5 +749,3 @@ footer {
 	}
 
 }
-
-
