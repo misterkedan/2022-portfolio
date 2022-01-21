@@ -5,9 +5,6 @@ import {
 	Scene,
 	ShaderMaterial
 } from 'three';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { RadialBlurPass } from '../../keda/three/postprocessing/RadialBlurPass';
 import { SketchMixerShaders } from './SketchMixerShaders';
 
 class SketchMixer {
@@ -34,7 +31,6 @@ class SketchMixer {
 		this.scene.add( this.quad );
 
 		this.sketches = sketches;
-
 		this.renderer = renderer;
 
 	}

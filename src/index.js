@@ -24,7 +24,7 @@ function init() {
 
 		console.error( error );
 
-		//setTimeout( () => window.location.search = nojs, 3000 );
+		//setTimeout( () => window.location.search = nojs, 5000 );
 
 	}
 

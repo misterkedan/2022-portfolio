@@ -66,22 +66,28 @@ class Controls {
 
 			if ( event.deltaX ) {
 
-				if ( event.deltaX > 0 ) portfolio.forward();
-				else portfolio.back();
+				if ( event.deltaX > 0 && ! portfolio.isEnding )
+					portfolio.forward();
+				else if ( ! portfolio.isStarting ) portfolio.back();
+
 				return;
 
 			}
 
-			if ( ! event.deltaY ) return;
-
-			if ( event.deltaY > 0 && ! portfolio.canScrollDown ) {
+			if (
+				event.deltaY > 0
+				&& ! portfolio.canScrollDown
+				&& ! portfolio.isEnding
+			) {
 
 				portfolio.forward();
 				window.scrollTo( window.scrollX, 0 );
 
-			}
-
-			if ( event.deltaY < 0 && ! portfolio.canScrollUp ) {
+			} else if (
+				event.deltaY < 0
+				&& ! portfolio.canScrollUp
+				&& ! portfolio.isStarting
+			) {
 
 				portfolio.back();
 				window.scrollTo(
