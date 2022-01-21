@@ -76,9 +76,7 @@ a:visited {
 	top: 0;
 	left: 0;
 	display: none;
-
 	padding: 6rem 4rem;
-	/*padding: 6rem 4rem;*/
 }
 
 .js h3,
@@ -117,6 +115,21 @@ a.cta {
 	-webkit-tap-highlight-color: transparent;
 }
 
+footer {
+	color: rgba(255, 255, 255, 0.3);
+	letter-spacing: 0.1rem;
+
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 1rem 1.6rem 2rem;
+	font-size: 1.2rem;
+
+	text-align: center;
+}
+
+
 /*-----------------------------------------------------------------------------/
 
 	NAV
@@ -137,6 +150,8 @@ nav {
 
 #nav-progress {
 	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 3rem;
 }
@@ -282,28 +297,6 @@ nav {
 	font-style: italic;
 }
 
-/*-----------------------------------------------------------------------------/
-
-	FOOTER
-
-/-----------------------------------------------------------------------------*/
-
-footer {
-	color: rgba(255, 255, 255, 0.3);
-	letter-spacing: 0.1rem;
-
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	padding: 1rem 1.6rem 2rem;
-	font-size: 1.2rem;
-
-	text-align: center;
-
-	/*display: flex;
-	justify-content: space-between;
-	align-items: center;*/
-}
 
 /*-----------------------------------------------------------------------------/
 
@@ -344,6 +337,7 @@ footer {
 
 	#demo-launcher {
 		position:absolute;
+		left: 0;
 		bottom: 8.4rem;
 		width: 100%;
 	}
@@ -459,6 +453,7 @@ footer {
 		display: block;
 	}
 
+
 /*-----------------------------------------------------------------------------/
 
 	INIT / NO JS
@@ -479,7 +474,6 @@ footer {
 	.nojs #upgrade-push {
 		display: flex;
 		justify-content: center;
-		/*position: absolute;*/
 		margin: 8rem 0;
 		width: 100%;
 	}
@@ -546,7 +540,6 @@ footer {
 .nojs #contact {
 	padding: 10rem 4rem 18rem;
 }
-
 
 
 /*-----------------------------------------------------------------------------/
@@ -661,7 +654,6 @@ footer {
 		}
 
 	}
-	
 
 }
 

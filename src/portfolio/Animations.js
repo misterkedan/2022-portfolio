@@ -72,7 +72,6 @@ class Animations {
 			targets: mixer,
 			complete: () => mixer.anime = null,
 			mix,
-			blur: to.sketch.blur,
 		} );
 
 	}

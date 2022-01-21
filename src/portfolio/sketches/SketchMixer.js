@@ -35,13 +35,7 @@ class SketchMixer {
 
 		this.sketches = sketches;
 
-		this.composer = new EffectComposer( renderer );
-		this.composer.addPass( new RenderPass( this.scene, this.camera ) );
-
-		this.radialBlur = new RadialBlurPass( { strength: 0 } );
-		this.composer.addPass( this.radialBlur );
-
-		//this.renderer = renderer;
+		this.renderer = renderer;
 
 	}
 
@@ -75,8 +69,6 @@ class SketchMixer {
 
 		this.material.uniforms.uAspect.value = aspect;
 
-		this.composer.setSize( width, height );
-
 	}
 
 	tick( delta ) {
@@ -93,8 +85,7 @@ class SketchMixer {
 
 		this.lastTicked.tick( delta );
 
-		//this.renderer.render( this.scene, this.camera );
-		this.composer.render();
+		this.renderer.render( this.scene, this.camera );
 
 	}
 
@@ -113,18 +104,6 @@ class SketchMixer {
 	set mix( mix ) {
 
 		this.material.uniforms.uMix.value = mix;
-
-	}
-
-	get blur() {
-
-		return this.radialBlur.strength;
-
-	}
-
-	set blur( value ) {
-
-		this.radialBlur.strength = value;
 
 	}
 

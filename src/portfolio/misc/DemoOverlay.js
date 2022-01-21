@@ -13,23 +13,15 @@ class DemoOverlay extends Tweenable {
 		this.job = this.prepTextform( '#vocation' )[ 0 ];
 		this.demoLauncher = this.prepTextform( '#demo-launcher-link' )[ 0 ];
 
-		this.links = Array.from( document
-			.querySelectorAll( '.placeholder.demo-launch' )
-		)
-		//.forEach( element => {
+		this.links = Array.from(
+			document.querySelectorAll( '.placeholder.demo-launch' )
+		).reduce( ( object, element ) => {
 
-		//	console.log( element.parentElement );
-
-			//} );
-			.reduce( ( object, element ) => {
-
-				object[ element.parentElement.getAttribute( 'id' ) ] =
+			object[ element.parentElement.getAttribute( 'id' ) ] =
 				element.getAttribute( 'href' );
-				return object;
+			return object;
 
-			}, {} );
-
-		console.log( this.links );
+		}, {} );
 
 		this.tweenX = 10;
 
