@@ -32,7 +32,7 @@ function init() {
 
 		console.error( error );
 
-		setTimeout( () => window.location.search = nojs, 5000 );
+		//setTimeout( () => window.location.search = nojs, 5000 );
 
 	}
 

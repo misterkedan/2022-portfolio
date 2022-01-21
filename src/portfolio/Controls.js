@@ -168,7 +168,8 @@ class Controls {
 
 		const keysForward = [
 			34, 'PageDown',
-			39, 'ArrowRight'
+			39, 'ArrowRight',
+			32, ' ',
 		];
 
 		const keys = [ ...keysBack, ...keysForward ];
@@ -183,6 +184,8 @@ class Controls {
 		}
 
 		function onKeyUp( event ) {
+
+			console.log( event );
 
 			if (
 				keysBack.includes( event.keyCode ) ||
