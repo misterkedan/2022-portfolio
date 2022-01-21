@@ -28,32 +28,21 @@ class Background {
 			renderToScreen: false,
 		};
 
-		this.mixer = new SketchMixer( this.sketchpad.renderer );
-
 		this.grid = new Backgrid( options );
 		this.navscan = new Navscan( options );
 		this.rain = new Rain( options );
 		this.blockflow = new Blockflow( options );
-		this.ablaze = new Ablaze( options, this.mixer.radialBlur );
-		this.cyber = new Cyberdark( options, this.mixer.radialBlur );
+		this.ablaze = new Ablaze( options );
+		this.cyber = new Cyberdark( options );
 
-		this.grid.blur = 0;
-		this.navscan.blur = 0;
-		this.rain.blur = 0.01;
-		this.blockflow.blur = 0;
-		this.ablaze.blur = 0.015;
-		this.cyber.blur = 0;
-
-		this.mixer.sketches = [
+		this.mixer = new SketchMixer( this.sketchpad.renderer, [
 			this.grid,
 			this.navscan,
 			this.rain,
 			this.blockflow,
 			this.ablaze,
 			this.cyber,
-		];
-
-		//this.mixer = new SketchMixer( this.sketchpad.renderer, sketches );
+		] );
 
 		this.sketchpad.init( this.mixer );
 
