@@ -31,7 +31,7 @@ const BackgridSettings = {
 	},
 
 	lerpSpeed: 0.048,
-	depth: { min: 0.01, max: 0.1 },
+	depth: { min: 0.05, max: 0.15 },
 	noiseScale: { min: 0.001, max: 4 },
 
 };
