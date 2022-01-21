@@ -1,6 +1,6 @@
 {
   "name": "2022-portfolio",
-  "version": "0.40.0",
+  "version": "0.41.0",
   "description": "Personal works portfolio of french creative coder Pierre Keda.",
   "author": "Pierre Keda",
   "license": "UNLICENSED",
@@ -14,15 +14,22 @@
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
+    "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "cssnano": "^5.0.15",
     "eslint": "^8.6.0",
     "eslint-config-mdcs": "^5.0.0",
+    "mini-css-extract-plugin": "^2.5.2",
+    "postcss": "^8.4.5",
+    "postcss-loader": "^6.2.1",
     "raw-loader": "^4.0.2",
     "terser-webpack-plugin": "^5.3.0",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.2"
   },
+  "browserslist": [ "since 2010" ],
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack serve --mode development"

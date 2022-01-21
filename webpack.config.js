@@ -1,9 +1,10 @@
 const path = require( 'path' );
 
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
 
 let config = {
-	entry: './src/index.js',
+	entry: [ './src/index.js', './src/index.css' ],
 	output: {
 		filename: 'index.js',
 		path: path.resolve( __dirname, 'dist' ),
@@ -23,9 +24,22 @@ let config = {
 				test: /\.(glsl)$/,
 				exclude: /node_modules/,
 				loader: 'raw-loader',
+			}, {
+				test: /\.css$/i,
+				use: [
+					//'style-loader',
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'postcss-loader'
+				],
 			},
 		],
 	},
+	plugins: [
+		new MiniCssExtractPlugin( {
+			filename: 'index.css',
+		} ),
+	],
 	resolve: {
 		alias: {
 			keda: path.resolve( __dirname, './src/keda' ),
