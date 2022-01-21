@@ -61,7 +61,6 @@ const RainSettings = {
 	cursorProjector: {
 		horizontal: true,
 		cursorSize: 0.5,
-		//lerp: 0.01,
 		multiplier: 1.5,
 	},
 

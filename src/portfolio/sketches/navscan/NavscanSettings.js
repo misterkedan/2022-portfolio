@@ -27,7 +27,7 @@ const NavscanSettings = {
 	},
 
 	cameraRig: {
-		bounds: { x: 5, y: 10, z: 0 },
+		bounds: { x: 5, y: 5, z: 0 },
 		speed: 0.0012,
 	},
 
@@ -44,7 +44,7 @@ const NavscanSettings = {
 	noiseScaleY: { min: 0, max: 0.1 },
 	amp: { min: 1, max: 2.5 },
 	opacity: { min: 0.4, max: 0.8 },
-	speed: { min: 0.002, max: 0.012, value: 0.01 },
+	speed: { min: 0.004, max: 0.012, value: 0.01 },
 
 };
 
