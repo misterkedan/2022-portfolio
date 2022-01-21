@@ -26,8 +26,8 @@ class Portfolio {
 		const demos = [
 			'navscan',
 			'rain',
-			'blockflow',
 			'ablaze',
+			'blockflow',
 		].map( id => new DemoScreen( id, this.background[ id ] ) );
 
 		const otherProjects = new OtherProjectsScreen( cyber );

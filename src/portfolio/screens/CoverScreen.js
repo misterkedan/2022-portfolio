@@ -7,8 +7,6 @@ class CoverScreen extends Screen {
 
 		super( 'cover', sketch );
 
-		console.log( sketch );
-
 		this.nav = nav;
 
 		this.invitation = document.getElementById( 'invitation' );
