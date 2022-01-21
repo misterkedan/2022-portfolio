@@ -35,8 +35,8 @@ class BackgridControls extends Controls {
 		);
 
 		sketch.depth.value = lerp(
-			settings.depth.max,
 			settings.depth.min,
+			settings.depth.max,
 			this.intensity
 		);
 

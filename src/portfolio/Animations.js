@@ -17,13 +17,33 @@ class Animations {
 
 	tween( from, to, backwards ) {
 
-		this.tweenBackground( from, to, backwards );
+		this.tweenProgress();
 		this.tweenScreens( from, to, backwards );
 		this.tweenOverlay( from, to, backwards );
-		this.tweenDynamicTitle( from, to, backwards );
-		this.tweenProgress();
+		this.tweenTitle( from, to, backwards );
+		this.tweenBackground( from, to, backwards );
 
-		this.tweenBackgrid( from, to, backwards );
+	}
+
+	tweenProgress() {
+
+		this.portfolio.navProgress.tween( this.portfolio.index );
+
+	}
+
+	tweenScreens( from, to, backwards ) {
+
+		if ( to.tweenIn ) to.tweenIn( backwards );
+		if ( from.tweenOut ) from.tweenOut( backwards );
+
+	}
+
+	tweenTitle( from, to, backwards ) {
+
+		let newTitle = ( to instanceof CoverScreen )
+			? ''
+			: to.id.replaceAll( '-', ' ' );
+		this.dynamicTitle.tween( newTitle, backwards );
 
 	}
 
@@ -73,46 +93,6 @@ class Animations {
 			complete: () => mixer.anime = null,
 			mix,
 		} );
-
-	}
-
-	tweenBackgrid( from, to, backwards ) {
-
-		const { grid } = this.portfolio.background;
-
-		if ( from.sketch !== grid && to.sketch !== grid ) return;
-
-		const baseOffset = grid.tileSize * 15;
-		const offset = ( backwards ) ? baseOffset : - baseOffset;
-
-		anime( {
-			duration: 1200,
-			easing: 'easeOutCirc',
-			targets: grid,
-			offset: [ 0, offset ],
-		} );
-
-	}
-
-	tweenDynamicTitle( from, to, backwards ) {
-
-		let newTitle = ( to instanceof CoverScreen )
-			? ''
-			: to.id.replaceAll( '-', ' ' );
-		this.dynamicTitle.tween( newTitle, backwards );
-
-	}
-
-	tweenScreens( from, to, backwards ) {
-
-		if ( to.tweenIn ) to.tweenIn( backwards );
-		if ( from.tweenOut ) from.tweenOut( backwards );
-
-	}
-
-	tweenProgress() {
-
-		this.portfolio.navProgress.tween( this.portfolio.index );
 
 	}
 

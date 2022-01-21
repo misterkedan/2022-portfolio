@@ -7,6 +7,8 @@ class CoverScreen extends Screen {
 
 		super( 'cover', sketch );
 
+		console.log( sketch );
+
 		this.nav = nav;
 
 		this.invitation = document.getElementById( 'invitation' );
@@ -20,6 +22,8 @@ class CoverScreen extends Screen {
 		this.nav.forward.style.transform = `translateX(${translate}rem)`;
 		this.nav.domElement.style.transform = `translateY(-${translate}rem)`;
 		this.footer.style.bottom = `-${translate}rem`;
+
+		this.gridOffset = sketch.tileSize * 15;
 
 		this.nav.domElement.style.opacity = 0;
 		this.footer.style.opacity = 0;
@@ -39,11 +43,15 @@ class CoverScreen extends Screen {
 			complete: this.completeTweenIn,
 		} )
 			.add( {
+				duration: 1200,
+				targets: this.sketch,
+				offset: 0,
+			} )
+			.add( {
 				targets: this.invitation,
 				opacity: 1,
 				translateX: 0,
 			}, 300 )
-
 			.add( {
 				targets: this.nav.back,
 				opacity: 0,
@@ -77,6 +85,11 @@ class CoverScreen extends Screen {
 			duration: 300,
 			complete: this.completeTweenOut,
 		} )
+			.add( {
+				//duration: ,
+				targets: this.sketch,
+				offset: this.gridOffset,
+			} )
 			.add( {
 				targets: this.invitation,
 				opacity: 0,
