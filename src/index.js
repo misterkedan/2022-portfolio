@@ -11,6 +11,10 @@ function init() {
 
 	}
 
+	const fade = document.createElement( 'div' );
+	fade.setAttribute( 'id', 'fade' );
+	document.body.appendChild( fade );
+
 	try {
 
 		const portfolio = new Portfolio();
@@ -20,11 +24,15 @@ function init() {
 		document.documentElement.classList.remove( nojs );
 		document.documentElement.classList.add( 'js' );
 
+		requestAnimationFrame( () =>
+			document.getElementById( 'fade' ).classList.add( 'out' )
+		);
+
 	} catch ( error ) {
 
 		console.error( error );
 
-		//setTimeout( () => window.location.search = nojs, 5000 );
+		setTimeout( () => window.location.search = nojs, 5000 );
 
 	}
 
