@@ -34,9 +34,7 @@ class Cyberdark extends Sketch {
 
 	init() {
 
-		super.init();
-
-		this.controls = new CyberdarkControls( this );
+		super.init( CyberdarkControls );
 
 		//this.controls.initGUI();
 
