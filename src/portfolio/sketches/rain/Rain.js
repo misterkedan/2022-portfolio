@@ -54,8 +54,6 @@ class Rain extends Sketch {
 
 		this.controls.projector.plane.position.set( 0, this.y, 0 );
 
-		console.log( this.controls );
-
 	}
 
 	initScene() {
