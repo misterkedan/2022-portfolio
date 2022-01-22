@@ -32,9 +32,9 @@ class Portfolio {
 
 		const otherProjects = new OtherProjectsScreen( cyber );
 		const projects = [
-			'orion',
 			'vesuna',
 			'textformer',
+			'orion',
 			'disintegrator',
 			'sketches',
 		].map( id => new ProjectScreen( id, cyber ) );
