@@ -57,7 +57,7 @@ class Tweenable {
 
 	prepTextform( selector ) {
 
-		return this.getAll( selector ).map( ( element ) => {
+		const result = this.getAll( selector ).map( ( element ) => {
 
 			return {
 				element: element,
@@ -65,6 +65,8 @@ class Tweenable {
 			};
 
 		} );
+
+		return ( result.length > 1 ) ? result : result[ 0 ];
 
 	}
 

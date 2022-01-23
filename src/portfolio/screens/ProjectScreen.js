@@ -9,7 +9,7 @@ class ProjectScreen extends Screen {
 
 		this.video = this.get( 'video' );
 		this.paragraphs = this.prepTextform( 'p' );
-		this.links = this.prepTextform( 'a' );
+		this.cta = this.prepTextform( '.cta' );
 
 		this.offsetX = 5;
 		this.offsetY = 1;
@@ -45,7 +45,7 @@ class ProjectScreen extends Screen {
 
 		setStyle( this.video );
 		this.paragraphs.forEach( paragraph => setStyle( paragraph.element ) );
-		this.links.forEach( link => setStyle( link.element ) );
+		setStyle( this.cta.element );
 
 	}
 
@@ -85,9 +85,7 @@ class ProjectScreen extends Screen {
 			( [ i, item ] ) => addTextformer( i, item )
 		);
 
-		Object.entries( this.links ).forEach(
-			( [ i, item ] ) => addTextformer( i, item, 150 )
-		);
+		addTextformer( 0, this.cta, 150 );
 
 	}
 
@@ -129,9 +127,7 @@ class ProjectScreen extends Screen {
 			( [ i, item ] ) => addTextformer( i, item, 50 )
 		);
 
-		Object.entries( this.links ).forEach(
-			( [ i, item ] ) => addTextformer( i, item )
-		);
+		addTextformer( 0, this.cta );
 
 	}
 

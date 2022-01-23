@@ -7,12 +7,13 @@ class DemoOverlay extends Tweenable {
 
 		super( '#demo-overlay' );
 
-		this.firstName = this.prepTextform( '#name-first' )[ 0 ];
-		this.lastName = this.prepTextform( '#name-alias' )[ 0 ];
-		this.job = this.prepTextform( '#vocation' )[ 0 ];
-
 		this.title = this.get( 'h1' );
-		this.demoLauncher = this.prepTextform( '#demo-launcher-link' )[ 0 ];
+
+		this.firstName = this.prepTextform( '#name-first' );
+		this.lastName = this.prepTextform( '#name-alias' );
+		this.job = this.prepTextform( '#vocation' );
+
+		this.demoLauncher = this.prepTextform( '#demo-launcher-link' );
 
 		this.links = Array.from(
 			document.querySelectorAll( '.placeholder.demo-launch' )
