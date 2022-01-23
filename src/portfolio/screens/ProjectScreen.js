@@ -72,8 +72,7 @@ class ProjectScreen extends Screen {
 			const stagger = delay + i * 150;
 
 			tweeningIn.add( {
-				targets: new Textformer( {
-					autoplay: false,
+				targets: Textformer.build( {
 					align: Textformer.align.LEFT,
 					steps: 30,
 					stagger: 15,
@@ -123,8 +122,7 @@ class ProjectScreen extends Screen {
 			const stagger = delay + i * 50;
 
 			tweeningOut.add( {
-				targets: new Textformer( {
-					autoplay: false,
+				targets: Textformer.build( {
 					align: Textformer.align.LEFT,
 					steps: 30,
 					stagger: 15,

@@ -85,14 +85,13 @@ class AboutScreen extends Screen {
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
-			const textformer = new Textformer( {
+			const textform = Textformer.build( {
 				output: element,
 				from: '',
 				to: this.texts[ i ],
 				mode: Textformer.modes.REVERSE,
 				steps: 30,
 				stagger: 30,
-				autoplay: false,
 				align: Textformer.align.LEFT,
 			} );
 
@@ -100,7 +99,7 @@ class AboutScreen extends Screen {
 
 			this.tweeningIn
 				.add( {
-					targets: textformer,
+					targets: textform,
 					progress: 1,
 				}, stagger )
 				.add( {
@@ -132,17 +131,16 @@ class AboutScreen extends Screen {
 
 		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
 
-			const textformer = new Textformer( {
+			const textform = Textformer.build( {
 				output: element,
 				from: this.texts[ i ],
 				to: '',
-				autoplay: false,
 				align: Textformer.align.LEFT,
 			} );
 
 			this.tweeningOut
 				.add( {
-					targets: textformer,
+					targets: textform,
 					progress: 1,
 				}, 0 )
 				.add( {

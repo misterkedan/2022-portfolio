@@ -53,8 +53,7 @@ class OtherProjectsScreen extends Screen {
 			const stagger = delay + i * 50;
 
 			tweeningIn.add( {
-				targets: new Textformer( {
-					autoplay: false,
+				targets: Textformer.build( {
 					align: Textformer.align.LEFT,
 					from: '',
 					to: item.text,
@@ -99,8 +98,7 @@ class OtherProjectsScreen extends Screen {
 			const stagger = delay + i * 30;
 
 			tweeningOut.add( {
-				targets: new Textformer( {
-					autoplay: false,
+				targets: Textformer.build( {
 					mode: Textformer.modes.REVERSE,
 					align: Textformer.align.LEFT,
 					from: item.text,

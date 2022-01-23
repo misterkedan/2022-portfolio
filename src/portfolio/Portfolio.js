@@ -1,3 +1,4 @@
+import { Textformer } from 'textformer';
 import { Animations } from './Animations';
 import { Background } from './Background';
 import { Controls } from './Controls';
@@ -7,13 +8,17 @@ import { CoverScreen } from './screens/CoverScreen';
 import { LinksScreen } from './screens/LinksScreen';
 import { OtherProjectsScreen } from './screens/OtherProjectsScreen';
 import { ProjectScreen } from './screens/ProjectScreen';
-import { Nav } from './misc/Nav';
+import { DemoOverlay } from './misc/DemoOverlay';
+import { DynamicTitle } from './misc/DynamicTitle';
 import { Menu } from './misc/Menu';
+import { Nav } from './misc/Nav';
 import { NavProgress } from './misc/NavProgress';
 
 class Portfolio {
 
 	constructor() {
+
+		Textformer.defaults.autoplay = false;
 
 		this.nav = new Nav();
 		this.menu = new Menu();
@@ -52,6 +57,8 @@ class Portfolio {
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
+		this.overlay = new DemoOverlay();
+		this.dynamicTitle = new DynamicTitle();
 		this.navProgress = new NavProgress( this.length - 1 );
 
 		this.animations = new Animations( this );

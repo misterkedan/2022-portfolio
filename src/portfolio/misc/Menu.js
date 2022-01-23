@@ -69,8 +69,7 @@ class Menu extends Tweenable {
 			const stagger = i * 20;
 
 			this.tweeningIn.add( {
-				targets: new Textformer( {
-					autoplay: false,
+				targets: Textformer.build( {
 					from: '',
 					align: Textformer.align.LEFT,
 					to: item.text,
@@ -102,8 +101,7 @@ class Menu extends Tweenable {
 		this.items.forEach( ( item ) => {
 
 			this.tweeningOut.add( {
-				targets: new Textformer( {
-					autoplay: false,
+				targets: Textformer.build( {
 					from: item.text,
 					to: '',
 					align: Textformer.align.LEFT,

@@ -11,6 +11,8 @@ class DemoOverlay extends Tweenable {
 		this.firstName = this.prepTextform( '#name-first' )[ 0 ];
 		this.lastName = this.prepTextform( '#name-alias' )[ 0 ];
 		this.job = this.prepTextform( '#vocation' )[ 0 ];
+
+		this.title = this.get( 'h1' );
 		this.demoLauncher = this.prepTextform( '#demo-launcher-link' )[ 0 ];
 
 		this.links = Array.from(
@@ -23,7 +25,7 @@ class DemoOverlay extends Tweenable {
 
 		}, {} );
 
-		this.tweenX = 10;
+		this.tweenX = 20;
 
 	}
 
@@ -31,10 +33,10 @@ class DemoOverlay extends Tweenable {
 
 		const tweenX = ( backwards ) ? - this.tweenX :  this.tweenX;
 
-		this.setOpacity( this.domElement, 0 );
-		this.setX( this.domElement, tweenX * 2 );
+		this.setOpacity( this.title, 0 );
+		this.setX( this.title, tweenX );
 		this.setOpacity( this.demoLauncher.element, 0 );
-		this.setX( this.demoLauncher.element, tweenX );
+		this.setX( this.demoLauncher.element, tweenX * 2 );
 
 	}
 
@@ -50,27 +52,26 @@ class DemoOverlay extends Tweenable {
 		super.tweenIn( backwards );
 
 		const options = {
-			autoplay: false,
 			from: '',
 			steps: 14,
 			stagger: 6,
 			align: Textformer.align.LEFT,
 		};
 
-		const textformers = [
-			new Textformer( {
+		const textforms = [
+			Textformer.build( {
 				...options,
 				to: this.firstName.text,
 				output: this.firstName.element,
 				mode: Textformer.modes.REVERSE,
 			} ),
-			new Textformer( {
+			Textformer.build( {
 				...options,
 				to: this.lastName.text,
 				output: this.lastName.element,
 				mode: Textformer.modes.EXPAND,
 			} ),
-			new Textformer( {
+			Textformer.build( {
 				...options,
 				to: this.job.text,
 				output: this.job.element,
@@ -84,7 +85,7 @@ class DemoOverlay extends Tweenable {
 			easing: 'easeOutCirc',
 		} )
 			.add( {
-				targets: this.domElement,
+				targets: this.title,
 				opacity: 1,
 				translateX: 0,
 			}, 0 )
@@ -94,7 +95,7 @@ class DemoOverlay extends Tweenable {
 				translateX: 0,
 			}, 0 )
 			.add( {
-				targets: textformers,
+				targets: textforms,
 				progress: 1
 			}, 100 )
 		;
@@ -108,7 +109,6 @@ class DemoOverlay extends Tweenable {
 		const tweenX = ( backwards ) ? this.tweenX : - this.tweenX;
 
 		const options = {
-			autoplay: false,
 			to: '',
 			mode: ( backwards )
 				? Textformer.modes.BASIC
@@ -116,20 +116,20 @@ class DemoOverlay extends Tweenable {
 			align: Textformer.align.LEFT,
 		};
 
-		const textformers = [
-			new Textformer( {
+		const textforms = [
+			Textformer.build( {
 				...options,
 				from: this.firstName.text,
 				output: this.firstName.element,
 				//mode: Textformer.modes.REVERSE,
 			} ),
-			new Textformer( {
+			Textformer.build( {
 				...options,
 				from: this.lastName.text,
 				output: this.lastName.element,
 				//mode: Textformer.modes.EXPAND,
 			} ),
-			new Textformer( {
+			Textformer.build( {
 				...options,
 				from: this.job.text,
 				output: this.job.element,
@@ -142,19 +142,19 @@ class DemoOverlay extends Tweenable {
 			easing: 'easeInOutQuad'
 		} )
 			.add( {
-				targets: textformers,
+				targets: textforms,
 				progress: 1
 			}, 0 )
 			.add( {
-				targets: this.domElement,
+				targets: this.title,
 				opacity: 0,
-				translateX: tweenX * 2,
+				translateX: tweenX,
 			}, 50 )
 			.add( {
 				easing: 'easeOutQuad',
 				targets: this.demoLauncher.element,
 				opacity: 0,
-				translateX: tweenX,
+				translateX: tweenX * 2,
 			}, 50 )
 		;
 

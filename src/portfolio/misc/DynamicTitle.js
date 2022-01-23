@@ -19,8 +19,7 @@ class DynamicTitle {
 
 		}.bind( this );
 
-		const textformer = new Textformer( {
-			autoplay: false,
+		const textform = Textformer.build( {
 			steps: 12,
 			stagger: 8,
 			from: this.domElement.innerText,
@@ -32,7 +31,7 @@ class DynamicTitle {
 		} );
 
 		this.tweening = anime( {
-			targets: textformer,
+			targets: textform,
 			progress: 1,
 			easing: 'easeInOutQuad',
 			duration: 700,

@@ -38,19 +38,18 @@ class LinksScreen extends Screen {
 
 		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
 
-			const textformer = new Textformer( {
+			const textform = Textformer.build( {
 				output: span,
 				from: '',
 				steps: 15,
 				align: Textformer.align.LEFT,
 				to: this.spansTexts[ i ],
-				autoplay: false,
 			} );
 
 			const stagger = i * 100;
 
 			this.tweeningIn.add( {
-				targets: textformer,
+				targets: textform,
 				progress: 1,
 			}, stagger );
 
@@ -64,19 +63,18 @@ class LinksScreen extends Screen {
 
 		Object.entries( this.links ).forEach( ( [ i, link ] ) => {
 
-			const textformer = new Textformer( {
+			const textform = Textformer.build( {
 				output: link,
 				from: ' ',
 				steps: 15,
 				to: this.linksTexts[ i ],
 				mode: Textformer.modes.REVERSE,
-				autoplay: false,
 			} );
 
 			const stagger = i * 100;
 
 			this.tweeningIn.add( {
-				targets: textformer,
+				targets: textform,
 				progress: 1,
 			}, stagger );
 
@@ -102,19 +100,18 @@ class LinksScreen extends Screen {
 
 		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
 
-			const textformer = new Textformer( {
+			const textform = Textformer.build( {
 				output: span,
 				from: this.spansTexts[ i ],
 				to: ' ',
 				align: Textformer.align.LEFT,
 				steps: 15,
-				autoplay: false,
 			} );
 
 			const stagger = i > 0 ? 100 + 50 * i : 0;
 
 			this.tweeningOut.add( {
-				targets: textformer,
+				targets: textform,
 				progress: 1,
 			}, 0 );
 
@@ -128,18 +125,17 @@ class LinksScreen extends Screen {
 
 		Object.entries( this.links ).forEach( ( [ i, link ] ) => {
 
-			const textformer = new Textformer( {
+			const textform = Textformer.build( {
 				output: link,
 				align: Textformer.align.LEFT,
 				from: this.linksTexts[ i ],
 				to: ' ',
-				autoplay: false,
 			} );
 
 			const stagger = 100 + i * 50;
 
 			this.tweeningOut.add( {
-				targets: textformer,
+				targets: textform,
 				progress: 1,
 			}, stagger * 0.4 );
 

@@ -59,8 +59,7 @@ class AboutShuffler {
 
 		if ( ! this.pools[ key ].length ) this.reset( key );
 
-		const textformer = new Textformer( {
-			autoplay: false,
+		const textform = Textformer.build( {
 			steps: 12,
 			noise: 12,
 			mode: Textformer.modes.EXPAND,
@@ -71,7 +70,7 @@ class AboutShuffler {
 		this.animations[ key ] = anime( {
 			duration: 2000,
 			easing: 'easeOutSine',
-			targets: textformer,
+			targets: textform,
 			progress: 1,
 		} );
 

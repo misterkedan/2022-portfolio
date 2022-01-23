@@ -185,7 +185,7 @@ class Controls {
 
 		function onKeyUp( event ) {
 
-			console.log( event );
+			//console.log( event );
 
 			if (
 				keysBack.includes( event.keyCode ) ||

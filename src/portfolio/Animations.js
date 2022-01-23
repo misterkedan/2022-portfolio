@@ -1,6 +1,5 @@
 import anime from 'animejs';
-import { DynamicTitle } from './misc/DynamicTitle';
-import { DemoOverlay } from './misc/DemoOverlay';
+
 import { DemoScreen } from './screens/DemoScreen';
 import { CoverScreen } from './screens/CoverScreen';
 
@@ -9,9 +8,6 @@ class Animations {
 	constructor( portfolio ) {
 
 		this.portfolio = portfolio;
-
-		this.overlay = new DemoOverlay();
-		this.dynamicTitle = new DynamicTitle();
 
 	}
 
@@ -43,18 +39,20 @@ class Animations {
 		let newTitle = ( to instanceof CoverScreen )
 			? ''
 			: to.id.replaceAll( '-', ' ' );
-		this.dynamicTitle.tween( newTitle, backwards );
+		this.portfolio.dynamicTitle.tween( newTitle, backwards );
 
 	}
 
 	tweenOverlay( from, to, backwards ) {
 
+		const { overlay } = this.portfolio;
+
 		const fromIsDemo = ( from instanceof DemoScreen );
 		const toIsDemo = ( to instanceof DemoScreen );
-		if ( ! fromIsDemo && toIsDemo ) this.overlay.tweenIn( backwards );
-		else if ( fromIsDemo && ! toIsDemo ) this.overlay.tweenOut( backwards );
+		if ( ! fromIsDemo && toIsDemo ) overlay.tweenIn( backwards );
+		else if ( fromIsDemo && ! toIsDemo ) overlay.tweenOut( backwards );
 
-		if ( toIsDemo ) this.overlay.set( this.portfolio.currentScreen.id );
+		if ( toIsDemo ) overlay.set( this.portfolio.currentScreen.id );
 
 	}
 
