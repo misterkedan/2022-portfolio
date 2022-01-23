@@ -15,7 +15,7 @@ class Background {
 
 		// Sketchpad
 
-		const container = document.getElementById( 'background' );
+		const container = document.querySelector( '#background' );
 		this.container = container;
 
 		this.sketchpad = new Sketchpad( { container } );
