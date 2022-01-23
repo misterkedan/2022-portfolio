@@ -10,7 +10,7 @@ class CoverScreen extends Screen {
 		this.footer = footer;
 		this.invitation = this.get( '#invitation' );
 
-		this.gridOffset = sketch.tileSize * 15;
+		this.gridOffset = sketch.tileSize * 7;
 
 		const offset = 4;
 		this.translate = offset;
