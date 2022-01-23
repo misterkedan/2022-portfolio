@@ -5,7 +5,7 @@ class NavProgress extends Tweenable {
 
 	constructor( max ) {
 
-		super( document.getElementById( 'nav-progress' ) );
+		super( '#nav-progress', 'block' );
 
 		this.max = max;
 		this.bar = this.get( '#nav-progress-bar' );

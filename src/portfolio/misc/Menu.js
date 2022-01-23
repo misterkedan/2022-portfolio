@@ -1,4 +1,3 @@
-import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { Tweenable } from './Tweenable';
 
@@ -6,7 +5,7 @@ class Menu extends Tweenable {
 
 	constructor() {
 
-		super( document.querySelector( '#menu-overlay' ), 'flex' );
+		super( '#menu-overlay' );
 
 		this.list = this.get( '#menu' );
 		this.items = this.prepTextform( 'li' );
@@ -54,10 +53,9 @@ class Menu extends Tweenable {
 
 		super.tweenIn();
 
-		this.tweeningIn = anime.timeline( {
-			easing: 'easeOutCirc',
+		this.tweeningIn = this.animeIn( {
 			duration: 400,
-			complete: this.completeTweenIn,
+			delay: 0,
 		} ).add( {
 			targets: this.domElement,
 			duration: 600,
@@ -89,10 +87,8 @@ class Menu extends Tweenable {
 
 		super.tweenOut();
 
-		this.tweeningOut = anime.timeline( {
-			easing: 'easeOutQuad',
-			duration: 300,
-			complete: this.completeTweenOut,
+		this.tweeningOut = this.animeOut( {
+			easing: 'easeOutQuad'
 		} ).add( {
 			targets: this.domElement,
 			opacity: 0,

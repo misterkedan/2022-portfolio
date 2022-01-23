@@ -45,14 +45,14 @@ class Animations {
 
 	tweenOverlay( from, to, backwards ) {
 
-		const { overlay } = this.portfolio;
+		const { demoOverlay } = this.portfolio;
 
 		const fromIsDemo = ( from instanceof DemoScreen );
 		const toIsDemo = ( to instanceof DemoScreen );
-		if ( ! fromIsDemo && toIsDemo ) overlay.tweenIn( backwards );
-		else if ( fromIsDemo && ! toIsDemo ) overlay.tweenOut( backwards );
+		if ( ! fromIsDemo && toIsDemo ) demoOverlay.tweenIn( backwards );
+		else if ( fromIsDemo && ! toIsDemo ) demoOverlay.tweenOut( backwards );
 
-		if ( toIsDemo ) overlay.set( this.portfolio.currentScreen.id );
+		if ( toIsDemo ) demoOverlay.set( this.portfolio.currentScreen.id );
 
 	}
 

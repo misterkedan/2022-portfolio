@@ -4,7 +4,7 @@ class Screen extends Tweenable {
 
 	constructor( id, sketch ) {
 
-		super( document.getElementById( id ), 'flex' );
+		super( `#${id}` );
 
 		this.id = id;
 		this.sketch = sketch;

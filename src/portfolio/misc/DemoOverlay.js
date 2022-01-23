@@ -1,4 +1,3 @@
-import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { Tweenable } from './Tweenable';
 
@@ -6,7 +5,7 @@ class DemoOverlay extends Tweenable {
 
 	constructor() {
 
-		super( document.querySelector( '#demo-overlay' ), 'flex' );
+		super( '#demo-overlay' );
 
 		this.firstName = this.prepTextform( '#name-first' )[ 0 ];
 		this.lastName = this.prepTextform( '#name-alias' )[ 0 ];
@@ -25,18 +24,18 @@ class DemoOverlay extends Tweenable {
 
 		}, {} );
 
-		this.tweenX = 20;
+		this.offsetX = 20;
 
 	}
 
 	setup( backwards ) {
 
-		const tweenX = ( backwards ) ? - this.tweenX :  this.tweenX;
+		const x = ( backwards ) ? - this.offsetX :  this.offsetX;
 
 		this.setOpacity( this.title, 0 );
-		this.setX( this.title, tweenX );
+		this.setX( this.title, x );
 		this.setOpacity( this.demoLauncher.element, 0 );
-		this.setX( this.demoLauncher.element, tweenX * 2 );
+		this.setX( this.demoLauncher.element, x * 2 );
 
 	}
 
@@ -78,11 +77,9 @@ class DemoOverlay extends Tweenable {
 			} )
 		];
 
-		this.tweeningIn = anime.timeline( {
-			complete: this.completeTweenIn,
+		this.tweeningIn = this.animeIn( {
 			duration: 700,
 			delay: 150,
-			easing: 'easeOutCirc',
 		} )
 			.add( {
 				targets: this.title,
@@ -106,7 +103,7 @@ class DemoOverlay extends Tweenable {
 
 		super.tweenOut( backwards );
 
-		const tweenX = ( backwards ) ? this.tweenX : - this.tweenX;
+		const translateX = ( backwards ) ? this.offsetX : - this.offsetX;
 
 		const options = {
 			to: '',
@@ -121,13 +118,11 @@ class DemoOverlay extends Tweenable {
 				...options,
 				from: this.firstName.text,
 				output: this.firstName.element,
-				//mode: Textformer.modes.REVERSE,
 			} ),
 			Textformer.build( {
 				...options,
 				from: this.lastName.text,
 				output: this.lastName.element,
-				//mode: Textformer.modes.EXPAND,
 			} ),
 			Textformer.build( {
 				...options,
@@ -136,11 +131,7 @@ class DemoOverlay extends Tweenable {
 			} )
 		];
 
-		this.tweeningOut = anime.timeline( {
-			complete: this.completeTweenOut,
-			duration: 300,
-			easing: 'easeInOutQuad'
-		} )
+		this.tweeningOut = this.animeOut()
 			.add( {
 				targets: textforms,
 				progress: 1
@@ -148,13 +139,13 @@ class DemoOverlay extends Tweenable {
 			.add( {
 				targets: this.title,
 				opacity: 0,
-				translateX: tweenX,
+				translateX,
 			}, 50 )
 			.add( {
 				easing: 'easeOutQuad',
 				targets: this.demoLauncher.element,
 				opacity: 0,
-				translateX: tweenX * 2,
+				translateX: translateX * 2,
 			}, 50 )
 		;
 

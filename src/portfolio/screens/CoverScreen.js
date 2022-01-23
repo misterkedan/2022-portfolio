@@ -1,30 +1,27 @@
-import anime from 'animejs';
 import { Screen } from './Screen';
 
 class CoverScreen extends Screen {
 
-	constructor( sketch, nav ) {
+	constructor( sketch, nav, footer ) {
 
 		super( 'cover', sketch );
 
 		this.nav = nav;
-
-		this.invitation = document.getElementById( 'invitation' );
-		this.invitationText = this.invitation.innerText;
-
-		this.footer = document.getElementsByTagName( 'footer' )[ 0 ];
-
-		const translate = 4;
-		this.translate = translate;
-		this.nav.back.style.transform = `translateX(-${translate}rem)`;
-		this.nav.forward.style.transform = `translateX(${translate}rem)`;
-		this.nav.domElement.style.transform = `translateY(-${translate}rem)`;
-		this.footer.style.bottom = `-${translate}rem`;
+		this.footer = footer;
+		this.invitation = this.get( '#invitation' );
 
 		this.gridOffset = sketch.tileSize * 15;
 
-		this.nav.domElement.style.opacity = 0;
-		this.footer.style.opacity = 0;
+		const offset = 4;
+		this.translate = offset;
+
+		this.setX( nav.back, - offset );
+		this.setX( nav.forward, offset );
+		this.setY( nav.domElement, - offset );
+		this.setY( footer, offset );
+
+		this.setOpacity( nav.domElement, 0 );
+		this.setOpacity( footer, 0 );
 
 		const initialHash = window.location.hash;
 		if ( ! initialHash.length || initialHash === '#cover' ) this.show();
@@ -35,16 +32,12 @@ class CoverScreen extends Screen {
 
 		super.tweenIn();
 
-		this.tweeningIn = anime.timeline( {
-			easing: 'easeOutCirc',
-			duration: 500,
-			complete: this.completeTweenIn,
-		} )
+		this.tweeningIn = this.animeIn( { delay: 0 } )
 			.add( {
 				duration: 1200,
 				targets: this.sketch,
 				offset: 0,
-			} )
+			}, 300 )
 			.add( {
 				targets: this.invitation,
 				opacity: 1,
@@ -68,7 +61,7 @@ class CoverScreen extends Screen {
 			.add( {
 				targets: this.footer,
 				opacity: 0,
-				bottom: - this.translate,
+				translateY: this.translate,
 			}, 0 )
 		;
 
@@ -78,16 +71,11 @@ class CoverScreen extends Screen {
 
 		super.tweenOut();
 
-		this.tweeningOut = anime.timeline( {
-			easing: 'easeInOutQuad',
-			duration: 300,
-			complete: this.completeTweenOut,
-		} )
+		this.tweeningOut = this.animeOut()
 			.add( {
-				//duration: ,
 				targets: this.sketch,
 				offset: this.gridOffset,
-			} )
+			}, 0 )
 			.add( {
 				targets: this.invitation,
 				opacity: 0,
@@ -101,7 +89,7 @@ class CoverScreen extends Screen {
 			.add( {
 				targets: this.footer,
 				opacity: 1,
-				bottom: 0,
+				translateY: 0,
 			}, 200 )
 			.add( {
 				targets: this.nav.back,
@@ -113,7 +101,6 @@ class CoverScreen extends Screen {
 				opacity: 1,
 				translateX: 0,
 			}, 150 )
-
 		;
 
 	}

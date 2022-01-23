@@ -1,8 +1,10 @@
+import anime from 'animejs';
+
 class Tweenable {
 
-	constructor( domElement, displayType = 'block' ) {
+	constructor( selector, displayType = 'flex' ) {
 
-		this.domElement = domElement;
+		this.domElement = document.querySelector( selector );
 		this.displayType = displayType;
 
 		this.completeTweenIn = function () {
@@ -18,6 +20,20 @@ class Tweenable {
 			this.tweeningOut = null;
 
 		}.bind( this );
+
+		this.defaults = {
+			in: {
+				easing: 'easeOutCirc',
+				delay: 300,
+				duration: 500,
+				complete: this.completeTweenIn,
+			},
+			out: {
+				easing: 'easeInOutQuad',
+				duration: 400,
+				complete: this.completeTweenOut,
+			}
+		};
 
 	}
 
@@ -103,6 +119,18 @@ class Tweenable {
 
 	}
 
+	animeIn( options ) {
+
+		return anime.timeline( { ...this.defaults.in, ...options }  );
+
+	}
+
+	animeOut( options ) {
+
+		return anime.timeline( { ...this.defaults.out, ...options } );
+
+	}
+
 	setX( element, x ) {
 
 		element.style.transform = `translateX(${x}rem)`;
@@ -122,5 +150,7 @@ class Tweenable {
 	}
 
 }
+
+
 
 export { Tweenable };

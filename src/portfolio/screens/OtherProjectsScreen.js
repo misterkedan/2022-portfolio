@@ -1,4 +1,3 @@
-import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { Screen } from './Screen';
 
@@ -12,7 +11,7 @@ class OtherProjectsScreen extends Screen {
 		this.names = this.prepTextform( '.other-project-title' );
 		this.summaries = this.prepTextform( '.other-project-summary' );
 
-		this.tweenX = 12;
+		this.offsetX = 12;
 
 		this.setup();
 
@@ -20,14 +19,12 @@ class OtherProjectsScreen extends Screen {
 
 	setup( backwards ) {
 
-		const tweenX = ( backwards ) ? - this.tweenX : this.tweenX;
-
-		const transform = `translateX(${tweenX}rem)`;
+		const x = ( backwards ) ? - this.offsetX : this.offsetX;
 
 		const setStyle = ( item ) => {
 
-			item.element.style.opacity = 0;
-			item.element.style.transform = transform;
+			this.setOpacity( item.element, 0 );
+			this.setX( item.element, x );
 
 		};
 
@@ -40,19 +37,13 @@ class OtherProjectsScreen extends Screen {
 
 		super.tweenIn( backwards );
 
-		const tweeningIn = anime.timeline( {
-			complete: this.completeTweenIn,
-			easing: 'easeOutCirc',
-			duration: 450,
-			delay: 100,
-		} );
-		this.tweeningIn = tweeningIn;
+		this.tweeningIn = this.animeIn( { delay: 0 } );
 
 		const addTextformer = function ( i, item, delay = 0 ) {
 
 			const stagger = delay + i * 50;
 
-			tweeningIn.add( {
+			this.tweeningIn.add( {
 				targets: Textformer.build( {
 					align: Textformer.align.LEFT,
 					from: '',
@@ -62,13 +53,13 @@ class OtherProjectsScreen extends Screen {
 				progress: 1,
 			}, 150 + stagger );
 
-			tweeningIn.add( {
+			this.tweeningIn.add( {
 				targets: item.element,
 				opacity: 1,
 				translateX: 0,
 			}, stagger );
 
-		};
+		}.bind( this );
 
 		Object.entries( this.names ).forEach(
 			( [ i, item ] ) => addTextformer( i, item )
@@ -84,20 +75,15 @@ class OtherProjectsScreen extends Screen {
 
 		super.tweenOut( backwards );
 
-		const tweenX = ( backwards ) ? this.tweenX : - this.tweenX;
+		const translateX = ( backwards ) ? this.offsetX : - this.offsetX;
 
-		const tweeningOut = anime.timeline( {
-			complete: this.completeTweenOut,
-			duration: 300,
-			easing: 'easeInOutQuad',
-		} );
-		this.tweeningOut = tweeningOut;
+		this.tweeningOut = this.animeOut();
 
 		const addTextformer = function ( i, item, delay = 0 ) {
 
 			const stagger = delay + i * 30;
 
-			tweeningOut.add( {
+			this.tweeningOut.add( {
 				targets: Textformer.build( {
 					mode: Textformer.modes.REVERSE,
 					align: Textformer.align.LEFT,
@@ -108,13 +94,13 @@ class OtherProjectsScreen extends Screen {
 				progress: 1,
 			}, stagger );
 
-			tweeningOut.add( {
+			this.tweeningOut.add( {
 				targets: item.element,
 				opacity: 0,
-				translateX: tweenX,
+				translateX,
 			}, stagger );
 
-		};
+		}.bind( this );
 
 		Object.entries( this.names ).forEach(
 			( [ i, item ] ) => addTextformer( i, item )

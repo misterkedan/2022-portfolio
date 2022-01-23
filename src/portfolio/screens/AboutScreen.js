@@ -1,4 +1,3 @@
-import anime from 'animejs';
 import { Textformer } from 'textformer';
 import { AboutShuffler } from '../misc/AboutShuffler';
 import { Screen } from '../screens/Screen';
@@ -7,27 +6,14 @@ class AboutScreen extends Screen {
 
 	constructor( sketch ) {
 
-		const ABOUT = 'about';
+		super( 'about-me', sketch );
 
-		super( `${ABOUT}-me`, sketch );
-
-		this.elements = [
-			`${ABOUT}-1`,
-			`${ABOUT}-2`,
-			`${ABOUT}-3`,
-			`${ABOUT}-4a`,
-			'tools',
-			`${ABOUT}-4b`,
-			'affinities',
-			`${ABOUT}-4c`,
-		].map( id => document.getElementById( id ) );
-		this.texts = this.elements.map( element => element.innerText );
-
-		this.selfie = document.getElementById( 'selfie' );
+		this.spans = this.prepTextform( 'span' );
+		this.paragraphs = this.getAll( 'p' );
+		this.selfie = this.get( '#selfie' );
+		this.offsetX = 10;
 
 		this.shuffler = new AboutShuffler();
-
-		this.tweenX = 10;
 
 	}
 
@@ -47,23 +33,17 @@ class AboutScreen extends Screen {
 
 	setup( backwards ) {
 
-		const tweenX = ( backwards ) ? - this.tweenX : this.tweenX;
+		const x = ( backwards ) ? - this.offsetX : this.offsetX;
 
 		const setStyle = ( element ) => {
 
-			element.style.opacity = 0;
-			element.style.transform = `translateX(${tweenX}rem)`;
+			this.setOpacity( element, 0 );
+			this.setX( element, x );
 
 		};
 
 		setStyle( this.selfie );
-
-		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
-
-			element.innerText = this.texts[ i ];
-			setStyle( element );
-
-		} );
+		this.paragraphs.forEach( paragraph => setStyle( paragraph ) );
 
 	}
 
@@ -71,42 +51,40 @@ class AboutScreen extends Screen {
 
 		super.tweenIn( backwards );
 
-		this.tweeningIn = anime.timeline( {
-			easing: 'easeOutCirc',
-			delay: 250,
-			duration: 650,
-			complete: this.completeTweenIn,
-		} )
-			.add( {
-				targets: this.selfie,
-				opacity: 1,
+		this.tweeningIn = this.animeIn().add( {
+			targets: this.selfie,
+			opacity: 1,
+			translateX: 0,
+		}, 100 );
+
+		Object.entries( this.spans ).forEach( ( [ i, span ] ) => {
+
+			const stagger = i * 50;
+
+			this.tweeningIn.add( {
+				targets: Textformer.build( {
+					output: span.element,
+					from: '',
+					to: span.text,
+					mode: Textformer.modes.REVERSE,
+					steps: 30,
+					stagger: 30,
+					align: Textformer.align.LEFT,
+				} ),
+				progress: 1,
+			}, stagger );
+
+		} );
+
+		Object.entries( this.paragraphs ).forEach( ( [ i, paragraph ] ) => {
+
+			const stagger = 100 + i * 50;
+
+			this.tweeningIn.add( {
+				targets: paragraph,
 				translateX: 0,
-			}, 100 );
-
-		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
-
-			const textform = Textformer.build( {
-				output: element,
-				from: '',
-				to: this.texts[ i ],
-				mode: Textformer.modes.REVERSE,
-				steps: 30,
-				stagger: 30,
-				align: Textformer.align.LEFT,
-			} );
-
-			const stagger = Math.sqrt( i ) * 100;
-
-			this.tweeningIn
-				.add( {
-					targets: textform,
-					progress: 1,
-				}, stagger )
-				.add( {
-					targets: element,
-					translateX: 0,
-					opacity: 1
-				}, stagger + 100 );
+				opacity: 1
+			}, stagger );
 
 		} );
 
@@ -116,38 +94,35 @@ class AboutScreen extends Screen {
 
 		super.tweenOut();
 
-		const tweenX = ( backwards ) ? this.tweenX : - this.tweenX;
+		const translateX = ( backwards ) ? this.offsetX : - this.offsetX;
 
-		this.tweeningOut = anime.timeline( {
-			easing: 'easeInOutQuad',
-			duration: 400,
-			complete: this.completeTweenOut,
-		} )
-			.add( {
-				targets: this.selfie,
-				opacity: 0,
-				translateX: tweenX,
+		this.tweeningOut = this.animeOut().add( {
+			targets: this.selfie,
+			opacity: 0,
+			translateX,
+		}, 0 );
+
+		Object.values( this.spans ).forEach( ( span ) => {
+
+			this.tweeningOut.add( {
+				targets: Textformer.build( {
+					output: span.element,
+					from: span.text,
+					to: '',
+					align: Textformer.align.LEFT,
+				} ),
+				progress: 1,
 			}, 0 );
 
-		Object.entries( this.elements ).forEach( ( [ i, element ] ) => {
+		} );
 
-			const textform = Textformer.build( {
-				output: element,
-				from: this.texts[ i ],
-				to: '',
-				align: Textformer.align.LEFT,
-			} );
+		Object.values( this.paragraphs ).forEach( ( paragraph )  => {
 
-			this.tweeningOut
-				.add( {
-					targets: textform,
-					progress: 1,
-				}, 0 )
-				.add( {
-					targets: element,
-					translateX: tweenX,
-					opacity: 0
-				}, 100 );
+			this.tweeningOut.add( {
+				targets: paragraph,
+				opacity: 0,
+				translateX,
+			}, 100 );
 
 		} );
 

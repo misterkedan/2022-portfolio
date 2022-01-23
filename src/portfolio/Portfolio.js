@@ -5,7 +5,7 @@ import { Controls } from './Controls';
 import { AboutScreen } from './screens/AboutScreen';
 import { DemoScreen } from './screens/DemoScreen';
 import { CoverScreen } from './screens/CoverScreen';
-import { LinksScreen } from './screens/LinksScreen';
+import { ContactScreen } from './screens/ContactScreen';
 import { OtherProjectsScreen } from './screens/OtherProjectsScreen';
 import { ProjectScreen } from './screens/ProjectScreen';
 import { DemoOverlay } from './misc/DemoOverlay';
@@ -20,14 +20,15 @@ class Portfolio {
 
 		Textformer.defaults.autoplay = false;
 
+		this.footer = document.querySelector( 'footer' );
 		this.nav = new Nav();
 		this.menu = new Menu();
-		this.background = new Background();
 
+		this.background = new Background();
 		this.canvas = this.background.sketchpad.canvas;
 		const { cyber } = this.background;
 
-		const home = new CoverScreen( this.background.grid, this.nav );
+		const home = new CoverScreen( this.background.grid, this.nav, this.footer );
 		const demos = [
 			'navscan',
 			'rain',
@@ -45,7 +46,7 @@ class Portfolio {
 		].map( id => new ProjectScreen( id, cyber ) );
 
 		const about = new AboutScreen( cyber );
-		const links = new LinksScreen( cyber );
+		const links = new ContactScreen( cyber );
 
 		this.screens = [
 			home, ...demos,
@@ -57,7 +58,7 @@ class Portfolio {
 		this.index = 0;
 		this.currentScreen = this.screens[ this.index ];
 
-		this.overlay = new DemoOverlay();
+		this.demoOverlay = new DemoOverlay();
 		this.dynamicTitle = new DynamicTitle();
 		this.navProgress = new NavProgress( this.length - 1 );
 
@@ -163,7 +164,7 @@ class Portfolio {
 	get height() {
 
 		return ( this.currentScreen instanceof DemoScreen )
-			? this.animations.overlay.domElement.clientHeight
+			? this.demoOverlay.domElement.clientHeight
 			: this.currentScreen.domElement.clientHeight;
 
 	}

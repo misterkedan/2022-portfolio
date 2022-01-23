@@ -1,11 +1,10 @@
-
 import { Tweenable } from './Tweenable';
 
 class Nav extends Tweenable {
 
 	constructor() {
 
-		super( document.querySelector( 'nav' ), 'flex' );
+		super( 'nav' );
 
 		this.back = this.get( '#back' );
 		this.forward = this.get( '#forward' );
