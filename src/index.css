@@ -328,7 +328,7 @@ footer {
 		transition: color 200ms ease-in-out;
 	}
 
-	#demo-overlay {
+	.js #demo-overlay {
 		position: fixed;
 		top: 0;
 		left: 0;
