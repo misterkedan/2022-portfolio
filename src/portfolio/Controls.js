@@ -4,9 +4,10 @@ class Controls {
 
 		this.init( portfolio );
 		this.initClick( portfolio );
-		this.initMouseSwipe( portfolio );
-		this.initTouch( portfolio );
 		this.initKeyboad( portfolio );
+		this.initMouseSwipe( portfolio );
+		this.initScroll( portfolio );
+		this.initTouch( portfolio );
 		this.initWheel( portfolio );
 
 	}
@@ -55,107 +56,6 @@ class Controls {
 			portfolio.goto( index );
 
 		} );
-
-	}
-
-	initWheel( portfolio ) {
-
-		window.addEventListener( 'wheel', ( event ) => {
-
-			if ( portfolio.menu.opened ) return;
-
-			if ( event.deltaX ) {
-
-				if ( event.deltaX > 0 && ! portfolio.isEnding )
-					portfolio.forward();
-				else if ( ! portfolio.isStarting ) portfolio.back();
-
-				return;
-
-			}
-
-			if (
-				event.deltaY > 0
-				&& ! portfolio.canScrollDown
-				&& ! portfolio.isEnding
-			) {
-
-				portfolio.forward();
-				window.scrollTo( window.scrollX, 0 );
-
-			} else if (
-				event.deltaY < 0
-				&& ! portfolio.canScrollUp
-				&& ! portfolio.isStarting
-			) {
-
-				portfolio.back();
-				window.scrollTo(
-					window.scrollX,
-					Math.max( 0, portfolio.height - window.innerHeight ),
-				);
-
-			}
-
-		} );
-
-	}
-
-	initMouseSwipe( portfolio ) {
-
-		this.onMouseDown = function ( event ) {
-
-			if ( event.button > 0 ) return;
-			this.swiping = true;
-			this.start = event.clientX;
-
-		}.bind( this );
-
-		this.onMouseUp = function ( event ) {
-
-			if ( ! this.swiping ) return;
-			this.swiping = false;
-
-			const distance = this.start - event.clientX;
-			if ( Math.abs( distance ) < 10 ) return;
-
-			if ( distance < 0 ) portfolio.back();
-			else portfolio.forward();
-
-		}.bind( this );
-
-		//window.addEventListener( 'mousedown', event => console.log( event.target ) );
-		//window.addEventListener( 'wheel', event => console.log( event.target ) );
-
-		portfolio.canvas.addEventListener( 'mousedown', this.onMouseDown );
-		window.addEventListener( 'mouseup', this.onMouseUp );
-
-	}
-
-	initTouch( portfolio ) {
-
-		this.cancelSwipe = function () {
-
-			this.swiping = false;
-
-		}.bind( this );
-
-		this.onTouchStart = function ( event ) {
-
-			this.cancelSwipeTimer = setTimeout( this.cancelSwipe, 1000 );
-			this.onMouseDown( event.targetTouches[ 0 ] );
-
-		}.bind( this );
-
-		this.onTouchEnd = function ( event ) {
-
-			clearTimeout( this.cancelSwipeTimer );
-			this.onMouseUp( event.changedTouches[ 0 ] );
-
-		}.bind( this );
-
-		portfolio.canvas.addEventListener( 'touchstart', this.onTouchStart );
-		portfolio.canvas.addEventListener( 'touchend', this.onTouchEnd );
 
 	}
 
@@ -211,6 +111,116 @@ class Controls {
 
 		window.addEventListener( 'keydown', onKeyDown );
 		window.addEventListener( 'keyup', onKeyUp );
+
+	}
+
+	initMouseSwipe( portfolio ) {
+
+		this.onMouseDown = function ( event ) {
+
+			if ( event.button > 0 ) return;
+			this.swiping = true;
+			this.start = event.clientX;
+
+		}.bind( this );
+
+		this.onMouseUp = function ( event ) {
+
+			if ( ! this.swiping ) return;
+			this.swiping = false;
+
+			const distance = this.start - event.clientX;
+			if ( Math.abs( distance ) < 10 ) return;
+
+			if ( distance < 0 ) portfolio.back();
+			else portfolio.forward();
+
+		}.bind( this );
+
+		//window.addEventListener( 'mousedown', event => console.log( event.target ) );
+		//window.addEventListener( 'wheel', event => console.log( event.target ) );
+
+		portfolio.canvas.addEventListener( 'mousedown', this.onMouseDown );
+		window.addEventListener( 'mouseup', this.onMouseUp );
+
+	}
+
+	initScroll( portfolio ) {
+
+		window.addEventListener( 'scroll', () => portfolio.updateScroll() );
+		window.addEventListener( 'resize', () => portfolio.updateScroll() );
+
+	}
+
+	initTouch( portfolio ) {
+
+		this.cancelSwipe = function () {
+
+			this.swiping = false;
+
+		}.bind( this );
+
+		this.onTouchStart = function ( event ) {
+
+			this.cancelSwipeTimer = setTimeout( this.cancelSwipe, 1000 );
+			this.onMouseDown( event.targetTouches[ 0 ] );
+
+		}.bind( this );
+
+		this.onTouchEnd = function ( event ) {
+
+			clearTimeout( this.cancelSwipeTimer );
+			this.onMouseUp( event.changedTouches[ 0 ] );
+
+		}.bind( this );
+
+		portfolio.canvas.addEventListener( 'touchstart', this.onTouchStart );
+		portfolio.canvas.addEventListener( 'touchend', this.onTouchEnd );
+
+	}
+
+
+
+	initWheel( portfolio ) {
+
+		window.addEventListener( 'wheel', ( event ) => {
+
+			if ( portfolio.menu.opened ) return;
+
+			if ( event.deltaX ) {
+
+				if ( event.deltaX > 0 && ! portfolio.isEnding )
+					portfolio.forward();
+				else if ( ! portfolio.isStarting ) portfolio.back();
+
+				return;
+
+			}
+
+			if (
+				event.deltaY > 0
+				&& ! portfolio.canScrollDown
+				&& ! portfolio.isEnding
+			) {
+
+				portfolio.forward();
+				window.scrollTo( window.scrollX, 0 );
+
+			} else if (
+				event.deltaY < 0
+				&& ! portfolio.canScrollUp
+				&& ! portfolio.isStarting
+			) {
+
+				portfolio.back();
+				window.scrollTo(
+					window.scrollX,
+					Math.max( 0, portfolio.height - window.innerHeight ),
+				);
+
+			}
+
+		} );
 
 	}
 

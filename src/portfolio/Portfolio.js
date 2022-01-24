@@ -126,6 +126,7 @@ class Portfolio {
 		const hash = this.currentScreen.id;
 		this.menu.update( hash );
 		this.nav.setForward( this.isEnding );
+		requestAnimationFrame( ()=>this.updateScroll() );
 
 		window.location.hash = hash;
 
@@ -140,6 +141,16 @@ class Portfolio {
 		}
 
 		return 0;
+
+	}
+
+	updateScroll() {
+
+		if ( this.canScrollUp ) this.nav.domElement.classList.add( 'hidden' );
+		else this.nav.domElement.classList.remove( 'hidden' );
+
+		if ( this.canScrollDown ) this.footer.classList.add( 'hidden' );
+		else ( this.footer.classList.remove( 'hidden' ) );
 
 	}
 

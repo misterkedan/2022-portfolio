@@ -6,6 +6,7 @@ class Nav extends Tweenable {
 
 		super( 'nav' );
 
+		this.wrapper = this.get( '#nav-wrapper' );
 		this.back = this.get( '#back' );
 		this.forward = this.get( '#forward' );
 		this.menuButton = this.get( '#menu-button' );

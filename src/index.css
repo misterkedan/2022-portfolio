@@ -129,6 +129,19 @@ footer {
 	text-align: center;
 }
 
+nav,
+footer {
+	transition: all 400ms ease-in-out;
+}
+	nav.hidden {
+		opacity: 0;
+		transform: translateY( -1rem );
+	}
+	footer.hidden {
+		color: rgba(255,255,255,0);
+		transform: translateY( 1rem );
+	}
+
 
 /*-----------------------------------------------------------------------------/
 
@@ -136,7 +149,7 @@ footer {
 
 /-----------------------------------------------------------------------------*/
 
-nav {
+#nav-wrapper {
 	position: fixed;
 	top: 0;
 	left: 0;

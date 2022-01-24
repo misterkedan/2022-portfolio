@@ -17,10 +17,9 @@ class CoverScreen extends Screen {
 
 		this.setX( nav.back, - offset );
 		this.setX( nav.forward, offset );
-		this.setY( nav.domElement, - offset );
-		this.setY( footer, offset );
+		this.setY( nav.wrapper, - offset );
 
-		this.setOpacity( nav.domElement, 0 );
+		this.setOpacity( nav.wrapper, 0 );
 		this.setOpacity( footer, 0 );
 
 		const initialHash = window.location.hash;
@@ -54,14 +53,14 @@ class CoverScreen extends Screen {
 				translateX: - this.translate,
 			}, 0 )
 			.add( {
-				targets: this.nav.domElement,
+				targets: this.nav.wrapper,
 				translateY: - this.translate,
 				opacity: 0,
 			}, 0 )
 			.add( {
 				targets: this.footer,
 				opacity: 0,
-				translateY: this.translate,
+				duration: 0,
 			}, 0 )
 		;
 
@@ -82,16 +81,6 @@ class CoverScreen extends Screen {
 				translateX: - 200,
 			}, 0 )
 			.add( {
-				targets: this.nav.domElement,
-				translateY: 0,
-				opacity: 1,
-			}, 200 )
-			.add( {
-				targets: this.footer,
-				opacity: 1,
-				translateY: 0,
-			}, 200 )
-			.add( {
 				targets: this.nav.back,
 				opacity: 1,
 				translateX: 0,
@@ -101,6 +90,16 @@ class CoverScreen extends Screen {
 				opacity: 1,
 				translateX: 0,
 			}, 150 )
+			.add( {
+				targets: this.nav.wrapper,
+				translateY: 0,
+				opacity: 1,
+			}, 200 )
+			.add( {
+				targets: this.footer,
+				opacity: 1,
+				duration: 0,
+			}, 200 )
 		;
 
 	}
