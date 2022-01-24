@@ -204,7 +204,9 @@ footer {
 	flex-direction: row;
 }
 
-#back, #forward, #menu-button {
+#back, 
+#forward, 
+#menu-button {
 	display: inline-block;
 	padding: 1rem 1.5rem;
 	font-size: 2rem;
@@ -329,13 +331,9 @@ footer {
 	}
 
 	.js #demo-overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
 		width: 100%;
 		height: 100%;
 		user-select: none;
-		overflow: hidden;
 		min-height: 40rem;
 	}
 
@@ -504,10 +502,9 @@ footer {
 .init #portfolio {
 	display: none;
 }
-
-.js #portfolio {
-	display: block;
-}
+	.js #portfolio {
+		display: block;
+	}
 
 #upgrade-push {
 	display: none;	
@@ -592,29 +589,6 @@ footer {
 		pointer-events: all;
 	}
 	
-	.demo-launch:hover {
-		background: rgba( 255, 255, 255, 0.4 );
-		color: rgba(255, 255, 255, 0.9);
-		border-color: rgba(255, 255, 255, 0.9);
-	}
-
-	.js .other-project:hover .other-project-title,
-	.js .other-project:hover .other-project-summary:not(.note),
-	#nav-controls .control:hover,
-	#invitation:hover {
-		color: #ffffff;
-	}
-
-	.open .control:hover {
-		color: #00aaee;
-	}
-
-	.cta:hover {
-		background: #eaeef0;
-		color: #00aaee;
-		box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.7);
-	}
-
 	#menu-close {
 		padding: 0;
 	}
@@ -648,8 +622,21 @@ footer {
 		padding-left: 4rem;
 	}
 
+	.demo-launch:hover {
+		background: rgba( 255, 255, 255, 0.4 );
+		color: rgba(255, 255, 255, 0.9);
+		border-color: rgba(255, 255, 255, 0.9);
+	}
+
 	.other-project {
 		pointer-events: initial;
+	}
+
+	.js .other-project:hover .other-project-title,
+	.js .other-project:hover .other-project-summary:not(.note),
+	#nav-controls .control:hover,
+	#invitation:hover {
+		color: #ffffff;
 	}
 
 	.js .menu-return {
@@ -660,6 +647,12 @@ footer {
 			color: rgba(255, 255, 255, 0.5);
 			text-decoration: underline;
 		}
+
+	.cta:hover {
+		background: #eaeef0;
+		color: #00aaee;
+		box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.7);
+	}
 
 	.social-item {
 		margin-top: 0.8rem;
@@ -729,17 +722,13 @@ footer {
 
 @media (max-width: 300px) {
 
-	#invitation{
-		font-size: 4rem;
+	#back, 
+	#forward {
+		display: none;
 	}
 
 	#menu-button {
 		font-size: 1.4rem;
-	}
-
-	#back, 
-	#forward {
-		display: none;
 	}
 
 	.menu-section,
@@ -747,19 +736,15 @@ footer {
 		padding: 0 1rem;
 	}
 
-	#demo-overlay {
-		min-height: 34rem;
+	#invitation{
+		font-size: 4rem;
 	}
 
 	#name-first {
 		font-size: 2.9rem;
 		line-height: 1.2em;
 	}
-
-	#demo-launcher-link {
-		letter-spacing: 0;
-	}
-
+	
 	#name-alias {
 		font-size: 4.4rem;
 		line-height: 0.8em;
@@ -768,6 +753,14 @@ footer {
 
 	#vocation {
 		font-size: 1.2rem;
+	}
+
+	.js #demo-overlay {
+		min-height: 34rem;
+	}
+
+	#demo-launcher-link {
+		letter-spacing: 0;
 	}
 
 	.demo-launch {
@@ -790,6 +783,7 @@ footer {
 	#email {
 		text-align: center;
 	}
+	
 	.social-item {
 		flex-direction: column;
 		align-items: center;
