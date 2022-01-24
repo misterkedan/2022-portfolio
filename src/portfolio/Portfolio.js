@@ -68,6 +68,18 @@ class Portfolio {
 		this.otherProjects = otherProjects;
 		this.controls = new Controls( this );
 
+		console.log(
+			'%c Crafted with love, by Pierre Keda',
+			'background: #00aaee; color: #ffffff; padding: 1em;'
+		);
+
+		console.log(
+			'If you\'re curious about how this portfolio was made,\n'
+			+ 'you can check out the full repository at:\n'
+			+ 'https://github.com/pierrekeda/2022-portfolio \n\n'
+			+ 'Have a nice day!'
+		);
+
 	}
 
 	load() {
