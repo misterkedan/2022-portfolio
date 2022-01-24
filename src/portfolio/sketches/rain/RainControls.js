@@ -82,10 +82,6 @@ class RainControls extends Controls {
 
 		sketch.delay = delay.min + sketch.baseDelay;
 
-		//sketch.delay = delay.min
-		//	+ ( 0.5 + sketch.noise * 0.5 ) * sketch.baseDelay
-		//	* ( 0.5 + tracker.reverseCenterY * 0.5 );
-
 	}
 
 }

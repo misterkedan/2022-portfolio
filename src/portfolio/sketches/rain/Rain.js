@@ -218,7 +218,6 @@ class Rain extends Sketch {
 		const geometry = new InstancedBufferGeometry();
 		geometry.instanceCount = instanceCount;
 
-		//geometry.setIndex( new Uint16BufferAttribute().copy( base.index ) );
 		geometry.setAttribute(
 			'position',
 			new Float32BufferAttribute().copy( edges.attributes.position )
@@ -298,16 +297,11 @@ class Rain extends Sketch {
 
 		}
 
-		//let actives = 0;
-
 		for ( let i = 0; i < this.settings.instanceCount; i ++ ) {
 
 			this.targeted.geometry.attributes.aLife.array[ i ] += speed;
-			//if ( this.targeted.geometry.attributes.aLife.array[ i ] < 1 ) actives ++;
 
 		}
-
-		//console.log( { actives } );
 
 		this.targeted.geometry.attributes.aLife.needsUpdate = true;
 

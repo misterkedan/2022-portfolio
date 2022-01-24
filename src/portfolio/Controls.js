@@ -85,8 +85,6 @@ class Controls {
 
 		function onKeyUp( event ) {
 
-			//console.log( event );
-
 			if (
 				keysBack.includes( event.keyCode ) ||
 				keysBack.includes( event.keyCode )
@@ -136,9 +134,6 @@ class Controls {
 			else portfolio.forward();
 
 		}.bind( this );
-
-		//window.addEventListener( 'mousedown', event => console.log( event.target ) );
-		//window.addEventListener( 'wheel', event => console.log( event.target ) );
 
 		portfolio.canvas.addEventListener( 'mousedown', this.onMouseDown );
 		window.addEventListener( 'mouseup', this.onMouseUp );
