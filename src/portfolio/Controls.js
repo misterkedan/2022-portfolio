@@ -174,8 +174,6 @@ class Controls {
 
 	}
 
-
-
 	initWheel( portfolio ) {
 
 		window.addEventListener( 'wheel', ( event ) => {
